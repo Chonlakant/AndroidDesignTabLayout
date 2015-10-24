@@ -13,6 +13,7 @@ import butterknife.InjectView;
 import natuan.org.androiddesigntablayout.MainApplication;
 import natuan.org.androiddesigntablayout.PrefManager;
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentFeed;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentRecentChats;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.MainFragment;
 import natuan.org.androiddesigntablayout.impls.OnFragmentInteractionListener;
@@ -56,7 +57,7 @@ public class MainActivityTap extends BaseActivity implements OnFragmentInteracti
 
     public void setupViewPager(ViewPager viewPager) {
         pageAdapter = new FragmentPageAdapter(getApplicationContext(), getSupportFragmentManager());
-        pageAdapter.addFragment(MainFragment.getInstance(library), "Timeline", R.drawable.clock);
+        pageAdapter.addFragment(FragmentFeed.getInstance(library), "Timeline", R.drawable.clock);
         pageAdapter.addFragment(MainFragment.getInstance(recents), "Friends", R.drawable.user);
         pageAdapter.addFragment(MainFragment.getInstance(favourites), "Camera", R.drawable.camera_addon);
         pageAdapter.addFragment(FragmentRecentChats.getInstance(notifications), "Chats", R.drawable.chat);
