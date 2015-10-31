@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import natuan.org.androiddesigntablayout.MainApplication;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.fragments.fragmrntLogin.FragmentLogin;
@@ -16,18 +17,10 @@ public class MainActivityDisplayFragmentLogin extends BaseActivity {
 
 
     @Override
-    protected int getLayoutResource() {
-        return R.layout.activity_main_view_login;
-    }
-
-    @Override
-    protected void initVariables(Bundle savedInstanceState) {
-
-    }
-
-    @Override
-    protected void initData(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_view_login);
+//        getSupportActionBar().hide();
         int type = getIntent().getIntExtra("type", 0);
 
         if(type == 0){
@@ -43,9 +36,8 @@ public class MainActivityDisplayFragmentLogin extends BaseActivity {
             transaction.add(R.id.fragment_container, fragment);
             transaction.commit();
         }
+
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -21,24 +21,17 @@ public class MainLogin extends BaseActivity {
     PrefManager pref;
     @InjectView(R.id.btn_sign_in)
     Button btnSignIn;
-    @Override
-    protected int getLayoutResource() {
-        return R.layout.fragment_main_view_login;
-    }
+
 
     @Override
-    protected void initVariables(Bundle savedInstanceState) {
-
-    }
-
-    @Override
-    protected void initData(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_main_view_login);
         LoginAndSignIn();
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         pref = MainApplication.getPrefManager();
+
     }
-
-
 
     public void LoginAndSignIn(){
 

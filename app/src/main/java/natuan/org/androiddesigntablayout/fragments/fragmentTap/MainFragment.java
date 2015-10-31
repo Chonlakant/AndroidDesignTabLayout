@@ -1,13 +1,11 @@
 package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
-import natuan.org.androiddesigntablayout.activity.MainActivityCotainer;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.adapter.CustomExpandableListView;
 import natuan.org.androiddesigntablayout.model.Posts;
@@ -132,6 +129,24 @@ public class MainFragment extends Fragment {
                 if (listDataHeader.get(groupPosition) == "Me") {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                     dialog.setContentView(R.layout.dialog_me);
+                    ImageView imageView7 = (ImageView) dialog.findViewById(R.id.imageView7);
+                    imageView7.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            FragmentEditName fragment = new FragmentEditName();
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            transaction.add(R.id.flContainer, fragment);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
+                        }
+                    });
+
+//                    FragmentInfomation fragment = new FragmentInfomation();
+//                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                    transaction.add(R.id.fragment_container, fragment);
+//                    transaction.addToBackStack(null);
+//                    transaction.commit();
+
                     dialog.show();
 
                 }
@@ -164,9 +179,11 @@ public class MainFragment extends Fragment {
         btnNewGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), MainActivityCotainer.class);
-                i.putExtra("type", 2);
-                startActivity(i);
+                FragmentCreateGroup fragment = new FragmentCreateGroup();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.flContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
@@ -200,7 +217,7 @@ public class MainFragment extends Fragment {
                             list2.add(mainModel);
                         }
 
-                        for (int i = 18 ; i< list.size();i++){
+                        for (int i = 5 ; i< list.size();i++){
 
                             name = list.get(i).getName();
                             Log.e("zzzz", name);
@@ -209,7 +226,7 @@ public class MainFragment extends Fragment {
                             captainAmerica.add(name);
                             ironMan.add(name);
                         }
-                        for(int j = 22 ; j < list2.size();j++){
+                        for(int j = 8 ; j < list2.size();j++){
                             strMe = list.get(j).getName();
                             me.add(strMe);
                         }

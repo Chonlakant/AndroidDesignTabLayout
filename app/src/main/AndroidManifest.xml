@@ -24,8 +24,6 @@
 
         </activity>
         <activity android:name=".acivityLogin.MainActivityDisplayFragmentLogin"/>
-        <activity android:name=".activity.MainActivityAddFriends"/>
-        <activity android:name=".activity.MainActivityCotainer"/>
         <activity android:name=".activity.MainActivityTap"/>
     </application>
 

@@ -37,7 +37,7 @@ public class MainPresenter implements Presenter<TopMovieListView> {
 
                     if (response != null) {
                         JSONArray ja = response.getJSONArray("posts");
-                        for (int i = 16; i < ja.length(); i++) {
+                        for (int i = 0; i < ja.length(); i++) {
                             JSONObject obj = ja.getJSONObject(i);
 
                             String name = obj.getString("name");
