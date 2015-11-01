@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import natuan.org.androiddesigntablayout.MainApplication;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.fragments.fragmrntLogin.FragmentLogin;

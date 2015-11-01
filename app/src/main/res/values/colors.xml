@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#2196F3</color>
-    <color name="primary_dark">#1976D2</color>
+    <color name="primary">#3daae2</color>
+    <color name="primary_dark">#3daae2</color>
     <color name="primary_light">#BBDEFB</color>
     <color name="accent">#448AFF</color>
     <color name="primary_text">#212121</color>
@@ -17,6 +17,9 @@
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#5f50e1</color>
 
+    <!-- color textview -->
+    <color name="color_text">#2582b1</color>
+
     <color name="material_drawer_dark_hint_text">#252525</color>
     <!-- Material DEFAULT text / items colors -->
     <color name="material_drawer_icons">#F9F9F9</color>
@@ -24,4 +27,15 @@
     <color name="material_drawer_secondary_text">#727272</color>
     <color name="material_drawer_hint_text">#B8B8B8</color>
     <color name="material_drawer_divider">#B6B6B6</color>
+
+    <color name="white">@android:color/white</color>
+    <color name="chat_user_reply_background_color">#c8f0ff</color>
+    <color name="chat_company_reply_background_color">#F5F5F5</color>
+    <color name="gray">@android:color/darker_gray</color>
+
+    <color name="orange">@android:color/holo_blue_light</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="btn_default_light_normal">#00000000</color>
+    <color name="btn_default_light_pressed">#40ffffff</color>
+
 </resources>

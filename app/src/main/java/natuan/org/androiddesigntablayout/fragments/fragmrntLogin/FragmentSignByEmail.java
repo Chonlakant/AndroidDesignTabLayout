@@ -48,7 +48,7 @@ public class FragmentSignByEmail extends Fragment {
             public void onClick(View v) {
                 FragmentUserNameSetting oneFragment = new FragmentUserNameSetting();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, oneFragment);
+                transaction.replace(R.id.content, oneFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
 

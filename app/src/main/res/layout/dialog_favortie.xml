@@ -27,7 +27,18 @@
                 android:id="@+id/imageView4"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/im" />
+                android:src="@drawable/im"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Favortie"
+                android:id="@+id/textView20"
+                android:textColor="#000"
+                android:layout_gravity="center_vertical" />
 
         </LinearLayout>
 

@@ -3,6 +3,7 @@ package natuan.org.androiddesigntablayout.fragments.fragmrntLogin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import natuan.org.androiddesigntablayout.activity.MainActivityTap;
-import natuan.org.androiddesigntablayout.MainApplication;
-import natuan.org.androiddesigntablayout.PrefManager;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.acivityLogin.MainActivityDisplayFragmentLogin;
 
 public class FragmentLogin extends Fragment {
     Boolean isLogin = false;
-    PrefManager pref;
+
 
    // @InjectView(R.id.txt_sign_up_now)
     TextView txtSignNow;
@@ -35,7 +34,7 @@ public class FragmentLogin extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
-        pref = MainApplication.getPrefManager();
+
         txtSignNow = (TextView) rootView.findViewById(R.id.txt_sign_up_now);
         txtSignUpFacebook = (TextView) rootView.findViewById(R.id.txt_sign_up_facebook);
         txt_sign_up_now = (TextView) rootView.findViewById(R.id.txt_sign_up_now);
@@ -52,11 +51,11 @@ public class FragmentLogin extends Fragment {
         txt_sign_up_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int type = 1;
-                Toast.makeText(getActivity(), "Sing In = 1", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getActivity(),MainActivityDisplayFragmentLogin.class);
-                i.putExtra("type",type);
-                startActivity(i);
+                FragmentSignUpSelection fragment = new FragmentSignUpSelection();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.content, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

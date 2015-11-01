@@ -1,12 +1,16 @@
 package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,15 +32,19 @@ import java.util.HashMap;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import natuan.org.androiddesigntablayout.BaseFragment;
+import natuan.org.androiddesigntablayout.MainActivityChat;
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.CustomExpandableListView;
+import natuan.org.androiddesigntablayout.fragments.FragmentInfomation;
 import natuan.org.androiddesigntablayout.model.Posts;
 
 /**
  * Created by Tuan on 6/18/2015.
  */
-public class MainFragment extends Fragment {
-
+public class MainFragment extends BaseFragment {
+    Toolbar toolbar;
 
 
     CustomExpandableListView listAdapter;
@@ -138,6 +146,20 @@ public class MainFragment extends Fragment {
                             transaction.add(R.id.flContainer, fragment);
                             transaction.addToBackStack(null);
                             transaction.commit();
+                            dialog.dismiss();
+                        }
+                    });
+
+                    ImageView img_info = (ImageView) dialog.findViewById(R.id.img_info);
+                    img_info.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            FragmentInfomation fragment = new FragmentInfomation();
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            transaction.add(R.id.flContainer, fragment);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
+                            dialog.dismiss();
                         }
                     });
 
@@ -160,13 +182,36 @@ public class MainFragment extends Fragment {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                     dialog.setContentView(R.layout.dialog_favortie);
 
+
+
                     dialog.show();
 
                 }
                 if (listDataHeader.get(groupPosition) == "Friends") {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
-                    dialog.setContentView(R.layout.dialog_favortie);
+                    dialog.setContentView(R.layout.dialog_friends);
+                    TextView txt_chat = (TextView) dialog.findViewById(R.id.txt_chat);
+                    txt_chat.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getActivity(), MainActivityChat.class);
+                            startActivity(i);
+                            dialog.dismiss();
+                        }
+                    });
 
+                    ImageView img_info = (ImageView) dialog.findViewById(R.id.img_info);
+                    img_info.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            FragmentInfomation fragment = new FragmentInfomation();
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            transaction.add(R.id.flContainer, fragment);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
+                            dialog.dismiss();
+                        }
+                    });
                     dialog.show();
 
                 }
@@ -270,5 +315,58 @@ public class MainFragment extends Fragment {
         // Convert the dps to pixels, based on density scale
         return (int) (pixels * scale + 0.5f);
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        toolbar = ((BaseActivity) getActivity()).getToolbar();
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        toolbar.inflateMenu(R.menu.menu_main);
+        toolbar.setTitle("Friends");
+        super.onCreateOptionsMenu(menu, inflater);
+        //inflater.inflate(R.menu.menu_main_noti,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                Toast.makeText(getActivity(), "Add", Toast.LENGTH_SHORT).show();
+                FragmentAddFriends fragment = new FragmentAddFriends();
+                FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.flContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                return true;
+
+            case R.id.action_search:
+                Toast.makeText(getActivity(), "Search", Toast.LENGTH_SHORT).show();
+
+                return true;
+            case R.id.action_refresh:
+                Toast.makeText(getActivity(), "Refresh", Toast.LENGTH_SHORT).show();
+
+                return true;
+            case R.id.action_status:
+                Toast.makeText(getActivity(), "Status", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_friend:
+                Toast.makeText(getActivity(), "Friend", Toast.LENGTH_SHORT).show();
+
+                return true;
+            case R.id.action_setting:
+                Toast.makeText(getActivity(), "Setting", Toast.LENGTH_SHORT).show();
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

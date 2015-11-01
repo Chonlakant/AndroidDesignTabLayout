@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidDesignTabLayout.iml" filepath="$PROJECT_DIR$/AndroidDesignTabLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cvlibrary/cvlibrary.iml" filepath="$PROJECT_DIR$/cvlibrary/cvlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/labeiui/labeiui.iml" filepath="$PROJECT_DIR$/labeiui/labeiui.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>

@@ -1,1 +1,1 @@
-include ':app', ':labeiui', ':library'
+include ':app', ':labeiui', ':library', ':cvlibrary'

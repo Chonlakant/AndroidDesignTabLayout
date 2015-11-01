@@ -1,8 +1,10 @@
 package natuan.org.androiddesigntablayout.fragments.fragmrntLogin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.activity.MainActivityTap;
 
 public class FragmentSignUpSelection extends Fragment {
 
@@ -30,6 +33,7 @@ public class FragmentSignUpSelection extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setupToolbar();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,7 +48,7 @@ public class FragmentSignUpSelection extends Fragment {
             public void onClick(View v) {
                 FragmentSignByPhoneStep1 oneFragment = new FragmentSignByPhoneStep1();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, oneFragment);
+                transaction.replace(R.id.content, oneFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
 
@@ -59,7 +63,7 @@ public class FragmentSignUpSelection extends Fragment {
 
                 FragmentSignByEmailStep1 oneFragment = new FragmentSignByEmailStep1();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, oneFragment);
+                transaction.replace(R.id.content, oneFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
 
@@ -71,7 +75,7 @@ public class FragmentSignUpSelection extends Fragment {
             public void onClick(View v) {
                 FragmentLogin fragment = new FragmentLogin();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, fragment);
+                transaction.replace(R.id.content, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -79,6 +83,14 @@ public class FragmentSignUpSelection extends Fragment {
 
 
         return rootView;
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        if(toolbar != null) {
+            toolbar.setTitle("Login");
+
+        }
     }
 
 }

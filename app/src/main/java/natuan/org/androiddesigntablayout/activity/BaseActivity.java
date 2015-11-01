@@ -27,6 +27,7 @@ import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.handler.ApiBus;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -40,7 +41,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.inject(this);
-
+        //setupToolbar();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (getSupportActionBar() != null && toolbar != null) {
             setSupportActionBar(toolbar);
@@ -52,6 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (shouldInstallDrawer()) {
             //setupDrawer();
         }
+        setupToolbar();
     }
 
     @Override
@@ -65,7 +67,12 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    protected void setupToolbar() {
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
 
+        }
+    }
     public Toolbar getToolbar() {
         return toolbar;
     }
@@ -96,7 +103,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        ApiBus.getInstance().register(this);
         //getToolbar().setTitle("VDOMAX");
         //getToolbar().setTitle("@" + VMApplication.get(mContext).getPrefManager().username());
     }
@@ -104,7 +111,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
+        ApiBus.getInstance().unregister(this);
     }
 
     protected int getActionBarSize() {

@@ -66,19 +66,19 @@ public class FragmentFeed extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        toolbar = ((BaseActivity) getActivity()).getToolbar();
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        toolbar = ((BaseActivity) getActivity()).getToolbar();
+
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-//        toolbar.setTitle("VDOMAX");
-//        toolbar.setSubtitle("Home");
-//
-//        toolbar.inflateMenu(R.menu.menu_main_noti);
-        inflater.inflate(R.menu.menu_main_noti, menu);
+        toolbar.inflateMenu(R.menu.menu_main_noti);
+        toolbar.setTitle("Timeline");
+        super.onCreateOptionsMenu(menu, inflater);
+        //inflater.inflate(R.menu.menu_main_noti,menu);
     }
 
     @Override

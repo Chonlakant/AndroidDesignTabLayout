@@ -1,7 +1,8 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff">
 
 
     <LinearLayout
@@ -20,13 +21,14 @@
             android:paddingTop="20dp">
 
             <TextView
-
                 android:id="@+id/txt_sign_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:hint="Sign up with Phone Number"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +83,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:hint="Sign up with email address"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -145,7 +149,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="Log in with Facebook"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#335c99" />
         </LinearLayout>
 
         <LinearLayout
@@ -180,8 +186,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text=" Login here"
-                        android:textColor="#000000"
                         android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="#000000"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -193,31 +199,35 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
+
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical" />
+
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dp"
                 android:layout_below="@+id/b"
-                android:background="#B6B6B6"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginBottom="15dp"
+                android:background="#B6B6B6" />
+
             <TextView
-                android:paddingBottom="25dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:hint="To create a CandyChat account, please verify your
 phone number, email or Facebook account"
+                android:paddingBottom="25dp"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
                 android:layout_gravity="center_horizontal"
                 android:hint="By signing up, you agree to our Terms and Policy"
+                android:paddingBottom="15dp"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
         </LinearLayout>

@@ -19,16 +19,18 @@ import natuan.org.androiddesigntablayout.model.Posts;
 
 public class AdapterMore extends BaseAdapter {
     Context mContext;
-   List<Posts> list = new ArrayList<>();
+    String[] name;
+    int[] res;
 
-    public AdapterMore(Context context, List<Posts> list) {
+    public AdapterMore(Context context, String[] name,int[] res) {
         this.mContext= context;
-        this.list = list;
+        this.name = name;
+        this.res = res;
 
     }
 
     public int getCount() {
-        return list.size();
+        return name.length;
     }
 
     public Object getItem(int position) {
@@ -41,33 +43,20 @@ public class AdapterMore extends BaseAdapter {
 
     public View getView(int position, View view, ViewGroup parent) {
 
-        Posts i = list.get(position);
         LayoutInflater mInflater =
                 (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(view == null)
             view = mInflater.inflate(R.layout.item_more, parent, false);
 
-        TextView txt_name = (TextView)view.findViewById(R.id.title);
-        txt_name.setText(i.getName());
-
-        TextView txt_msg = (TextView)view.findViewById(R.id.artist);
-        txt_msg.setText(i.getName());
-
-        TextView time = (TextView)view.findViewById(R.id.time);
+        TextView txt_name = (TextView)view.findViewById(R.id.textView13);
+        txt_name.setText(name[position]);
 
 
 
-        ImageView ivUserAvatar = (ImageView)view.findViewById(R.id.list_image);
+        ImageView ivUserAvatar = (ImageView)view.findViewById(R.id.imageView21);
+        ivUserAvatar.setBackgroundResource(res[position]);
 
-
-
-        Picasso.with(mContext)
-                .load(i.getImage())
-                .centerCrop()
-                .resize(200, 200)
-                .transform(new RoundedTransformation(100, 4))
-                .into(ivUserAvatar);
 
         return view;
     }

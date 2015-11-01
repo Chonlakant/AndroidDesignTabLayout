@@ -13,10 +13,11 @@ import natuan.org.androiddesigntablayout.R;
 public class FragmentEditName extends Fragment {
 
     TextView txt_qr;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_edit_name, container, false);
 
-        txt_qr = (TextView) rootView.findViewById(R.id.txt_qr);
+        txt_qr = (TextView) rootView.findViewById(R.id.textView18);
         txt_qr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

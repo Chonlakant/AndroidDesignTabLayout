@@ -49,7 +49,7 @@ public class FragmentSignByPhoneStep2 extends Fragment {
             public void onClick(View v) {
                 FragmentSignByPhone oneFragment = new FragmentSignByPhone();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, oneFragment);
+                transaction.replace(R.id.content, oneFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

@@ -15,4 +15,7 @@
     <string name="label_to_remove">Label to remove</string>
     <string name="simple_example">Simple example</string>
     <string name="list_example">List example</string>
+    <string name="type_your_message">Enter msg</string>
+    <string name="NoRecent">No recent</string>
+
 </resources>

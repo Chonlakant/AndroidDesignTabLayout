@@ -1,8 +1,16 @@
 package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -10,8 +18,10 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import natuan.org.androiddesigntablayout.MainActivityChat;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.TopMovieListView;
+import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecentChats;
 import natuan.org.androiddesigntablayout.model.Posts;
 import natuan.org.androiddesigntablayout.presenter.MainPresenter;
@@ -20,7 +30,7 @@ import natuan.org.androiddesigntablayout.presenter.MainPresenter;
  * Created by Tuan on 6/18/2015.
  */
 public class FragmentRecentChats extends Fragment implements TopMovieListView {
-
+    Toolbar toolbar;
     ListView listView;
     AdapterRecentChats adapterRecentChats;
     MainPresenter mMainPresenter;
@@ -41,11 +51,30 @@ public class FragmentRecentChats extends Fragment implements TopMovieListView {
         mMainPresenter.attachView(this);
         mMainPresenter.loadData();
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                return false;
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("ChatRoom")
+//                        .setMessage("กรุณาเข้าสู่ระบบ หรือสมัคร folkrice เพื่อดำเนินการต่อไป")
+                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                Intent i = new Intent(getActivity(), MainActivityChat.class);
+                                startActivity(i);
+                                dialog.dismiss();
+                            }
+                        })
+                        .setPositiveButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Dismiss dialog and open cart
+                                dialog.dismiss();
+
+                            }
+                        }).create().show();
             }
         });
 
@@ -57,5 +86,39 @@ public class FragmentRecentChats extends Fragment implements TopMovieListView {
     public void setArticles(List<Posts> articles) {
         adapterRecentChats = new AdapterRecentChats(getActivity(),articles);
         listView.setAdapter(adapterRecentChats);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        toolbar = ((BaseActivity) getActivity()).getToolbar();
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        toolbar.inflateMenu(R.menu.menu_main_recent_chat);
+        toolbar.setTitle("Camera");
+        super.onCreateOptionsMenu(menu, inflater);
+        //inflater.inflate(R.menu.menu_main_noti,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+//            case R.id.action_add:
+//                Toast.makeText(getActivity(), "Add", Toast.LENGTH_SHORT).show();
+//                FragmentAddFriends fragment = new FragmentAddFriends();
+//                FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.add(R.id.flContainer, fragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+//                return true;
+
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

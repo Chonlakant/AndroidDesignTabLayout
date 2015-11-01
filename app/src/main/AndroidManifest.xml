@@ -25,6 +25,10 @@
         </activity>
         <activity android:name=".acivityLogin.MainActivityDisplayFragmentLogin"/>
         <activity android:name=".activity.MainActivityTap"/>
+        <activity android:name=".MainActivityChat"/>
+        <activity android:name=".activity.PostPhotoActivity"/>
+        <activity android:name=".activity.TakePhotoActivity2"/>
+        <activity android:name=".activity.TakePhotoActivity"/>
     </application>
 
 </manifest>

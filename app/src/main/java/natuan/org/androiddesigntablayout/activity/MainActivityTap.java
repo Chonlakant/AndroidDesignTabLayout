@@ -1,39 +1,30 @@
 package natuan.org.androiddesigntablayout.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TabHost;
-import android.widget.Toast;
 
 import butterknife.InjectView;
-import natuan.org.androiddesigntablayout.MainApplication;
-import natuan.org.androiddesigntablayout.PrefManager;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentFeed;
-import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentAddFriends;
-import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentByUsername;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentCamera;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentMore;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentRecentChats;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.MainFragment;
 import natuan.org.androiddesigntablayout.impls.OnFragmentInteractionListener;
+import natuan.org.androiddesigntablayout.widgets.CustomViewPager;
 import natuan.org.androiddesigntablayout.widgets.adapters.FragmentPageAdapter;
 
 
 public class MainActivityTap extends BaseActivity implements OnFragmentInteractionListener {
     @InjectView(R.id.viewpager)
-    ViewPager mViewpager;
+    CustomViewPager mViewpager;
     @InjectView(R.id.tabs)
     TabLayout mTabs;
     Toolbar mToolbar;
 
-    PrefManager pref;
+
     private FragmentPageAdapter pageAdapter;
     String library, recents, favourites, notifications, settings;
 
@@ -48,9 +39,11 @@ public class MainActivityTap extends BaseActivity implements OnFragmentInteracti
         favourites = getString(R.string.favourites);
         notifications = getString(R.string.notifications);
         settings = getString(R.string.settings);
+        mViewpager.setPagingEnabled(false);
         setupViewPager(mViewpager);
+
         setupTabLayout(mTabs);
-        pref = MainApplication.getPrefManager();
+
     }
 
 
@@ -75,47 +68,6 @@ public class MainActivityTap extends BaseActivity implements OnFragmentInteracti
         tabLayout.requestFocus();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_add:
-//                Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show();
-//                FragmentAddFriends fragment = new FragmentAddFriends();
-//                FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
-//                transaction.add(R.id.flContainer, fragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-//                return true;
-//
-//            case R.id.action_search:
-//                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
-//
-//                return true;
-//            case R.id.action_refresh:
-//                Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
-//
-//                return true;
-//            case R.id.action_status:
-//                Toast.makeText(this, "Status", Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.action_friend:
-//                Toast.makeText(this, "Friend", Toast.LENGTH_SHORT).show();
-//
-//                return true;
-//            case R.id.action_setting:
-//                Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
-//
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @Override
     public void onBackPressed() {
@@ -126,10 +78,7 @@ public class MainActivityTap extends BaseActivity implements OnFragmentInteracti
     @Override
     public void onResume() {
         super.onResume();
-        if (pref.isLogin().getOr(true)) {
 
-
-        }
     }
 
 
