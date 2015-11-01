@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,15 +14,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.squareup.otto.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import natuan.org.androiddesigntablayout.BaseFragment;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.ComplexRecyclerViewAdapter;
+import natuan.org.androiddesigntablayout.event.SomeEvent;
+import natuan.org.androiddesigntablayout.event.SuccessEvent;
+import natuan.org.androiddesigntablayout.handler.ApiBus;
 import natuan.org.androiddesigntablayout.model.User;
 
-public class FragmentFeed extends Fragment {
+public class FragmentFeed extends BaseFragment {
     Toolbar toolbar;
     RecyclerView rvContacts;
     ComplexRecyclerViewAdapter adapter;
@@ -53,10 +60,15 @@ public class FragmentFeed extends Fragment {
         rvContacts = (RecyclerView) rootView.findViewById(R.id.rvContacts);
         // Set layout manager to position the items
         rvContacts.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        ApiBus.getInstance().post(new SomeEvent());
         bindDataToAdapter();
 
         return rootView;
+    }
+
+    @Subscribe
+    public void getMovie(SuccessEvent event){
+
     }
 
     private void bindDataToAdapter() {

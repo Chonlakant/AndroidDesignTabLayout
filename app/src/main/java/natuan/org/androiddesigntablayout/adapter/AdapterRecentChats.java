@@ -16,13 +16,14 @@ import java.util.List;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.RoundedTransformation;
 import natuan.org.androiddesigntablayout.model.Posts;
+import natuan.org.androiddesigntablayout.model.postss;
 
 public class AdapterRecentChats extends BaseAdapter {
     Context mContext;
-   List<Posts> list = new ArrayList<>();
+    ArrayList<postss> list = new ArrayList<>();
 
-    public AdapterRecentChats(Context context,  List<Posts> list) {
-        this.mContext= context;
+    public AdapterRecentChats(Context context, ArrayList<postss> list) {
+        this.mContext = context;
         this.list = list;
 
     }
@@ -40,35 +41,47 @@ public class AdapterRecentChats extends BaseAdapter {
     }
 
     public View getView(int position, View view, ViewGroup parent) {
+        ViewHolder viewHolder;
 
-        Posts i = list.get(position);
+        postss i = list.get(position);
         LayoutInflater mInflater =
-                (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if(view == null)
+        if (view == null) {
             view = mInflater.inflate(R.layout.item_recent_chats, parent, false);
-
-        TextView txt_name = (TextView)view.findViewById(R.id.title);
-        txt_name.setText(i.getName());
-
-        TextView txt_msg = (TextView)view.findViewById(R.id.artist);
-        txt_msg.setText(i.getName());
-
-        TextView time = (TextView)view.findViewById(R.id.time);
+            viewHolder = new ViewHolder(view);
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) view.getTag();
+        }
 
 
+        viewHolder.txt_name.setText(i.getPosts().get(position).getName());
 
-        ImageView ivUserAvatar = (ImageView)view.findViewById(R.id.list_image);
-
+        viewHolder.txt_msg.setText(i.getPosts().get(position).getUrl());
 
 
         Picasso.with(mContext)
-                .load(i.getImage())
+                .load(i.getPosts().get(position).getImage())
                 .centerCrop()
                 .resize(200, 200)
                 .transform(new RoundedTransformation(100, 4))
-                .into(ivUserAvatar);
+                .into(viewHolder.ivUserAvatar);
+
 
         return view;
+    }
+
+    private class ViewHolder {
+        public TextView txt_name, txt_msg, time;
+        public ImageView ivUserAvatar;
+
+        public ViewHolder(View convertView) {
+            txt_name = (TextView) convertView.findViewById(R.id.title);
+            txt_msg = (TextView) convertView.findViewById(R.id.artist);
+            time = (TextView) convertView.findViewById(R.id.time);
+            ivUserAvatar = (ImageView) convertView.findViewById(R.id.list_image);
+
+        }
     }
 }

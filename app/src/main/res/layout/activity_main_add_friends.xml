@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/phone"
+                android:textColor="#3daae2"
                 android:gravity="center"
                 android:text="by Phone no" />
 
@@ -32,7 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/user"
+                android:drawableTop="@drawable/ic_invite"
+                android:textColor="#3daae2"
                 android:gravity="center"
                 android:text="Invite" />
 
@@ -42,7 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/qr"
+                android:drawableTop="@drawable/qr_code"
+                android:textColor="#3daae2"
                 android:gravity="center"
                 android:text="QR Code" />
 
@@ -52,7 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/searchc"
+                android:drawableTop="@drawable/ic_search"
+                android:textColor="#3daae2"
                 android:gravity="center"
                 android:text="by username" />
 
@@ -61,10 +65,10 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2dp"
-            android:background="#B6B6B6" />
+            android:layout_marginTop="7dp"
+            android:background="#e7e7e7" />
 
         <LinearLayout
             android:layout_marginTop="5dp"
@@ -75,6 +79,11 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#3daae2"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btn"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Create a new group"
                 android:id="@+id/button2" />

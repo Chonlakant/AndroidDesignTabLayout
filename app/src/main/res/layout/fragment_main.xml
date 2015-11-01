@@ -17,16 +17,21 @@
             android:orientation="vertical">
 
             <Button
+                android:layout_marginTop="10dp"
                 android:id="@+id/btn_new_group"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btn"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#727272"
+                android:textColor="#3daae2"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Create a new group"
                 />
 
             <ExpandableListView
+                android:layout_marginTop="10dp"
                 android:id="@+id/expand"
                 android:groupIndicator="@null"
                 android:layout_width="match_parent"

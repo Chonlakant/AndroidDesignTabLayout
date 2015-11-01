@@ -40,7 +40,8 @@ public class ApiHandler {
         api.getMovie(new Callback<postss>() {
             @Override
             public void success(postss postss, Response response) {
-                Log.e("22222222",postss.getPosts().size()+"");
+                Log.e("056565656",postss.getPosts().size()+"");
+                apiBus.post(new SuccessEvent(postss));
             }
 
             @Override

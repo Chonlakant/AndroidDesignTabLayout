@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,24 +17,34 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import natuan.org.androiddesigntablayout.BaseFragment;
 import natuan.org.androiddesigntablayout.MainActivityChat;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.TopMovieListView;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecentChats;
+import natuan.org.androiddesigntablayout.event.SomeEvent;
+import natuan.org.androiddesigntablayout.event.SuccessEvent;
+import natuan.org.androiddesigntablayout.handler.ApiBus;
 import natuan.org.androiddesigntablayout.model.Posts;
+import natuan.org.androiddesigntablayout.model.postss;
 import natuan.org.androiddesigntablayout.presenter.MainPresenter;
 
 /**
  * Created by Tuan on 6/18/2015.
  */
-public class FragmentRecentChats extends Fragment implements TopMovieListView {
+public class FragmentRecentChats extends BaseFragment implements TopMovieListView {
     Toolbar toolbar;
     ListView listView;
     AdapterRecentChats adapterRecentChats;
+    ArrayList<postss> list = new ArrayList<>();
     MainPresenter mMainPresenter;
+
     public static FragmentRecentChats getInstance(String message) {
         FragmentRecentChats mainFragment = new FragmentRecentChats();
         Bundle bundle = new Bundle();
@@ -51,6 +62,7 @@ public class FragmentRecentChats extends Fragment implements TopMovieListView {
         mMainPresenter.attachView(this);
         mMainPresenter.loadData();
 
+        ApiBus.getInstance().post(new SomeEvent());
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,8 +96,21 @@ public class FragmentRecentChats extends Fragment implements TopMovieListView {
 
     @Override
     public void setArticles(List<Posts> articles) {
-        adapterRecentChats = new AdapterRecentChats(getActivity(),articles);
+
+    }
+
+    @Subscribe
+    public void getMovie(SuccessEvent event) {
+        Log.e("888888", event.getSomeResponse().getPosts().get(0).getName());
+        postss i = event.getSomeResponse();
+
+        for(int a = 0; a <= i.getPosts().size();a++){
+            list.add(i);
+
+        }
+        adapterRecentChats = new AdapterRecentChats(getActivity(), list);
         listView.setAdapter(adapterRecentChats);
+
     }
 
     @Override

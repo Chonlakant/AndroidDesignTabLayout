@@ -13,16 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import butterknife.InjectView;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 
-public class FragmentSignByPhoneStep2 extends Fragment {
-    Toolbar toolbar;
+public class FragmentRegister extends Fragment {
 
+    Toolbar toolbar;
     //@InjectView(R.id.input_email)
     EditText dtEmail;
     //@InjectView(R.id.input_password)
@@ -31,11 +29,11 @@ public class FragmentSignByPhoneStep2 extends Fragment {
     TextView btnNext;
     //@InjectView(R.id.txt_skip)
     TextView txtSkip;
-   // @InjectView(R.id.check_show_password)
+   // @InjectView(R.id.img_show_password)
     CheckBox imgShowPassword;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_sign_up_by_phone_number_step_2, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_sign_up_by_email_register, container, false);
 
         dtEmail = (EditText) rootView.findViewById(R.id.input_email);
         dtPassword = (EditText) rootView.findViewById(R.id.input_password);
@@ -44,7 +42,6 @@ public class FragmentSignByPhoneStep2 extends Fragment {
         imgShowPassword = (CheckBox) rootView.findViewById(R.id.check_show_password);
 
         Next();
-
         return rootView;
     }
 
@@ -52,7 +49,7 @@ public class FragmentSignByPhoneStep2 extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentSignByPhone oneFragment = new FragmentSignByPhone();
+                FragmentUserNameSetting oneFragment = new FragmentUserNameSetting();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.content, oneFragment);
                 transaction.addToBackStack(null);
@@ -71,7 +68,7 @@ public class FragmentSignByPhoneStep2 extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        toolbar.setTitle("Sign up");
+        toolbar.setTitle("Register");
         // toolbar.inflateMenu(R.menu.menu_main_recent_chat);
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.menu_main_noti,menu);

@@ -115,9 +115,11 @@
 
                 <Button
                     android:id="@+id/btn_done"
+                    android:background="@drawable/btn"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
+                    android:textColor="#3daae2"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_marginBottom="5dp"
                     android:text="DONE" />

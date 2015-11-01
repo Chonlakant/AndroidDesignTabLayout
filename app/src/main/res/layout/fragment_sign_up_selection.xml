@@ -187,7 +187,7 @@
                         android:layout_gravity="center_vertical"
                         android:text=" Login here"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="#000000"
+                        android:textColor="#5db2d6"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>

@@ -3,81 +3,49 @@ package natuan.org.androiddesigntablayout.acivityLogin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.squareup.otto.Subscribe;
-
-import butterknife.InjectView;
-import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.event.SomeEvent;
-import natuan.org.androiddesigntablayout.event.SuccessEvent;
-import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentEditName;
 import natuan.org.androiddesigntablayout.fragments.fragmrntLogin.FragmentLogin;
 import natuan.org.androiddesigntablayout.fragments.fragmrntLogin.FragmentSignUpSelection;
 import natuan.org.androiddesigntablayout.handler.ApiBus;
 
 
-public class MainLogin extends BaseActivity {
-    //@InjectView(R.id.btn_login)
-    Button btnLogin;
+public class ActivityMainLogin extends BaseActivity {
 
-    //@InjectView(R.id.btn_sign_in)
-    Button btnSignIn;
-    LinearLayout view_toolbar_login;
     Toolbar mToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_main_view_login);
+        setContentView(R.layout.activity_main_login);
 
-        btnLogin = (Button) findViewById(R.id.btn_login);
-        btnSignIn = (Button) findViewById(R.id.btn_sign_in);
-        LoginAndSignIn();
-//        getSupportActionBar().hide();
-        ApiBus.getInstance().post(new SomeEvent());
+        int type = getIntent().getIntExtra("type", 0);
+        if(type == 0){
+            FragmentLogin fragment = new FragmentLogin();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.content, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }else if(type == 1){
 
-    }
-
-    public void LoginAndSignIn(){
-
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                int type = 0;
-//
-                Toast.makeText(getApplication(), "Login = 0", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(), ActivityMainLogin.class);
-                i.putExtra("type", 0);
-                startActivity(i);
-
-
-            }
-        });
-
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                int type = 1;
-//                Toast.makeText(getApplication(), "Sing up = 1", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(), ActivityMainLogin.class);
-                i.putExtra("type", 1);
-                startActivity(i);
-
-            }
-        });
+            FragmentSignUpSelection fragment = new FragmentSignUpSelection();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.content, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
 
 
     }
+
+
 
     @Override
     public void onResume() {

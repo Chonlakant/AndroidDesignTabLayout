@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.squareup.otto.Subscribe;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +38,10 @@ import natuan.org.androiddesigntablayout.MainActivityChat;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.CustomExpandableListView;
+import natuan.org.androiddesigntablayout.event.SomeEvent;
+import natuan.org.androiddesigntablayout.event.SuccessEvent;
 import natuan.org.androiddesigntablayout.fragments.FragmentInfomation;
+import natuan.org.androiddesigntablayout.handler.ApiBus;
 import natuan.org.androiddesigntablayout.model.Posts;
 
 /**
@@ -92,7 +96,7 @@ public class MainFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         expListView = (ExpandableListView) rootView.findViewById(R.id.expand);
         btnNewGroup = (Button) rootView.findViewById(R.id.btn_new_group);
-
+        ApiBus.getInstance().post(new SomeEvent());
 
 
         prepareListData();
@@ -183,7 +187,6 @@ public class MainFragment extends BaseFragment {
                     dialog.setContentView(R.layout.dialog_favortie);
 
 
-
                     dialog.show();
 
                 }
@@ -235,7 +238,10 @@ public class MainFragment extends BaseFragment {
 
         return rootView;
     }
-
+    @Subscribe
+    public void getMovie(SuccessEvent event){
+        Log.e("0909090",event.getSomeResponse().getPosts().get(0).getName());
+    }
 
     private void prepareListData() {
 
@@ -276,7 +282,7 @@ public class MainFragment extends BaseFragment {
                             me.add(strMe);
                         }
                        // expListView.expandGroup(0);
-                        expListView.expandGroup(1);
+                        expListView.expandGroup(3);
 
                     }
 
@@ -327,7 +333,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        toolbar.inflateMenu(R.menu.menu_main);
+        toolbar.inflateMenu(R.menu.menu_main_friends);
         toolbar.setTitle("Friends");
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.menu_main_noti,menu);

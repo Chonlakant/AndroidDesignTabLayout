@@ -3,14 +3,21 @@ package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.activity.BaseActivity;
 
 public class FragmentAddFriends extends Fragment {
+    Toolbar toolbar;
 
     TextView txtAddPhone, txtInvite, txtQr, txtAddUsername;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,5 +70,39 @@ public class FragmentAddFriends extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        toolbar = ((BaseActivity) getActivity()).getToolbar();
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        toolbar.inflateMenu(R.menu.menu_add_friends);
+        toolbar.setTitle("Add Friends");
+        super.onCreateOptionsMenu(menu, inflater);
+        //inflater.inflate(R.menu.menu_main_noti,menu);
+    }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_cancle:
+//                Toast.makeText(getActivity(), "Add", Toast.LENGTH_SHORT).show();
+//                FragmentAddFriends fragment = new FragmentAddFriends();
+//                FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.add(R.id.flContainer, fragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+//                return true;
+//
+//
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
 }
