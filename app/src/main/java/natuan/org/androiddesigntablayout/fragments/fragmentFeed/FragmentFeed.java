@@ -87,10 +87,11 @@ public class FragmentFeed extends BaseFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        toolbar.inflateMenu(R.menu.menu_main_noti);
+        //toolbar.inflateMenu(R.menu.menu_main_noti);
+       // menu = toolbar.getMenu();
         toolbar.setTitle("Timeline");
         super.onCreateOptionsMenu(menu, inflater);
-        //inflater.inflate(R.menu.menu_main_noti,menu);
+        inflater.inflate(R.menu.menu_main_noti,menu);
     }
 
     @Override

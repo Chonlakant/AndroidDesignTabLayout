@@ -7,7 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -20,6 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.MyRecyclerAdapter;
 import natuan.org.androiddesigntablayout.model.Person;
 
@@ -29,6 +34,8 @@ public class FragmentCreateGroup extends Fragment {
     private MyRecyclerAdapter adapter;
     private RecyclerView recyclerView;
 
+    Toolbar toolbar;
+    Menu menu;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -142,6 +149,36 @@ public class FragmentCreateGroup extends Fragment {
         outState.putParcelableArrayList("statePeople",
                 (ArrayList<? extends Parcelable>) adapter.getPeople());
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        toolbar = ((BaseActivity) getActivity()).getToolbar();
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        //toolbar.inflateMenu(R.menu.menu_create_group);
+        toolbar.setTitle("Create a new group");
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.setGroupVisible(0, false);
+        inflater.inflate(R.menu.menu_create_group,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_save:
+
+                return true;
+
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

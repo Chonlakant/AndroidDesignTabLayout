@@ -333,10 +333,10 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        toolbar.inflateMenu(R.menu.menu_main_friends);
+        //toolbar.inflateMenu(R.menu.menu_main_friends);
         toolbar.setTitle("Friends");
         super.onCreateOptionsMenu(menu, inflater);
-        //inflater.inflate(R.menu.menu_main_noti,menu);
+        inflater.inflate(R.menu.menu_main_friends,menu);
     }
 
     @Override
