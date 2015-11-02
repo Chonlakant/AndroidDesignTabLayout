@@ -49,7 +49,7 @@ public class FragmentAddFriends extends Fragment {
         txtAddPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentByUsername fragment = new FragmentByUsername();
+                FragmentByPhone fragment = new FragmentByPhone();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.add(R.id.flContainer, fragment);
                 transaction.addToBackStack(null);
