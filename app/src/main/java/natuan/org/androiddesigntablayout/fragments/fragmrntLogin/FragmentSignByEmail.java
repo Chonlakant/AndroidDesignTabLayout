@@ -41,6 +41,17 @@ public class FragmentSignByEmail extends Fragment {
         btnRegisterNow = (TextView) rootView.findViewById(R.id.btn_register_now);
         txtSkip = (TextView) rootView.findViewById(R.id.txt_skip);
 
+        txtSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentUserNameSetting oneFragment = new FragmentUserNameSetting();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.content, oneFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
         Register();
 
         return rootView;

@@ -30,7 +30,7 @@ public class FragmentSignByEmailStep1 extends Fragment {
     //@InjectView(R.id.btn_next)
     Button btnNext;
     //@InjectView(R.id.txt_skip)
-    TextView txtSkip;
+
    // @InjectView(R.id.img_show_password)
     CheckBox imgShowPassword;
 
@@ -40,10 +40,11 @@ public class FragmentSignByEmailStep1 extends Fragment {
         dtEmail = (EditText) rootView.findViewById(R.id.input_email);
         dtPassword = (EditText) rootView.findViewById(R.id.input_password);
         btnNext = (Button) rootView.findViewById(R.id.btn_next);
-        txtSkip = (TextView) rootView.findViewById(R.id.txt_skip);
+
         imgShowPassword = (CheckBox) rootView.findViewById(R.id.check_show_password);
 
         Next();
+
         return rootView;
     }
 

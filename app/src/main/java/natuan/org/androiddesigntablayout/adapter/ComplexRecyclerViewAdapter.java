@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -111,9 +112,25 @@ public class ComplexRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
                     .centerCrop()
                     .resize(200, 200)
                     .transform(new RoundedTransformation(100, 4))
-                    .into( vh1.getProfile_avatar());
+                    .into(vh1.getProfile_avatar());
 
-            vh1.getLn_comment().setVisibility(View.GONE);
+            vh1.getComment_view_1().setVisibility(View.VISIBLE);
+            vh1.getComment_view_2().setVisibility(View.GONE);
+
+            Picasso.with(context)
+                    .load("http://men.mthai.com/uploads/manager/smile28/daniel04.jpg")
+                    .centerCrop()
+                    .resize(200, 200)
+                    .transform(new RoundedTransformation(100, 4))
+                    .into(vh1.getIvUserAvatar1());
+
+            vh1.getBtn_comment().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context,"comment",Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
     }
 

@@ -52,13 +52,17 @@
             android:layout_height="wrap_content"
             android:background="#fff">
 
+
+
             <include
+                android:layout_weight="1"
                 android:id="@+id/comment_view_1"
                 layout="@layout/item_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <include
+                android:layout_weight="1"
                 android:id="@+id/comment_view_2"
                 layout="@layout/item_comment"
                 android:layout_width="match_parent"

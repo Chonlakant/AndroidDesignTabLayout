@@ -29,7 +29,6 @@ public class FragmentSignByPhoneStep1 extends Fragment {
    // @InjectView(R.id.btn_next)
     Button btnNext;
    // @InjectView(R.id.txt_skip)
-    TextView txtSkip;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sign_up_by_phone_number_step_1, container, false);
@@ -49,6 +48,8 @@ public class FragmentSignByPhoneStep1 extends Fragment {
 
             }
         });
+
+
 
 
         return rootView;

@@ -42,6 +42,16 @@ public class FragmentRegister extends Fragment {
         imgShowPassword = (CheckBox) rootView.findViewById(R.id.check_show_password);
 
         Next();
+        txtSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentUserNameSetting oneFragment = new FragmentUserNameSetting();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.content, oneFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
         return rootView;
     }
 
