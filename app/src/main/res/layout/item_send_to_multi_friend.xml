@@ -39,7 +39,7 @@
 
 
     <!-- Rightend Duration -->
-    <ImageView
+    <CheckBox
         android:id="@+id/time"
         android:layout_width="25dp"
         android:layout_height="25dp"
@@ -47,9 +47,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_gravity="right|center"
-        android:gravity="right"
-        android:src="@drawable/adduser"
-        android:textSize="10dip" />
+        android:gravity="right" />
 
 
 </RelativeLayout>

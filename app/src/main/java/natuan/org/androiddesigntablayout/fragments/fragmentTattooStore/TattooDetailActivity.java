@@ -11,11 +11,15 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.util.List;
+
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.TopMovieListView;
 import natuan.org.androiddesigntablayout.adapter.TattooStoreDetailAdapter;
 import natuan.org.androiddesigntablayout.model.Posts;
+import natuan.org.androiddesigntablayout.presenter.MainPresenter;
 
-public class TattooDetailActivity extends ActionBarActivity {
+public class TattooDetailActivity extends ActionBarActivity implements TopMovieListView {
 
 
     TattooStoreDetailAdapter adapterTattooStroe;
@@ -25,7 +29,7 @@ public class TattooDetailActivity extends ActionBarActivity {
     TextView date;
     TextView price;
     GridView gridView;
-
+    MainPresenter mainPresenter;
     Posts tattoo;
 
     @Override
@@ -38,23 +42,18 @@ public class TattooDetailActivity extends ActionBarActivity {
         name_sticker = (TextView) findViewById(R.id.name_sticker);
         date = (TextView) findViewById(R.id.date);
 
+        mainPresenter  = new MainPresenter();
+        mainPresenter.attachView(this);
+        mainPresenter.loadData();
+
         gridView = (GridView) findViewById(R.id.gridView);
         Intent intent = getIntent();
 
         Posts person = Parcels.unwrap(intent.getParcelableExtra("tattoo"));
 
-        String title = person .getName();
-        title_vdomax.setText(title);
-        name_sticker.setText(title);
 
-        String path = person.getImage();
 
-        Picasso.with(getApplicationContext())
-                .load(path)
-                .into(sticker);
 
-        adapterTattooStroe = new TattooStoreDetailAdapter(getApplicationContext(),tattoo.getTitle_candy());
-        gridView.setAdapter(adapterTattooStroe);
 //        if(getIntent() != null) {
 //            tattoo = Parcels.unwrap(getIntent().getBundleExtra("bundle").getParcelable("tattoo"));
 //
@@ -67,5 +66,19 @@ public class TattooDetailActivity extends ActionBarActivity {
     }
 
 
+    @Override
+    public void setArticles(List<Posts> articles) {
+        title_vdomax.setText("Candy Chat Co., Ltd.");
+        name_sticker.setText("Candy Chat");
+
+        String path = articles.get(0).getImage();
+
+        Picasso.with(getApplicationContext())
+                .load(path)
+                .into(sticker);
+
+        adapterTattooStroe = new TattooStoreDetailAdapter(getApplicationContext(),articles);
+        gridView.setAdapter(adapterTattooStroe);
+    }
 }
 

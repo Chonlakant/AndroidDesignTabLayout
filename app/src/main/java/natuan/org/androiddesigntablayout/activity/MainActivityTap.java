@@ -42,7 +42,7 @@ public class MainActivityTap extends BaseActivity implements OnFragmentInteracti
         favourites = getString(R.string.favourites);
         notifications = getString(R.string.notifications);
         settings = getString(R.string.settings);
-        //mViewpager.setPagingEnabled(false);
+        mViewpager.setPagingEnabled(false);
         setupViewPager(mViewpager);
 
         setupTabLayout(mTabs);

@@ -11,15 +11,18 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.model.Posts;
 
 
 public class TattooStoreDetailAdapter extends BaseAdapter {
     private Context activity;
-    public ArrayList<String> list = new ArrayList<String>();
+    public List<Posts> list = new ArrayList<Posts>();
     String[] strName;
-    public TattooStoreDetailAdapter(Context a, ArrayList<String> list) {
+
+    public TattooStoreDetailAdapter(Context a, List<Posts> list) {
         activity = a;
         this.list = list;
     }
@@ -46,7 +49,7 @@ public class TattooStoreDetailAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         ViewHolder holder;
-        String path = list.get(position);
+        Posts path = list.get(position);
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(activity).inflate(R.layout.item_grid, null);
@@ -61,10 +64,8 @@ public class TattooStoreDetailAdapter extends BaseAdapter {
 
 
 
-        Log.e("tattoopath",path);
-
         Picasso.with(activity)
-                .load(path)
+                .load(path.getImage())
                 .into(holder.sticker);
 
         return convertView;

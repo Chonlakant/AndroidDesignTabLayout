@@ -183,6 +183,11 @@ public class FragmentCreateGroup extends Fragment {
         if (requestCode == REQUEST_CHOOSE_PHOTO) {
 
             Uri selectedImageUri = data.getData();
+
+            if(selectedImageUri == null){
+                Toast.makeText(getActivity(),"fff",Toast.LENGTH_SHORT).show();
+            }
+
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImageUri);
                 photoPath = new File(PathManager.getPath(getActivity(), selectedImageUri));

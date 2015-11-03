@@ -8,12 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -29,11 +27,10 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
-import natuan.org.androiddesigntablayout.adapter.CustomExpandableListView;
 import natuan.org.androiddesigntablayout.adapter.CustomExpandableListViewFriends;
 import natuan.org.androiddesigntablayout.model.Posts;
 
-public class FragmentAddFriends extends Fragment {
+public class FragmentAddFriendsMore extends Fragment {
     Toolbar toolbar;
     ExpandableListView expListView;
     CustomExpandableListViewFriends mAdapter;
@@ -46,75 +43,21 @@ public class FragmentAddFriends extends Fragment {
 
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    public static final List<Posts> listurl =new ArrayList<>();
-    TextView txtAddPhone, txtInvite, txtQr, txtAddUsername;
+    public static final List<Posts> listurl = new ArrayList<>();
+
+
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_main_add_friends, container, false);
-        txtAddPhone = (TextView) rootView.findViewById(R.id.txtAddPhone);
-        txtInvite = (TextView) rootView.findViewById(R.id.txtInvite);
-        txtQr = (TextView) rootView.findViewById(R.id.txtQr);
-        txtAddUsername = (TextView) rootView.findViewById(R.id.txtAddUsername);
+        View rootView = inflater.inflate(R.layout.activity_main_add_friends_more, container, false);
+
         expListView = (ExpandableListView) rootView.findViewById(R.id.expand);
 
         prepareListData();
-        Invite();
-        AddPhone();
-        AddUsername();
-        Qrcode();
+
         return rootView;
     }
 
-    public void Invite() {
-        txtInvite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentInvite fragment = new FragmentInvite();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.flContainer, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-    }
-
-    public void AddPhone() {
-        txtAddPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentByPhone fragment = new FragmentByPhone();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.flContainer, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-    }
-
-    public void AddUsername() {
-        txtAddUsername.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentByUsername fragment = new FragmentByUsername();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.flContainer, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-    }
-
-    public void Qrcode(){
-        txtQr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentMoreQqCode fragment = new FragmentMoreQqCode();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.flContainer, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-    }
 
     private void prepareListData() {
 
@@ -141,7 +84,7 @@ public class FragmentAddFriends extends Fragment {
                             list2.add(mainModel);
                         }
 
-                        for (int i = 5 ; i< list.size();i++){
+                        for (int i = 0; i < list.size(); i++) {
 
                             name = list.get(i).getName();
                             Log.e("zzzz", name);
@@ -149,12 +92,12 @@ public class FragmentAddFriends extends Fragment {
                             thor.add(name);
 
                         }
-                        for(int j = 8 ; j < list2.size();j++){
+                        for (int j = 0; j < list2.size(); j++) {
                             strMe = list.get(j).getName();
                             me.add(strMe);
                         }
-                         expListView.expandGroup(0);
-                        expListView.expandGroup(1);
+                        // expListView.expandGroup(0);
+
 
                     }
 
@@ -163,6 +106,7 @@ public class FragmentAddFriends extends Fragment {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
@@ -172,9 +116,8 @@ public class FragmentAddFriends extends Fragment {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
 
-        listDataHeader.add("Me");
-        listDataHeader.add("Me");
-
+        listDataHeader.add("Contact");
+        listDataHeader.add("Contact phone list");
 
 
         // Header, Child data
@@ -198,7 +141,7 @@ public class FragmentAddFriends extends Fragment {
 
         toolbar.inflateMenu(R.menu.menu_add_friends);
         toolbar.setTitle("Add Friends");
-        menu.setGroupVisible(0,false);
+        menu.setGroupVisible(0, false);
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.menu_main_noti,menu);
     }

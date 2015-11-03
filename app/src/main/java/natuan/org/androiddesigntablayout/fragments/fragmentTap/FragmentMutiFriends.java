@@ -1,9 +1,8 @@
-package natuan.org.androiddesigntablayout.fragments.fragmentTattooStore;
+package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -14,27 +13,22 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.parceler.Parcels;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.TopMovieListView;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
+import natuan.org.androiddesigntablayout.adapter.AdapterMutiFriends;
 import natuan.org.androiddesigntablayout.adapter.TattooStoreAdapter;
+import natuan.org.androiddesigntablayout.fragments.fragmentTattooStore.TattooDetailActivity;
 import natuan.org.androiddesigntablayout.model.Posts;
-import natuan.org.androiddesigntablayout.model.TattooStore;
 import natuan.org.androiddesigntablayout.presenter.MainPresenter;
 
 
-public class TattooStoreFragment extends Fragment implements TopMovieListView {
+public class FragmentMutiFriends extends Fragment implements TopMovieListView {
     Toolbar toolbar;
-    TattooStoreAdapter adapter;
+    AdapterMutiFriends adapter;
     MainPresenter mainPresenter;
     List<Posts> list = new ArrayList<Posts>();
     private ListView mListView;
@@ -45,8 +39,8 @@ public class TattooStoreFragment extends Fragment implements TopMovieListView {
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_tattoo_store, container, false);
-        mListView = (ListView) rootView.findViewById(R.id.list_view);
+        View rootView = inflater.inflate(R.layout.fragment_muti_friends, container, false);
+        mListView = (ListView) rootView.findViewById(R.id.listView3);
 
         mainPresenter  = new MainPresenter();
         mainPresenter.attachView(this);
@@ -74,7 +68,7 @@ public class TattooStoreFragment extends Fragment implements TopMovieListView {
     @Override
     public void setArticles(List<Posts> articles) {
 
-        adapter = new TattooStoreAdapter(getActivity(),articles);
+        adapter = new AdapterMutiFriends(getActivity(),articles);
         mListView.setAdapter(adapter);
 
 
@@ -91,8 +85,8 @@ public class TattooStoreFragment extends Fragment implements TopMovieListView {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        toolbar.inflateMenu(R.menu.menu_main_tatoo);
-        toolbar.setTitle("Sticker shop");
+        toolbar.inflateMenu(R.menu.menu_main_send);
+        toolbar.setTitle("Send to multi friends");
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.menu_main_noti,menu);
     }

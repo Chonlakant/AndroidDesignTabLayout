@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,7 +60,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/menus" />
+                    android:src="@drawable/more" />
             </LinearLayout>
         </LinearLayout>
 
@@ -133,7 +135,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/menus" />
+                    android:src="@drawable/more" />
             </LinearLayout>
         </LinearLayout>
 
@@ -208,7 +210,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/menus" />
+                    android:src="@drawable/more" />
             </LinearLayout>
         </LinearLayout>
 
@@ -237,5 +239,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>
