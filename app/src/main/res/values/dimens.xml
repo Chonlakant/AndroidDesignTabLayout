@@ -57,7 +57,6 @@
     <dimen name="margin_size_layout_large">16dp</dimen>
 
 
-
     <dimen name="size_image">25dp</dimen>
 
     <dimen name="size_icon">16dp</dimen>
@@ -87,8 +86,6 @@
     <dimen name="publish_photo_thumbnail_size_tablet">500dp</dimen>
 
 
-
-
     <!-- soundcloud -->
     <dimen name="vertical_small_margin">16dp</dimen>
     <dimen name="vertical_large_margin">72dp</dimen>
@@ -98,7 +95,6 @@
     <dimen name="avatar_padding">4dp</dimen>
     <dimen name="row_height">72dp</dimen>
     <dimen name="player_toolbar">56dp</dimen>
-
 
 
     <!-- InstaMaterial -->
@@ -159,4 +155,5 @@
     <dimen name="title_text_size">18sp</dimen>
     <dimen name="button_text_size">16sp</dimen>
     <dimen name="sample_text_size">12sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

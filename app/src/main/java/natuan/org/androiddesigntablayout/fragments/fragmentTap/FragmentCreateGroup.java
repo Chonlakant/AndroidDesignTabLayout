@@ -1,8 +1,12 @@
 package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,15 +18,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.dpizarro.autolabel.library.AutoLabelUI;
 import com.dpizarro.autolabel.library.Label;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import me.isming.tools.cvfilter.library.ImageData;
+import natuan.org.androiddesigntablayout.PathManager;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.MyRecyclerAdapter;
@@ -33,14 +42,25 @@ public class FragmentCreateGroup extends Fragment {
     private List<Person> mPersonList;
     private MyRecyclerAdapter adapter;
     private RecyclerView recyclerView;
-
+    ImageView img_edit_profile;
     Toolbar toolbar;
+    private File photoPath;
+    private static final int PHOTO_SIZE_WIDTH = 100;
+    private static final int PHOTO_SIZE_HEIGHT = 100;
+    private static final int REQUEST_CHOOSE_PHOTO = 2;
     Menu menu;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_a_new_group, container, false);
+        img_edit_profile = (ImageView) view.findViewById(R.id.img_edit_profile);
+        img_edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choosePhoto();
+            }
+        });
         findViews(view);
         setListeners();
         setRecyclerView();
@@ -141,7 +161,43 @@ public class FragmentCreateGroup extends Fragment {
             }
         });
     }
+    private void choosePhoto() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setDataAndType(
+                MediaStore.Images.Media.INTERNAL_CONTENT_URI,
+                "image/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        // intent.putExtra("crop", "true");
+        intent.putExtra("scale", true);
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", PHOTO_SIZE_WIDTH);
+        intent.putExtra("outputY", PHOTO_SIZE_HEIGHT);
+        startActivityForResult(intent, REQUEST_CHOOSE_PHOTO);
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CHOOSE_PHOTO) {
+
+            Uri selectedImageUri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImageUri);
+                photoPath = new File(PathManager.getPath(getActivity(), selectedImageUri));
+                showTakenPicture(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+    private void showTakenPicture(Bitmap bitmap) throws IOException {
+
+            bitmap = ImageData.decodeSampledBitmapFromBitmap(photoPath.getPath(), 400, 600);
+
+    }
     @Override
     public void onSaveInstanceState(Bundle outState) {
 

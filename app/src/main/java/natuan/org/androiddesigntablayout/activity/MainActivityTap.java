@@ -7,11 +7,13 @@ import android.support.v7.widget.Toolbar;
 
 import butterknife.InjectView;
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.event.SomeEvent;
 import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentFeed;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentCamera;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentMore;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentRecentChats;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.MainFragment;
+import natuan.org.androiddesigntablayout.handler.ApiBus;
 import natuan.org.androiddesigntablayout.impls.OnFragmentInteractionListener;
 import natuan.org.androiddesigntablayout.widgets.CustomViewPager;
 import natuan.org.androiddesigntablayout.widgets.adapters.FragmentPageAdapter;
@@ -34,12 +36,13 @@ public class MainActivityTap extends BaseActivity implements OnFragmentInteracti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         library = getString(R.string.library);
         recents = getString(R.string.recents);
         favourites = getString(R.string.favourites);
         notifications = getString(R.string.notifications);
         settings = getString(R.string.settings);
-        mViewpager.setPagingEnabled(false);
+        //mViewpager.setPagingEnabled(false);
         setupViewPager(mViewpager);
 
         setupTabLayout(mTabs);

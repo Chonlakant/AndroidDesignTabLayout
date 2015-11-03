@@ -11,10 +11,12 @@ public class ViewHolder2 extends RecyclerView.ViewHolder {
 
     private ImageView ivExample,thumb;
     private LinearLayout ln_comment;
+    private ImageView profile_avatar;
     public ViewHolder2(View v) {
         super(v);
         ivExample = (ImageView) v.findViewById(R.id.ic_type);
         thumb = (ImageView) v.findViewById(R.id.thumb);
+        profile_avatar = (ImageView) v.findViewById(R.id.profile_avatar);
         ln_comment = (LinearLayout) v.findViewById(R.id.ln_comment);
     }
 
@@ -48,5 +50,13 @@ public class ViewHolder2 extends RecyclerView.ViewHolder {
 
     public void setLn_comment(LinearLayout ln_comment) {
         this.ln_comment = ln_comment;
+    }
+
+    public ImageView getProfile_avatar() {
+        return profile_avatar;
+    }
+
+    public void setProfile_avatar(ImageView profile_avatar) {
+        this.profile_avatar = profile_avatar;
     }
 }

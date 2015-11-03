@@ -24,10 +24,10 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="120dp"
-                    android:layout_height="110dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/candy_logo" />
+                    android:background="@drawable/logo_candy_chat" />
 
             </LinearLayout>
 
@@ -144,7 +144,7 @@
                             android:layout_gravity="bottom"
                             android:layout_weight="1"
                             android:textStyle="bold"
-                            android:textColor="#B6B6B6"
+                            android:textColor="#000"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:background="@drawable/button_bg_transparent"
                             android:text="Log in" />

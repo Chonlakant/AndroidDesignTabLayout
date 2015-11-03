@@ -56,7 +56,6 @@ public class FragmentFeed extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_feed, container, false);
-        Toast.makeText(getActivity(), "sdsd", Toast.LENGTH_SHORT).show();
         rvContacts = (RecyclerView) rootView.findViewById(R.id.rvContacts);
         // Set layout manager to position the items
         rvContacts.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -73,7 +72,7 @@ public class FragmentFeed extends BaseFragment {
 
     private void bindDataToAdapter() {
         // Bind adapter to recycler view object
-        rvContacts.setAdapter(new ComplexRecyclerViewAdapter(getSampleArrayList()));
+        rvContacts.setAdapter(new ComplexRecyclerViewAdapter(getSampleArrayList(),getActivity()));
     }
 
     @Override

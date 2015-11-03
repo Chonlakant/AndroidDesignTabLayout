@@ -1,13 +1,17 @@
 package natuan.org.androiddesigntablayout.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.RoundedTransformation;
 import natuan.org.androiddesigntablayout.model.User;
 import natuan.org.androiddesigntablayout.viewholder.RecyclerViewSimpleTextViewHolder;
 import natuan.org.androiddesigntablayout.viewholder.ViewHolder1;
@@ -18,12 +22,13 @@ public class ComplexRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
 
     // The items to display in your RecyclerView
     private List<Object> items;
-
+    Context context;
     private final int USER = 0, IMAGE = 1, CLIP = 3;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ComplexRecyclerViewAdapter(List<Object> items) {
+    public ComplexRecyclerViewAdapter(List<Object> items,Context context) {
         this.items = items;
+        this.context = context;
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -100,19 +105,51 @@ public class ComplexRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         if (user != null) {
             vh1.getLabel1().setText("Name: " + user.getName1());
             vh1.getLabel2().setText("Hometown: " + user.getName2());
-            vh1.getProfile_avatar().setImageResource(R.drawable.imge);
+
+            Picasso.with(context)
+                    .load("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR68KCTZYkkqWeuPZhBgbxVxq7F34ZY3dLQsD8u3jqgDKXRRbBq")
+                    .centerCrop()
+                    .resize(200, 200)
+                    .transform(new RoundedTransformation(100, 4))
+                    .into( vh1.getProfile_avatar());
+
             vh1.getLn_comment().setVisibility(View.GONE);
         }
     }
 
     private void configureViewHolder2(ViewHolder2 vh2) {
-        vh2.getImageView().setImageResource(R.drawable.imge);
+       // vh2.getImageView().setImageResource(R.drawable.imge);
         vh2.getThumb().setImageResource(R.drawable.imge);
+
+
+        Picasso.with(context)
+                .load("http://assets.lfcimages.com/uploads/page%20thumbnails/5363__3400__poppyss.jpg")
+                .centerCrop()
+                .resize(200, 200)
+                .transform(new RoundedTransformation(100, 4))
+                .into(vh2.getImageView());
+
+        Picasso.with(context)
+                .load("http://assets.lfcimages.com/uploads/page%20thumbnails/5363__3400__poppyss.jpg")
+                .centerCrop()
+                .resize(200, 200)
+                .transform(new RoundedTransformation(100, 4))
+                .into(vh2.getProfile_avatar());
+
         vh2.getLn_comment().setVisibility(View.GONE);
     }
 
     private void configureViewHolder3(ViewHolder3 vh3) {
-        vh3.getImageView().setImageResource(R.drawable.imge);
+        //vh3.getImageView().setImageResource(R.drawable.imge);
+
+        Picasso.with(context)
+                .load("http://assets3.lfcimages.com/uploads/7544__7435__can1000.jpg")
+                .centerCrop()
+                .resize(200, 200)
+                .transform(new RoundedTransformation(100, 4))
+                .into(vh3.getImageView());
+
+
         vh3.getThumb().setImageResource(R.drawable.imge);
         vh3.getLn_comment().setVisibility(View.GONE);
     }

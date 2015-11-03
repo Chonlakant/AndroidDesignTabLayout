@@ -23,11 +23,15 @@ public class MainActivityDisplayFragmentLogin extends BaseActivity {
         int type = getIntent().getIntExtra("type", 0);
 
         if(type == 0){
-            Toast.makeText(getApplication(), type +"", Toast.LENGTH_SHORT).show();
+
             FragmentLogin fragment = new FragmentLogin();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.fragment_container, fragment);
             transaction.commit();
+
+
+
+
         }if(type == 1){
             Toast.makeText(getApplication(), type +"", Toast.LENGTH_SHORT).show();
             FragmentSignUpSelection fragment = new FragmentSignUpSelection();

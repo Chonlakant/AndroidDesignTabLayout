@@ -44,7 +44,7 @@
 
 
         <ImageView
-            android:id="@+id/imageButton"
+            android:id="@+id/img_bast_friend"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
@@ -56,6 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
             android:maxLines="3"
             android:text="Best friend"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -66,7 +68,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:background="#DDDFDF"
+        android:background="#EEE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout"

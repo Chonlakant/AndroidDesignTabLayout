@@ -60,7 +60,7 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/candy_logo" />
+            android:src="@drawable/logo_candy_chat" />
 
         <TextView
             android:id="@+id/name_title"
@@ -68,7 +68,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
+            android:textStyle="bold"
             android:maxLines="3"
+            android:layout_marginTop="5dp"
             android:text="Candy Chat"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="#252525"
@@ -78,7 +80,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:background="#DDDFDF"
+        android:background="#EEE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout"

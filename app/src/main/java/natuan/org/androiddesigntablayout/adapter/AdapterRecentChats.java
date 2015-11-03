@@ -37,7 +37,7 @@ public class AdapterRecentChats extends BaseAdapter {
     }
 
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -57,6 +57,7 @@ public class AdapterRecentChats extends BaseAdapter {
 
 
         viewHolder.txt_name.setText(i.getPosts().get(position).getName());
+
 
         viewHolder.txt_msg.setText(i.getPosts().get(position).getUrl());
 

@@ -28,16 +28,29 @@ public class ActivityMainLogin extends BaseActivity {
 
         int type = getIntent().getIntExtra("type", 0);
         if(type == 0){
-            FragmentLogin fragment = new FragmentLogin();
+//            FragmentLogin fragment = new FragmentLogin();
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.add(R.id.content, fragment);
+//            transaction.addToBackStack(null);
+//            transaction.commit();
+
+            FragmentLogin threeFragment = new FragmentLogin();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.content, fragment);
+            transaction.replace(R.id.content, threeFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }else if(type == 1){
 
-            FragmentSignUpSelection fragment = new FragmentSignUpSelection();
+//            FragmentSignUpSelection fragment = new FragmentSignUpSelection();
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            transaction.add(R.id.content, fragment);
+//            transaction.addToBackStack(null);
+//            transaction.commit();
+
+
+            FragmentSignUpSelection threeFragment = new FragmentSignUpSelection();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.content, fragment);
+            transaction.replace(R.id.content, threeFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }

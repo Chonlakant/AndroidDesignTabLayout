@@ -1,5 +1,6 @@
 package natuan.org.androiddesigntablayout.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,8 @@ public class postss {
      * url : She’s So Hungry
      * description :
      */
+
+
 
     private List<PostsEntity> posts;
 

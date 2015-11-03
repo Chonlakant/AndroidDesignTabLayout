@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.squareup.otto.Subscribe;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +37,10 @@ import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.BaseFragment;
 import natuan.org.androiddesigntablayout.MainActivityChat;
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.RoundedTransformation;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
+import natuan.org.androiddesigntablayout.activity.MianHomGroup;
+import natuan.org.androiddesigntablayout.activity.MianHomMe;
 import natuan.org.androiddesigntablayout.adapter.CustomExpandableListView;
 import natuan.org.androiddesigntablayout.event.SomeEvent;
 import natuan.org.androiddesigntablayout.event.SuccessEvent;
@@ -66,7 +70,7 @@ public class MainFragment extends BaseFragment {
     };
 
 
-    public static final List<Posts> listurl =new ArrayList<>();
+    public static final List<Posts> listurl = new ArrayList<>();
 
     String name;
     String strMe;
@@ -77,7 +81,7 @@ public class MainFragment extends BaseFragment {
     List<String> captainAmerica = new ArrayList<String>();
     Button btnNewGroup;
     private String message;
-    TextView txt_profile_username,txt_profile_edit;
+    TextView txt_profile_username, txt_profile_edit;
     ImageView ivUserAvatar;
 
     boolean isCheck = false;
@@ -104,8 +108,6 @@ public class MainFragment extends BaseFragment {
         expListView.setAdapter(listAdapter);
 
 //        expListView.expandGroup(1);
-
-
 
 
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -154,24 +156,23 @@ public class MainFragment extends BaseFragment {
                         }
                     });
 
+                    TextView home = (TextView) dialog.findViewById(R.id.home);
+                    home.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+
                     ImageView img_info = (ImageView) dialog.findViewById(R.id.img_info);
                     img_info.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            FragmentInfomation fragment = new FragmentInfomation();
-                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            transaction.add(R.id.flContainer, fragment);
-                            transaction.addToBackStack(null);
-                            transaction.commit();
+                            Intent i = new Intent(getActivity(), MianHomMe.class);
+                            startActivity(i);
                             dialog.dismiss();
                         }
                     });
-
-//                    FragmentInfomation fragment = new FragmentInfomation();
-//                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                    transaction.add(R.id.fragment_container, fragment);
-//                    transaction.addToBackStack(null);
-//                    transaction.commit();
 
                     dialog.show();
 
@@ -179,13 +180,66 @@ public class MainFragment extends BaseFragment {
                 if (listDataHeader.get(groupPosition) == "Groups") {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                     dialog.setContentView(R.layout.dialog_group);
+                    ImageView img_group = (ImageView) dialog.findViewById(R.id.img_group);
+                    ImageView img_friend_1 = (ImageView) dialog.findViewById(R.id.img_friend_1);
+                    ImageView img_friend_2 = (ImageView) dialog.findViewById(R.id.img_friend_2);
+                    ImageView img_friend_3 = (ImageView) dialog.findViewById(R.id.img_friend_3);
+                    ImageView img_friend_4 = (ImageView) dialog.findViewById(R.id.img_friend_4);
+                    ImageView info_group = (ImageView) dialog.findViewById(R.id.info_group);
+                    info_group.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getActivity(), MianHomGroup.class);
+                            startActivity(i);
+                            dialog.dismiss();
+                        }
+                    });
+                    Picasso.with(getActivity())
+                            .load("http://fbi.dek-d.com/27/0315/5077/115653505")
+                            .centerCrop()
+                            .resize(200, 200)
+                            .transform(new RoundedTransformation(100, 4))
+                            .into(img_friend_1);
+                    Picasso.with(getActivity())
+                            .load("http://webboard.yenta4.com/uploads/2013/05/14/190203-attachment.jpg")
+                            .centerCrop()
+                            .resize(200, 200)
+                            .transform(new RoundedTransformation(100, 4))
+                            .into(img_friend_2);
+                    Picasso.with(getActivity())
+                            .load("http://www.keedkean.com/files/members/actual/71_99874970aa6acab68135d468ac5a1d1a.jpg")
+                            .centerCrop()
+                            .resize(200, 200)
+                            .transform(new RoundedTransformation(100, 4))
+                            .into(img_friend_3);
+                    Picasso.with(getActivity())
+                            .load("http://fc05.deviantart.net/fs70/f/2010/242/4/8/lol__xd_by_yaraklaproos-d2xn9i2.jpg")
+                            .centerCrop()
+                            .resize(200, 200)
+                            .transform(new RoundedTransformation(100, 4))
+                            .into(img_friend_4);
+
+                    Picasso.with(getActivity())
+                            .load("http://www.illustcourse.com/wp-content/gallery/inspiration/tumblr_l8qy4ldudp1qzvjlso1_500_1.png?v=7516fd43adaa")
+                            .centerCrop()
+                            .resize(200, 200)
+                            .transform(new RoundedTransformation(100, 4))
+                            .into(img_group);
+
                     dialog.show();
 
                 }
                 if (listDataHeader.get(groupPosition) == "Favorite") {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                     dialog.setContentView(R.layout.dialog_favortie);
+                    ImageView img_bast_friend = (ImageView) dialog.findViewById(R.id.img_bast_friend);
 
+                    Picasso.with(getActivity())
+                            .load("http://pbs.twimg.com/media/CRMWPF3UsAAjufl.jpg")
+                            .centerCrop()
+                            .resize(200, 200)
+                            .transform(new RoundedTransformation(100, 4))
+                            .into(img_bast_friend);
 
                     dialog.show();
 
@@ -215,6 +269,15 @@ public class MainFragment extends BaseFragment {
                             dialog.dismiss();
                         }
                     });
+
+                    ImageView img_friend = (ImageView) dialog.findViewById(R.id.img_friend);
+
+                    Picasso.with(getActivity())
+                            .load("http://fbi.dek-d.com/27/0333/9527/114608673")
+                            .centerCrop()
+                            .resize(200, 200)
+                            .transform(new RoundedTransformation(100, 4))
+                            .into(img_friend);
                     dialog.show();
 
                 }
@@ -238,9 +301,10 @@ public class MainFragment extends BaseFragment {
 
         return rootView;
     }
+
     @Subscribe
-    public void getMovie(SuccessEvent event){
-        Log.e("0909090",event.getSomeResponse().getPosts().get(0).getName());
+    public void getMovie(SuccessEvent event) {
+        Log.e("0909090", event.getSomeResponse().getPosts().get(0).getName());
     }
 
     private void prepareListData() {
@@ -268,7 +332,7 @@ public class MainFragment extends BaseFragment {
                             list2.add(mainModel);
                         }
 
-                        for (int i = 5 ; i< list.size();i++){
+                        for (int i = 5; i < list.size(); i++) {
 
                             name = list.get(i).getName();
                             Log.e("zzzz", name);
@@ -277,11 +341,11 @@ public class MainFragment extends BaseFragment {
                             captainAmerica.add(name);
                             ironMan.add(name);
                         }
-                        for(int j = 8 ; j < list2.size();j++){
+                        for (int j = 8; j < list2.size(); j++) {
                             strMe = list.get(j).getName();
                             me.add(strMe);
                         }
-                       // expListView.expandGroup(0);
+                        // expListView.expandGroup(0);
                         expListView.expandGroup(3);
 
                     }
@@ -291,6 +355,7 @@ public class MainFragment extends BaseFragment {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
@@ -306,7 +371,7 @@ public class MainFragment extends BaseFragment {
         listDataHeader.add("Friends");
 
 
-         // Header, Child data
+        // Header, Child data
         listDataChild.put(listDataHeader.get(0), me);
         listDataChild.put(listDataHeader.get(1), thor);
         listDataChild.put(listDataHeader.get(2), captainAmerica);
@@ -336,7 +401,7 @@ public class MainFragment extends BaseFragment {
         //toolbar.inflateMenu(R.menu.menu_main_friends);
         toolbar.setTitle("Friends");
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_main_friends,menu);
+        inflater.inflate(R.menu.menu_main_friends, menu);
     }
 
     @Override
@@ -345,7 +410,7 @@ public class MainFragment extends BaseFragment {
             case R.id.action_add:
                 Toast.makeText(getActivity(), "Add", Toast.LENGTH_SHORT).show();
                 FragmentAddFriends fragment = new FragmentAddFriends();
-                FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.add(R.id.flContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();

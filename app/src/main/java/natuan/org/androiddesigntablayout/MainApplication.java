@@ -18,7 +18,7 @@ public class MainApplication extends Application {
     private static MainApplication Instance;
     public static volatile Handler applicationHandler = null;
     private ApiHandler someApiHandler;
-
+    public static PrefManager mPref;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,7 +26,7 @@ public class MainApplication extends Application {
         Instance = this;
 
         applicationHandler = new Handler(getInstance().getMainLooper());
-
+        mPref = new PrefManager(getSharedPreferences("App", MODE_PRIVATE));
         NativeLoader.initNativeLibs(MainApplication.getInstance());
         someApiHandler = new ApiHandler(this, buildApi(),
                 ApiBus.getInstance());
@@ -57,4 +57,8 @@ public class MainApplication extends Application {
     public static MainApplication getInstance() {
         return Instance;
     }
+    public PrefManager getPrefManager() {
+        return mPref;
+    }
+
 }

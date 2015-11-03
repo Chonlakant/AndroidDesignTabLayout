@@ -1,8 +1,14 @@
 package natuan.org.androiddesigntablayout.model;
 
+import org.parceler.Parcel;
+
+import java.util.ArrayList;
+
 /**
  * Created by root1 on 10/20/15.
  */
+
+@Parcel
 public class Posts {
 
     private String id;
@@ -14,17 +20,26 @@ public class Posts {
     private String url;
 
     private String description;
-
+    ArrayList<String> title_candy;
     public Posts(){
 
     }
 
-    public Posts(String id, String name, String image, String url, String description) {
+    public Posts(String id, String name, String image, String url, String description, ArrayList<String> title_candy) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.url = url;
         this.description = description;
+        this.title_candy = title_candy;
+    }
+
+    public ArrayList<String> getTitle_candy() {
+        return title_candy;
+    }
+
+    public void setTitle_candy(ArrayList<String> title_candy) {
+        this.title_candy = title_candy;
     }
 
     public String getId() {
