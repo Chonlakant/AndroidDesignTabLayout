@@ -44,7 +44,7 @@ import natuan.org.androiddesigntablayout.presenter.MainPresenter;
 /**
  * Created by Tuan on 6/18/2015.
  */
-public class FragmentRecentChats extends BaseFragment  {
+public class FragmentRecentChats extends BaseFragment {
     Toolbar toolbar;
     ListView listView;
     AdapterRecentChats adapterRecentChats;
@@ -53,6 +53,7 @@ public class FragmentRecentChats extends BaseFragment  {
     Boolean isCheck = false;
     private Bundle bundleState;
     PrefManager prefManager;
+
     public static FragmentRecentChats getInstance(String message) {
         FragmentRecentChats mainFragment = new FragmentRecentChats();
         Bundle bundle = new Bundle();
@@ -67,7 +68,6 @@ public class FragmentRecentChats extends BaseFragment  {
         toolbar = ((BaseActivity) getActivity()).getToolbar();
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-//        prefManager =
 
     }
 
@@ -77,12 +77,15 @@ public class FragmentRecentChats extends BaseFragment  {
         bundleState.putParcelable("posts", Parcels.wrap(list));
         super.onDestroyView();
     }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recent_chats, container, false);
         ApiBus.getInstance().post(new SomeEvent());
         if (bundleState != null) {
             list = Parcels.unwrap(bundleState.getParcelable("posts"));
         }
+
+
         listView = (ListView) rootView.findViewById(R.id.listView);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -117,13 +120,19 @@ public class FragmentRecentChats extends BaseFragment  {
 
     @Subscribe
     public void getMovie(SuccessEvent event) {
-        postss i = event.getSomeResponse();
+        postss i;
 
-        for(int a = 0; a < i.getPosts().size();a++){
-            list.add(i);
+        if (isCheck != true) {
 
+            i = event.getSomeResponse();
+            for (int a = 0; a < i.getPosts().size(); a++) {
+                list.add(i);
+
+            }
+            isCheck = true;
         }
-        Log.e("SizeGetMoview",list.size()+"");
+
+        Log.e("SizeGetMoview", list.size() + "");
         adapterRecentChats = new AdapterRecentChats(getActivity(), list);
         listView.setAdapter(adapterRecentChats);
         adapterRecentChats.notifyDataSetChanged();
@@ -145,11 +154,7 @@ public class FragmentRecentChats extends BaseFragment  {
         switch (item.getItemId()) {
             case R.id.Settings:
 
-                FragmentAddFriends fragment = new FragmentAddFriends();
-                FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.flContainer, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+
                 return true;
 
 

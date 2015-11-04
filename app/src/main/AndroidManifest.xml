@@ -39,6 +39,14 @@
         <activity android:name=".activity.MianHomGroup"/>
         <activity android:name=".fragments.fragmentTattooStore.TattooDetailActivity"/>
         <activity android:name=".activity.ActivitySetting"/>
+
+
+        <activity android:name=".activity.ActivityLanguageSetting">
+            <intent-filter>
+                <action android:name=".activity.ActivityLanguageSetting" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

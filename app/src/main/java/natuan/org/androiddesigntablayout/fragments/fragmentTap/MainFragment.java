@@ -417,7 +417,7 @@ public class MainFragment extends BaseFragment {
                 return true;
 
             case R.id.action_search:
-                Toast.makeText(getActivity(), "Search", Toast.LENGTH_SHORT).show();
+
 
                 return true;
             case R.id.action_refresh:
@@ -425,16 +425,29 @@ public class MainFragment extends BaseFragment {
 
                 return true;
             case R.id.action_status:
-                Toast.makeText(getActivity(), "Status", Toast.LENGTH_SHORT).show();
+
                 return true;
             case R.id.action_friend:
-                Toast.makeText(getActivity(), "Friend", Toast.LENGTH_SHORT).show();
+
 
                 return true;
             case R.id.action_setting:
-                Toast.makeText(getActivity(), "Setting", Toast.LENGTH_SHORT).show();
+
 
                 return true;
+            case R.id.action_send:
+                FragmentMutiFriends fragment1 = new FragmentMutiFriends();
+                FragmentTransaction transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction1.add(R.id.flContainer, fragment1);
+                transaction1.addToBackStack(null);
+                transaction1.commit();
+
+                return true;
+            case R.id.action_log_out:
+                Toast.makeText(getActivity(), "Log out", Toast.LENGTH_SHORT).show();
+
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

@@ -16,6 +16,7 @@
         android:padding="3dip">
 
         <ImageView
+            android:layout_marginLeft="10dp"
             android:id="@+id/list_image"
             android:layout_width="50dip"
             android:layout_height="50dip"
@@ -43,6 +44,7 @@
         android:id="@+id/time"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"

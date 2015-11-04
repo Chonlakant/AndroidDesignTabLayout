@@ -41,4 +41,18 @@
         android:icon="@drawable/settings"
         android:title="Settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_send"
+        android:orderInCategory="100"
+        android:icon="@drawable/settings"
+        android:title="Send to Muti Friends"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_log_out"
+        android:orderInCategory="100"
+        android:icon="@drawable/settings"
+        android:title="Log Out"
+        app:showAsAction="never" />
 </menu>

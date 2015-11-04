@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Chat settingss">
+    <PreferenceCategory android:title="Chat settings">
 
         <PreferenceScreen android:summary="Backup chat history">
 
@@ -57,11 +57,9 @@
             android:switchTextOn="YES"
             />
 
-        <PreferenceScreen android:summary="Language of colorful settingt">
+        <PreferenceScreen android:summary="Language of colorful setting">
 
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="http://developer.android.com/" />
+            <intent android:action=".activity.ActivityLanguageSetting"/>
 
         </PreferenceScreen>
 

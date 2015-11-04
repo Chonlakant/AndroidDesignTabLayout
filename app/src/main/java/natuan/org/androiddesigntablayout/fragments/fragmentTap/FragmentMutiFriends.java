@@ -87,6 +87,7 @@ public class FragmentMutiFriends extends Fragment implements TopMovieListView {
 
         toolbar.inflateMenu(R.menu.menu_main_send);
         toolbar.setTitle("Send to multi friends");
+        menu.setGroupVisible(0,false);
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.menu_main_noti,menu);
     }

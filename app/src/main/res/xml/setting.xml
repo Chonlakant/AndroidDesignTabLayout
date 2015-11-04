@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Chat settingss">
+    <PreferenceCategory android:title="Me">
 
-        <PreferenceScreen android:summary="Backup chat history">
-
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="http://developer.android.com/" />
-
-        </PreferenceScreen>
-
-        <PreferenceScreen android:summary="Email chat history">
+        <PreferenceScreen android:summary="My profile">
 
             <intent
                 android:action="android.intent.action.VIEW"
@@ -19,7 +11,7 @@
 
         </PreferenceScreen>
 
-        <PreferenceScreen android:summary="Clear all chat messages">
+        <PreferenceScreen android:summary="My account">
 
             <intent
                 android:action="android.intent.action.VIEW"
@@ -27,14 +19,7 @@
 
         </PreferenceScreen>
 
-        <PreferenceScreen android:summary="Create shortcut">
-
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="http://developer.android.com/" />
-
-        </PreferenceScreen>
-        <PreferenceScreen android:summary="Change wallpaper">
+        <PreferenceScreen android:summary="Privacy">
 
             <intent
                 android:action="android.intent.action.VIEW"
@@ -42,13 +27,11 @@
 
         </PreferenceScreen>
 
-        <PreferenceScreen android:summary="Delete chat">
+    </PreferenceCategory>
 
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="http://developer.android.com/" />
 
-        </PreferenceScreen>
+    <PreferenceCategory android:title="General settings">
+
 
         <SwitchPreference
             android:key="checkbox_preference"
@@ -57,7 +40,9 @@
             android:switchTextOn="YES"
             />
 
-        <PreferenceScreen android:summary="Language of colorful settingt">
+
+
+        <PreferenceScreen android:summary="Chats">
 
             <intent
                 android:action="android.intent.action.VIEW"
@@ -65,21 +50,66 @@
 
         </PreferenceScreen>
 
-        <PreferenceScreen android:summary="Block">
+        <PreferenceScreen android:summary="Friends">
 
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://developer.android.com/" />
 
         </PreferenceScreen>
+
+        <PreferenceScreen android:summary="Media">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://developer.android.com/" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen android:summary="Groups">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://developer.android.com/" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen android:summary="Timeline">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://developer.android.com/" />
+
+        </PreferenceScreen>
+
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Report">
 
+    <PreferenceCategory android:title="Others">
 
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="http://developer.android.com/" />
+        <PreferenceScreen android:summary="Notifications">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://developer.android.com/" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen android:summary="Help">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://developer.android.com/" />
+
+        </PreferenceScreen>
+
+        <PreferenceScreen android:summary="About CandyChat">
+
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://developer.android.com/" />
+
+        </PreferenceScreen>
 
 
     </PreferenceCategory>
