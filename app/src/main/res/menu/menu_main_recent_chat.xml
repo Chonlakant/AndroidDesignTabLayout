@@ -6,16 +6,47 @@
 
     <item
         android:id="@+id/action_add"
-        android:title=""
         android:icon="@drawable/cancel"
         android:orderInCategory="100"
+        android:title=""
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_search"
-        android:title=""
         android:icon="@drawable/search"
         android:orderInCategory="100"
+        android:title=""
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_order"
+        android:icon="@drawable/re"
+        android:orderInCategory="100"
+        android:title="Orde by "
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_status"
+        android:icon="@drawable/userone"
+        android:orderInCategory="100"
+        android:title="Status"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_new_group"
+        android:icon="@drawable/user"
+        android:orderInCategory="100"
+        android:title="New Group"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_send"
+        android:icon="@drawable/settings"
+        android:orderInCategory="100"
+        android:title="Send multi chats"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/Settings"
+        android:icon="@drawable/settings"
+        android:orderInCategory="100"
+        android:title="Send multi chats"
+        app:showAsAction="never" />
 
 
 </menu>

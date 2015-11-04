@@ -156,4 +156,9 @@
     <dimen name="button_text_size">16sp</dimen>
     <dimen name="sample_text_size">12sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="item_margin">8dp</dimen>
+    <dimen name="item_margin_half">8dp</dimen>
+
+    <dimen name="column_width">80dp</dimen>
 </resources>

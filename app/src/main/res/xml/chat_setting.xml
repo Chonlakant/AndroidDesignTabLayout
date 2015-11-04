@@ -50,12 +50,12 @@
 
         </PreferenceScreen>
 
-        <ListPreference
-            android:dialogTitle="Notification"
-            android:entries="@array/entries_list_preference"
-            android:entryValues="@array/entryvalues_list_preference"
-            android:key="list_preference"
-            android:summary="NotificationNotification" />
+        <SwitchPreference
+            android:key="checkbox_preference"
+            android:summary="Notifications"
+            android:switchTextOff="NO"
+            android:switchTextOn="YES"
+            />
 
         <PreferenceScreen android:summary="Language of colorful settingt">
 

@@ -31,13 +31,14 @@
         <activity android:name=".activity.TakePhotoActivity2" />
         <activity android:name=".activity.TakePhotoActivity" />
         <activity android:name=".acivityLogin.ActivityMainLogin" />
-        <activity android:name=".activity.ActivitySetting" />
+        <activity android:name=".activity.ActivityChatSetting" />
         <activity
             android:name=".activity.MianHomMe"
             android:label="@string/title_activity_mian_hom_me"
             android:theme="@style/AppTheme"></activity>
         <activity android:name=".activity.MianHomGroup"/>
         <activity android:name=".fragments.fragmentTattooStore.TattooDetailActivity"/>
+        <activity android:name=".activity.ActivitySetting"/>
     </application>
 
 </manifest>

@@ -123,7 +123,7 @@ public class FragmentRecentChats extends BaseFragment  {
             list.add(i);
 
         }
-
+        Log.e("SizeGetMoview",list.size()+"");
         adapterRecentChats = new AdapterRecentChats(getActivity(), list);
         listView.setAdapter(adapterRecentChats);
         adapterRecentChats.notifyDataSetChanged();
@@ -143,14 +143,14 @@ public class FragmentRecentChats extends BaseFragment  {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.action_add:
-//                Toast.makeText(getActivity(), "Add", Toast.LENGTH_SHORT).show();
-//                FragmentAddFriends fragment = new FragmentAddFriends();
-//                FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.add(R.id.flContainer, fragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-//                return true;
+            case R.id.Settings:
+
+                FragmentAddFriends fragment = new FragmentAddFriends();
+                FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.flContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                return true;
 
 
         }

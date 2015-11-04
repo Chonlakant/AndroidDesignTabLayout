@@ -1,6 +1,5 @@
 package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +21,7 @@ import com.squareup.picasso.Picasso;
 
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.RoundedTransformation;
+import natuan.org.androiddesigntablayout.activity.ActivityChatSetting;
 import natuan.org.androiddesigntablayout.activity.ActivitySetting;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.AdapterMore;
@@ -91,7 +91,7 @@ public class FragmentMore extends Fragment {
         imag_setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ActivitySetting.class);
+                Intent i = new Intent(getActivity(), ActivityChatSetting.class);
                 startActivity(i);
 
             }

@@ -8,10 +8,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import natuan.org.androiddesigntablayout.R;
-import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentFeed;
 import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentWall;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentInfomation_home_me_data;
-import natuan.org.androiddesigntablayout.fragments.fragmrntLogin.FragmentLogin;
 
 public class MianHomMe extends AppCompatActivity {
     Button btn_wall, media;

@@ -7,11 +7,9 @@ import android.view.View;
 import android.widget.Button;
 
 import natuan.org.androiddesigntablayout.R;
-import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentFeed;
 import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentWall;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentInfomationMember;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentInfomation_group_data;
-import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentInfomation_home_me_data;
 
 public class MianHomGroup extends AppCompatActivity {
     Button wall, media, member;

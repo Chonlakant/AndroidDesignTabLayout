@@ -11,7 +11,7 @@ import natuan.org.androiddesigntablayout.R;
 /**
  * Created by root1 on 11/2/15.
  */
-public class ActivitySetting extends Activity {
+public class ActivityChatSetting extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class ActivitySetting extends Activity {
             super.onCreate(savedInstanceState);
 
             // Load the preferences from an XML resource
-            addPreferencesFromResource(R.xml.setting);
+            addPreferencesFromResource(R.xml.chat_setting);
         }
     }
 }
