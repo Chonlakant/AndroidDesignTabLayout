@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,8 +33,9 @@ public class FragmentSignByPhoneStep1 extends Fragment {
     EditText dtInputPhone;
     // @InjectView(R.id.btn_next)
     Button btnNext;
+    String code;
     // @InjectView(R.id.txt_skip)
-    String[] DayOfWeek = {"+60 Malaysia", "+61 Australia" ,"+62 Indonesia","+63 Philippines","+64 New Zealand","+65 Singapore","+66 Thailand"};
+    String[] DayOfWeek = {"(+60) Malaysia", "(+61) Australia", "(+62) Indonesia", "(+63) Philippines", "(+64) New Zealand", "(+65) Singapore", "(+66) Thailand"};
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sign_up_by_phone_number_step_1, container, false);
@@ -40,15 +43,38 @@ public class FragmentSignByPhoneStep1 extends Fragment {
         dtInputPhone = (EditText) rootView.findViewById(R.id.input_number_phone);
         btnNext = (Button) rootView.findViewById(R.id.btn_next);
 
-        Spinner mySpinner = (Spinner) rootView.findViewById(R.id.button3);
+        final Spinner mySpinner = (Spinner) rootView.findViewById(R.id.popupspinner);
+        mySpinner.setPrompt("Choose your country");
         mySpinner.setAdapter(new MyCustomAdapter(getActivity(), R.layout.row, DayOfWeek));
+
+        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String items = mySpinner.getSelectedItem().toString();
+                code = items.substring(1, 4);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String editNumberPhone = dtInputPhone.getText().toString();
+
+                String numberPhone = code + editNumberPhone;
+                Log.e("Selected item : ", numberPhone);
+                Bundle i = new Bundle();
                 FragmentSignByPhoneStep2 oneFragment = new FragmentSignByPhoneStep2();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.content, oneFragment);
+                i.putString("numberPhone", numberPhone);
+                oneFragment.setArguments(i);
                 transaction.addToBackStack(null);
                 transaction.commit();
 

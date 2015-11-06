@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.activity.MainActivityTap;
@@ -33,8 +34,10 @@ public class FragmentRegisterionCompleted extends Fragment {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), MainActivityTap.class);
-                startActivity(i);
+//                Intent i = new Intent(getActivity(), MainActivityTap.class);
+//                startActivity(i);
+
+                Toast.makeText(getActivity(), "Main page", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -49,7 +52,7 @@ public class FragmentRegisterionCompleted extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-       // toolbar.setTitle("Sign up");
+        // toolbar.setTitle("Sign up");
         toolbar.setVisibility(View.GONE);
         // toolbar.inflateMenu(R.menu.menu_main_recent_chat);
         super.onCreateOptionsMenu(menu, inflater);

@@ -28,22 +28,24 @@
         </LinearLayout>
 
 
-        <Spinner
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp" />
+            <Spinner
+                android:id="@+id/popupspinner"
+                android:spinnerMode="dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical" />
 
-        <EditText
-            android:id="@+id/input_number_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Enter your Phone number"
-            android:inputType="number"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            <EditText
+
+                android:id="@+id/input_number_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Enter your Phone number"
+                android:inputType="number"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_gravity="center_vertical" />
+
 
 
         <LinearLayout

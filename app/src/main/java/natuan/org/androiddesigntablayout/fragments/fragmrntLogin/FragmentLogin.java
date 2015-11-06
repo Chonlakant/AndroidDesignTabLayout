@@ -51,8 +51,10 @@ public class FragmentLogin extends Fragment {
         txtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), MainActivityTap.class);
-                startActivity(i);
+//                Intent i = new Intent(getActivity(), MainActivityTap.class);
+//                startActivity(i);
+
+                Toast.makeText(getActivity(),"Main page",Toast.LENGTH_SHORT).show();
             }
         });
 
