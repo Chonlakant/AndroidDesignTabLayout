@@ -14,7 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
 
 import com.dpizarro.autolabel.library.AutoLabelUI;
 import com.dpizarro.autolabel.library.Label;
@@ -88,7 +88,7 @@ public class FragmentInvite extends Fragment {
         mAutoLabel.setOnLabelsCompletedListener(new AutoLabelUI.OnLabelsCompletedListener() {
             @Override
             public void onLabelsCompleted() {
-                Toast.makeText(getActivity(), "Completed!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -102,14 +102,14 @@ public class FragmentInvite extends Fragment {
         mAutoLabel.setOnLabelsEmptyListener(new AutoLabelUI.OnLabelsEmptyListener() {
             @Override
             public void onLabelsEmpty() {
-                Toast.makeText(getActivity(), "EMPTY!", Toast.LENGTH_SHORT).show();
+
             }
         });
 
         mAutoLabel.setOnLabelClickListener(new AutoLabelUI.OnLabelClickListener() {
             @Override
             public void onClickLabel(View v) {
-                Toast.makeText(getActivity(), ((Label) v).getText(), Toast.LENGTH_SHORT).show();
+
             }
         });
 

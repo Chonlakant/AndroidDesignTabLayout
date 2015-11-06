@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -20,8 +20,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Search by name"
-            style="@style/venus.center"
-            android:drawableLeft="@drawable/search"
+            android:drawableLeft="@drawable/searchc"
             android:id="@+id/editText"
             android:layout_gravity="center_horizontal" />
 

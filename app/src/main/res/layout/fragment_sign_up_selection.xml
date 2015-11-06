@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:hint="or"
-                    android:textSize="20dp" />
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <View
                     android:layout_width="50dp"

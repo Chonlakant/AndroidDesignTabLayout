@@ -3,6 +3,7 @@ package natuan.org.androiddesigntablayout.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,7 +12,7 @@ import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentWall;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentInfomationMember;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentInfomation_group_data;
 
-public class MianHomGroup extends AppCompatActivity {
+public class MianHomGroup extends BaseActivity {
     Button wall, media, member;
 
     @Override

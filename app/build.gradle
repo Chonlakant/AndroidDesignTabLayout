@@ -1,3 +1,4 @@
+
 apply plugin: 'com.android.application'
 
 android {
@@ -48,8 +49,13 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.0'
     compile 'com.commonsware.cwac:camera:0.6.12'
     compile project(':labeiui')
-    compile project(':library')
     compile project(':cvlibrary')
     compile 'org.parceler:parceler-api:0.2.10'
     provided 'org.parceler:parceler:0.2.10'
+    compile project(':librarygestureview')
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'com.googlecode.flickrj-android:flickrj-android:2.1.0'
+    compile 'org.slf4j:slf4j-android:1.7.7'
+    compile project(':alex')
+    compile 'com.alexvasilkov:events:0.4.0'
 }

@@ -249,10 +249,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.sonaive.library.HorizontalListView
-                    android:id="@+id/hlv_List_picture"
-                    android:layout_width="fill_parent"
-                    android:layout_height="120dp" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvContacts"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -324,10 +324,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.sonaive.library.HorizontalListView
-                    android:id="@+id/hlv_List_voices"
-                    android:layout_width="fill_parent"
-                    android:layout_height="120dp" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvContacts2"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -399,10 +399,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.sonaive.library.HorizontalListView
-                    android:id="@+id/hlv_List_videos"
-                    android:layout_width="fill_parent"
-                    android:layout_height="120dp" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvContacts3"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" />
             </LinearLayout>
 
             <LinearLayout

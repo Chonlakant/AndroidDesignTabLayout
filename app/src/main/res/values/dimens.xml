@@ -161,4 +161,12 @@
     <dimen name="item_margin_half">8dp</dimen>
 
     <dimen name="column_width">80dp</dimen>
+
+    <dimen name="flickr_list_margin">4dp</dimen>
+
+    <dimen name="view_pager_margin">12dp</dimen>
+
+    <dimen name="image_frame_width">304dp</dimen>
+    <dimen name="image_frame_height">144dp</dimen>
+
 </resources>

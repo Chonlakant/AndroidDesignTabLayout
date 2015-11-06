@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".acivityLogin.MainLogin"
+            android:name=".acivityLogin.splash"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+       <activity android:name=".acivityLogin.MainLogin"/>
         <activity android:name=".acivityLogin.MainActivityDisplayFragmentLogin" />
         <activity android:name=".activity.MainActivityTap" />
         <activity android:name=".MainActivityChat" />
@@ -47,6 +48,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activity.ImageViewSampleActivity"/>
+        <activity android:name=".activity.AdvancedDemoActivity"/>
     </application>
 
 </manifest>

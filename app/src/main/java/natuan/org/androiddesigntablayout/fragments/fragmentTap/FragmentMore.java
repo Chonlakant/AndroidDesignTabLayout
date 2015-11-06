@@ -66,7 +66,6 @@ public class FragmentMore extends Fragment {
                     transaction.commit();
                 }
                 if (position == 1) {
-                    Toast.makeText(getActivity(), "qqq", Toast.LENGTH_SHORT).show();
                     FragmentAddFriends fragment = new FragmentAddFriends();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.add(R.id.flContainer, fragment);

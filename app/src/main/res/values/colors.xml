@@ -17,6 +17,8 @@
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#5f50e1</color>
 
+    <color name="text_primary_light">#FFFFFF</color>
+    <color name="text_secondary_light">#AAAAAA</color>
     <!-- color textview -->
     <color name="color_text">#2582b1</color>
 

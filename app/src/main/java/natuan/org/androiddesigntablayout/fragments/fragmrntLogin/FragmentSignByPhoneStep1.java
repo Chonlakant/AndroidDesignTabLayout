@@ -1,5 +1,6 @@
 package natuan.org.androiddesigntablayout.fragments.fragmrntLogin;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,8 +11,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,20 +25,23 @@ import natuan.org.androiddesigntablayout.activity.BaseActivity;
 public class FragmentSignByPhoneStep1 extends Fragment {
 
     Toolbar toolbar;
-   // @InjectView(R.id.input_email)
-    EditText dtInputPhoneCode;
-   // @InjectView(R.id.input_number_phone)
+    // @InjectView(R.id.input_email)
+
+    // @InjectView(R.id.input_number_phone)
     EditText dtInputPhone;
-   // @InjectView(R.id.btn_next)
+    // @InjectView(R.id.btn_next)
     Button btnNext;
-   // @InjectView(R.id.txt_skip)
+    // @InjectView(R.id.txt_skip)
+    String[] DayOfWeek = {"+60 Malaysia", "+61 Australia" ,"+62 Indonesia","+63 Philippines","+64 New Zealand","+65 Singapore","+66 Thailand"};
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sign_up_by_phone_number_step_1, container, false);
 
-        dtInputPhoneCode = (EditText) rootView.findViewById(R.id.input_phone_code);
         dtInputPhone = (EditText) rootView.findViewById(R.id.input_number_phone);
         btnNext = (Button) rootView.findViewById(R.id.btn_next);
+
+        Spinner mySpinner = (Spinner) rootView.findViewById(R.id.button3);
+        mySpinner.setAdapter(new MyCustomAdapter(getActivity(), R.layout.row, DayOfWeek));
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,8 +54,6 @@ public class FragmentSignByPhoneStep1 extends Fragment {
 
             }
         });
-
-
 
 
         return rootView;
@@ -86,6 +90,41 @@ public class FragmentSignByPhoneStep1 extends Fragment {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public class MyCustomAdapter extends ArrayAdapter<String> {
+
+        public MyCustomAdapter(Context context, int textViewResourceId,
+                               String[] objects) {
+            super(context, textViewResourceId, objects);
+            // TODO Auto-generated constructor stub
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView,
+                                    ViewGroup parent) {
+            // TODO Auto-generated method stub
+            return getCustomView(position, convertView, parent);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // TODO Auto-generated method stub
+            return getCustomView(position, convertView, parent);
+        }
+
+        public View getCustomView(int position, View convertView, ViewGroup parent) {
+            // TODO Auto-generated method stub
+            //return super.getView(position, convertView, parent);
+
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View row = inflater.inflate(R.layout.row, parent, false);
+            TextView label = (TextView) row.findViewById(R.id.weekofday);
+            label.setText(DayOfWeek[position]);
+
+
+            return row;
+        }
     }
 
 }

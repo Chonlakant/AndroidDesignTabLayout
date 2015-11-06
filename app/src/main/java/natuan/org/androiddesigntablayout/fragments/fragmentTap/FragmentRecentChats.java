@@ -85,7 +85,6 @@ public class FragmentRecentChats extends BaseFragment {
             list = Parcels.unwrap(bundleState.getParcelable("posts"));
         }
 
-
         listView = (ListView) rootView.findViewById(R.id.listView);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -117,27 +116,26 @@ public class FragmentRecentChats extends BaseFragment {
         return rootView;
     }
 
+    private void updateFriendList(ArrayList<postss> loadList) {
+
+//        ArrayList<postss> i = new ArrayList<>();
+//
+
+
+        Log.e("SizeGetMoview", list.size() + "");
+        adapterRecentChats = new AdapterRecentChats(getActivity(), loadList);
+        listView.setAdapter(adapterRecentChats);
+
+
+    }
 
     @Subscribe
     public void getMovie(SuccessEvent event) {
-        postss i;
-
-        if (isCheck != true) {
-
-            i = event.getSomeResponse();
-            for (int a = 0; a < i.getPosts().size(); a++) {
-                list.add(i);
-
-            }
-            isCheck = true;
-        }
-
-        Log.e("SizeGetMoview", list.size() + "");
-        adapterRecentChats = new AdapterRecentChats(getActivity(), list);
-        listView.setAdapter(adapterRecentChats);
-        adapterRecentChats.notifyDataSetChanged();
+        updateFriendList(event.getSomeResponse());
 
     }
+
+
 
 
     @Override
@@ -174,7 +172,6 @@ public class FragmentRecentChats extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        list.clear();
-
+        isCheck = false;
     }
 }

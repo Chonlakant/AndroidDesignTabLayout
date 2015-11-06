@@ -4,9 +4,13 @@ import android.app.Application;
 import android.os.Handler;
 import android.util.Log;
 
+import com.alexvasilkov.events.Events;
+import com.alexvasilkov.gestures.internal.GestureDebug;
+
 import natuan.org.androiddesigntablayout.handler.ApiBus;
 import natuan.org.androiddesigntablayout.handler.ApiHandler;
 import natuan.org.androiddesigntablayout.handler.ApiService;
+import natuan.org.androiddesigntablayout.logic.FlickrApi;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 
@@ -24,7 +28,11 @@ public class MainApplication extends Application {
         super.onCreate();
 
         Instance = this;
+        Events.init(this);
+        Events.register(FlickrApi.class);
 
+        GestureDebug.setDebugFps(true);
+        GestureDebug.setDebugAnimator(true);
         applicationHandler = new Handler(getInstance().getMainLooper());
         mPref = new PrefManager(getSharedPreferences("App", MODE_PRIVATE));
         NativeLoader.initNativeLibs(MainApplication.getInstance());

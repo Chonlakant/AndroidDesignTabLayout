@@ -45,7 +45,7 @@
         android:id="@+id/Settings"
         android:icon="@drawable/settings"
         android:orderInCategory="100"
-        android:title="Send multi chats"
+        android:title="Settings"
         app:showAsAction="never" />
 
 

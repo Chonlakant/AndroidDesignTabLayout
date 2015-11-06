@@ -25,6 +25,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
 
+import com.alexvasilkov.android.commons.state.InstanceStateManager;
+import com.alexvasilkov.events.Events;
+
 import butterknife.ButterKnife;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.handler.ApiBus;
@@ -41,6 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.inject(this);
+
         //setupToolbar();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (getSupportActionBar() != null && toolbar != null) {
@@ -96,6 +100,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
+        InstanceStateManager.restoreInstanceState(this, savedInstanceState);
         mContext = this;
 
     }
@@ -129,7 +134,23 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
+//    @Override
+//    protected void onPostCreate(Bundle savedInstanceState) {
+//        super.onPostCreate(savedInstanceState);
+//        Events.register(this);
+//    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        InstanceStateManager.saveInstanceState(this, outState);
+        super.onSaveInstanceState(outState);
+    }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Events.unregister(this);
+//    }
 
 
 }

@@ -24,7 +24,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/user" />
+                android:src="@drawable/add_candy" />
             <EditText
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"

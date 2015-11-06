@@ -5,9 +5,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,8 +15,8 @@ import java.util.ArrayList;
 import natuan.org.androiddesigntablayout.BaseFragment;
 import natuan.org.androiddesigntablayout.MarginDecoration;
 import natuan.org.androiddesigntablayout.R;
-import natuan.org.androiddesigntablayout.activity.BaseActivity;
-import natuan.org.androiddesigntablayout.adapter.ComplexRecyclerViewAdapter;
+import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerViewFreeOne;
+import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerViewFreeTwo;
 import natuan.org.androiddesigntablayout.event.SomeEvent;
 import natuan.org.androiddesigntablayout.event.SuccessEvent;
 import natuan.org.androiddesigntablayout.handler.ApiBus;
@@ -28,7 +25,7 @@ import natuan.org.androiddesigntablayout.model.User;
 public class FragmentFeedTwo extends BaseFragment {
     Toolbar toolbar;
     RecyclerView rvContacts;
-    ComplexRecyclerViewAdapter adapter;
+    AdapterRecyclerViewFreeTwo adapter;
 
 
 
@@ -64,7 +61,7 @@ public class FragmentFeedTwo extends BaseFragment {
 
     private void bindDataToAdapter() {
         // Bind adapter to recycler view object
-        rvContacts.setAdapter(new ComplexRecyclerViewAdapter(getSampleArrayList(),getActivity()));
+        rvContacts.setAdapter(new AdapterRecyclerViewFreeTwo(getSampleArrayList(),getActivity()));
     }
 
 //    @Override

@@ -1,5 +1,7 @@
 package natuan.org.androiddesigntablayout.event;
 
+import java.util.ArrayList;
+
 import natuan.org.androiddesigntablayout.model.Posts;
 import natuan.org.androiddesigntablayout.model.postss;
 
@@ -7,13 +9,16 @@ import natuan.org.androiddesigntablayout.model.postss;
  * Created by Mac on 3/2/15.
  */
 public class SuccessEvent {
-    private postss someData;
+    private ArrayList<postss> someData;
 
-    public SuccessEvent(postss someData) {
+
+    public SuccessEvent(ArrayList<postss> someData) {
         this.someData = someData;
     }
 
-    public postss getSomeResponse() {
+
+
+    public  ArrayList<postss> getSomeResponse() {
         return someData;
     }
 }

@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ import natuan.org.androiddesigntablayout.R;
 
 public class splash extends Activity {
 
-    private static int SPLASH_TIME_OUT = 1000;
+    private static int SPLASH_TIME_OUT = 1500;
 
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -34,7 +35,10 @@ public class splash extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                StartSplashScreenAnim();
+                Intent i = new Intent(splash.this, MainLogin.class);
+                startActivity(i);
+                finish();
+
             }
         }, SPLASH_TIME_OUT);
     }
@@ -48,16 +52,16 @@ public class splash extends Activity {
     private void StartSplashScreenAnim() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
         anim.reset();
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.splashLinLay);
-        layout.clearAnimation();
-        layout.startAnimation(anim);
+//        LinearLayout layout = (LinearLayout) findViewById(R.id.splashLinLay);
+//        layout.clearAnimation();
+//        layout.startAnimation(anim);
 
-        anim = AnimationUtils.loadAnimation(this, R.anim.translate);
-        anim.reset();
-        ImageView imageView = (ImageView) findViewById(R.id.logo);
-        imageView.setImageResource(R.drawable.ic_launcher);
-        imageView.clearAnimation();
-        imageView.startAnimation(anim);
+//        anim = AnimationUtils.loadAnimation(this, R.anim.translate);
+//        anim.reset();
+//        ImageView imageView = (ImageView) findViewById(R.id.logo);
+//        imageView.setImageResource(R.drawable.logo_candy_chat);
+//        imageView.clearAnimation();
+//        imageView.startAnimation(anim);
 
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -68,9 +72,9 @@ public class splash extends Activity {
             @Override
             public void onAnimationEnd(Animation animation) {
 
-                Intent i = new Intent(splash.this, MainLogin.class);
-                startActivity(i);
-                finish();
+//                Intent i = new Intent(splash.this, MainLogin.class);
+//                startActivity(i);
+//                finish();
 
             }
 

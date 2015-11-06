@@ -5,12 +5,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
 
@@ -18,8 +14,7 @@ import java.util.ArrayList;
 
 import natuan.org.androiddesigntablayout.BaseFragment;
 import natuan.org.androiddesigntablayout.R;
-import natuan.org.androiddesigntablayout.activity.BaseActivity;
-import natuan.org.androiddesigntablayout.adapter.ComplexRecyclerViewAdapter;
+import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerViewFreeOne;
 import natuan.org.androiddesigntablayout.event.SomeEvent;
 import natuan.org.androiddesigntablayout.event.SuccessEvent;
 import natuan.org.androiddesigntablayout.handler.ApiBus;
@@ -28,7 +23,7 @@ import natuan.org.androiddesigntablayout.model.User;
 public class FragmentFeedOne extends BaseFragment {
     Toolbar toolbar;
     RecyclerView rvContacts;
-    ComplexRecyclerViewAdapter adapter;
+    AdapterRecyclerViewFreeOne adapter;
 
 //    public static FragmentFeedOne getInstance(String message) {
 //        FragmentFeedOne mainFragment = new FragmentFeedOne();
@@ -70,7 +65,7 @@ public class FragmentFeedOne extends BaseFragment {
 
     private void bindDataToAdapter() {
         // Bind adapter to recycler view object
-        rvContacts.setAdapter(new ComplexRecyclerViewAdapter(getSampleArrayList(),getActivity()));
+        rvContacts.setAdapter(new AdapterRecyclerViewFreeOne(getSampleArrayList(),getActivity()));
     }
 
 //    @Override

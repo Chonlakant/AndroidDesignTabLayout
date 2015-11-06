@@ -1,1 +1,1 @@
-include ':app', ':labeiui', ':library', ':cvlibrary'
+include ':app', ':labeiui', ':cvlibrary', ':librarygestureview', 'alex'

@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:drawableBottom="@drawable/msg"
-            android:id="@+id/voiceChat"
+            android:id="@+id/txt_chat"
             android:gravity="center"
             android:layout_weight="1" />
 

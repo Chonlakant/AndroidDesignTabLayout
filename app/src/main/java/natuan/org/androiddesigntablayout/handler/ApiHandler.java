@@ -6,6 +6,8 @@ import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 
+import java.util.ArrayList;
+
 import natuan.org.androiddesigntablayout.event.SomeEvent;
 import natuan.org.androiddesigntablayout.event.SuccessEvent;
 import natuan.org.androiddesigntablayout.model.Posts;
@@ -40,7 +42,15 @@ public class ApiHandler {
         api.getMovie(new Callback<postss>() {
             @Override
             public void success(postss postss, Response response) {
-                apiBus.post(new SuccessEvent(postss));
+
+                ArrayList<postss> list = new ArrayList<postss>();
+
+
+                for(int i = 0 ; i < postss.getPosts().size();i++ ){
+                    list.add(postss);
+                    Log.e("SizeGetMoview", list.size() + "");
+                }
+                apiBus.post(new SuccessEvent(list));
             }
 
             @Override

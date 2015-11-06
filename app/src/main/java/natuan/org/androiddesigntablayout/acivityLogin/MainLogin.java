@@ -55,7 +55,6 @@ public class MainLogin extends BaseActivity {
             public void onClick(View v) {
 //                int type = 0;
 //
-                Toast.makeText(getApplication(), "Login = 0", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), ActivityMainLogin.class);
                 i.putExtra("type", 0);
                 startActivity(i);

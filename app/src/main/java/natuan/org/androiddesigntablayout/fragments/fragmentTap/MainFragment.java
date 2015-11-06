@@ -143,6 +143,18 @@ public class MainFragment extends BaseFragment {
                 if (listDataHeader.get(groupPosition) == "Me") {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                     dialog.setContentView(R.layout.dialog_me);
+
+                    TextView txt_chat = (TextView) dialog.findViewById(R.id.txt_chat);
+                    txt_chat.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getActivity(), MainActivityChat.class);
+                            startActivity(i);
+                            dialog.dismiss();
+                        }
+                    });
+
+
                     ImageView imageView7 = (ImageView) dialog.findViewById(R.id.imageView7);
                     imageView7.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -180,6 +192,19 @@ public class MainFragment extends BaseFragment {
                 if (listDataHeader.get(groupPosition) == "Groups") {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                     dialog.setContentView(R.layout.dialog_group);
+
+
+                    TextView txt_chat = (TextView) dialog.findViewById(R.id.txt_chat);
+                    txt_chat.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getActivity(), MainActivityChat.class);
+                            startActivity(i);
+                            dialog.dismiss();
+                        }
+                    });
+
+
                     ImageView img_group = (ImageView) dialog.findViewById(R.id.img_group);
                     ImageView img_friend_1 = (ImageView) dialog.findViewById(R.id.img_friend_1);
                     ImageView img_friend_2 = (ImageView) dialog.findViewById(R.id.img_friend_2);
@@ -232,6 +257,19 @@ public class MainFragment extends BaseFragment {
                 if (listDataHeader.get(groupPosition) == "Favorite") {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                     dialog.setContentView(R.layout.dialog_favortie);
+
+
+                    TextView txt_chat = (TextView) dialog.findViewById(R.id.txt_chat);
+                    txt_chat.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getActivity(), MainActivityChat.class);
+                            startActivity(i);
+                            dialog.dismiss();
+                        }
+                    });
+
+
                     ImageView img_bast_friend = (ImageView) dialog.findViewById(R.id.img_bast_friend);
 
                     Picasso.with(getActivity())
@@ -304,7 +342,12 @@ public class MainFragment extends BaseFragment {
 
     @Subscribe
     public void getMovie(SuccessEvent event) {
-        Log.e("0909090", event.getSomeResponse().getPosts().get(0).getName());
+
+        for(int i = 0 ; i < event.getSomeResponse().size();i++){
+            Log.e("Name:qwe", event.getSomeResponse().get(i).getPosts().get(i).getName());
+        }
+
+        String name = event.getSomeResponse().get(0).getPosts().get(0).getName();
     }
 
     private void prepareListData() {
@@ -341,6 +384,7 @@ public class MainFragment extends BaseFragment {
                             captainAmerica.add(name);
                             ironMan.add(name);
                         }
+
                         for (int j = 8; j < list2.size(); j++) {
                             strMe = list.get(j).getName();
                             me.add(strMe);
@@ -408,7 +452,6 @@ public class MainFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                Toast.makeText(getActivity(), "Add", Toast.LENGTH_SHORT).show();
                 FragmentAddFriends fragment = new FragmentAddFriends();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.add(R.id.flContainer, fragment);

@@ -74,8 +74,6 @@ public class CustomExpandableListView extends BaseExpandableListAdapter {
 
 
 
-
-
         Picasso.with(_context)
                 .load(MainFragment.listurl.get(childPosition).getImage())
                         //  .centerCrop()
