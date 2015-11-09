@@ -1,28 +1,50 @@
 package natuan.org.androiddesigntablayout;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.ToggleButton;
+
+import com.norbsoft.typefacehelper.ActionBarHelper;
+import com.norbsoft.typefacehelper.TypefaceCollection;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import natuan.org.androiddesigntablayout.activity.BaseActivity;
+import natuan.org.androiddesigntablayout.calendarstock.ColorPickerDialog;
+import natuan.org.androiddesigntablayout.calendarstock.ColorPickerSwatch;
 import natuan.org.androiddesigntablayout.model.ChatMessage;
 import natuan.org.androiddesigntablayout.model.Status;
 import natuan.org.androiddesigntablayout.model.UserType;
@@ -30,11 +52,13 @@ import natuan.org.androiddesigntablayout.widgets.Emoji;
 import natuan.org.androiddesigntablayout.widgets.EmojiView;
 import natuan.org.androiddesigntablayout.widgets.SizeNotifierRelativeLayout;
 
+import static com.norbsoft.typefacehelper.TypefaceHelper.typeface;
 
-public class MainActivityChat extends ActionBarActivity implements SizeNotifierRelativeLayout.SizeNotifierRelativeLayoutDelegate, NotificationCenter.NotificationCenterDelegate {
 
+public class MainActivityChat extends BaseActivity implements SizeNotifierRelativeLayout.SizeNotifierRelativeLayoutDelegate, NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
+    Toolbar toolbar;
     private ListView chatListView;
-    private EditText chatEditText1;
+    public EditText chatEditText1;
     private ArrayList<ChatMessage> chatMessages;
     private ImageView enterChatView1, emojiButton;
     private ChatListAdapter listAdapter;
@@ -44,6 +68,31 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
     private int keyboardHeight;
     private boolean keyboardVisible;
     private WindowManager.LayoutParams windowLayoutParams;
+    PrefManager prefManager;
+    private int mSelectedColorCal0 = 0;
+    Dialog dialog;
+    TextView txt_preview;
+    Button btn_color;
+
+    LinearLayout chat_font;
+
+    private static final String STATE_SELECTED_FONT = "STATE_SELECTED_FONT";
+
+    private static final String TYPEFACE_DEFAULT = "System default";
+    private static final String TYPEFACE_ACTIONMAN = "Action man";
+    private static final String TYPEFACE_ARCHRIVAL = "Arch Rival";
+    private static final String TYPEFACE_JUICE = "Juice";
+    private static final String TYPEFACE_UBUNTU = "Ubuntu";
+
+    private Map<String, TypefaceCollection> mTypefaceMap;
+
+
+    private Spinner mTypefaceSpinner;
+    private ToggleButton mBtnItalic;
+    private ToggleButton mBtnBold;
+
+
+    boolean isCheck = false;
 
 
     private EditText.OnKeyListener keyListener = new View.OnKeyListener() {
@@ -57,8 +106,7 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
 
                 EditText editText = (EditText) v;
 
-                if(v==chatEditText1)
-                {
+                if (v == chatEditText1) {
                     sendMessage(editText.getText().toString(), UserType.OTHER);
                 }
 
@@ -75,9 +123,9 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
         @Override
         public void onClick(View v) {
 
-            if(v==enterChatView1)
-            {
+            if (v == enterChatView1) {
                 sendMessage(chatEditText1.getText().toString(), UserType.OTHER);
+                chat_font.setVisibility(View.GONE);
             }
 
             chatEditText1.setText("");
@@ -102,9 +150,9 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
 
         @Override
         public void afterTextChanged(Editable editable) {
-            if(editable.length()==0){
+            if (editable.length() == 0) {
                 enterChatView1.setImageResource(R.drawable.ic_chat_send);
-            }else{
+            } else {
                 enterChatView1.setImageResource(R.drawable.ic_chat_send_active);
             }
         }
@@ -115,10 +163,13 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_chat);
-
+        prefManager = MainApplication.getPrefManager();
+        txt_preview = (TextView) findViewById(R.id.txt_preview);
         AndroidUtilities.statusBarHeight = getStatusBarHeight();
-
+        chat_font = (LinearLayout) findViewById(R.id.chat_font);
         chatMessages = new ArrayList<>();
+
+        btn_color = (Button) findViewById(R.id.btn_color);
 
         chatListView = (ListView) findViewById(R.id.chat_list_view);
 
@@ -135,7 +186,7 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
         });
 
 
-        emojiButton = (ImageView)findViewById(R.id.emojiButton);
+        emojiButton = (ImageView) findViewById(R.id.emojiButton);
 
         emojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +195,7 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
             }
         });
 
-         listAdapter = new ChatListAdapter(chatMessages, this);
+        listAdapter = new ChatListAdapter(chatMessages, this);
 
         chatListView.setAdapter(listAdapter);
 
@@ -158,11 +209,97 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
         sizeNotifierRelativeLayout.delegate = this;
 
         NotificationCenter.getInstance().addObserver(this, NotificationCenter.emojiDidLoaded);
+
+        mBtnItalic = (ToggleButton) findViewById(R.id.btn_italic);
+        mBtnBold = (ToggleButton) findViewById(R.id.btn_bold);
+        mTypefaceSpinner = (Spinner) findViewById(R.id.spinner);
+
+        mBtnItalic.setOnClickListener(this);
+        mBtnBold.setOnClickListener(this);
+
+        // Retrieve custom typefaces from Application subclass
+        MainApplication myApp = (MainApplication) getApplication();
+        mTypefaceMap = new HashMap<String, TypefaceCollection>(5);
+        mTypefaceMap.put(TYPEFACE_DEFAULT, myApp.getSystemDefaultTypeface());
+        mTypefaceMap.put(TYPEFACE_ACTIONMAN, myApp.getActionManTypeface());
+        mTypefaceMap.put(TYPEFACE_ARCHRIVAL, myApp.getArchRivalTypeface());
+        mTypefaceMap.put(TYPEFACE_JUICE, myApp.getJuiceTypeface());
+        mTypefaceMap.put(TYPEFACE_UBUNTU, myApp.getUbuntuTypeface());
+
+        final List<String> fontList = new ArrayList<String>(mTypefaceMap.keySet().size());
+        fontList.addAll(mTypefaceMap.keySet());
+
+        mTypefaceSpinner.setAdapter(new BaseAdapter() {
+
+            @Override
+            public int getCount() {
+                return fontList.size();
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return fontList.get(position);
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return fontList.get(position).hashCode();
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = LayoutInflater.from(MainActivityChat.this)
+                            .inflate(android.R.layout.simple_list_item_1, parent, false);
+                }
+                typeface(convertView, mTypefaceMap.get(fontList.get(position)));
+                ((TextView) convertView).setText(fontList.get(position));
+                return convertView;
+            }
+        });
+        mTypefaceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                applyDynamicTypeface(fontList.get(position), mBtnBold.isChecked(), mBtnItalic.isChecked());
+                Log.e("font55", fontList.get(position) + "");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        btn_color.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int[] mColor = Utils2.ColorUtils.colorChoice(getActivity());
+                ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(
+                        R.string.color_picker_default_title, mColor,
+                        mSelectedColorCal0, 5,
+                        Utils2.isTablet(getActivity()) ? ColorPickerDialog.SIZE_LARGE
+                                : ColorPickerDialog.SIZE_SMALL);
+
+                colorcalendar.setOnColorSelectedListener(new ColorPickerSwatch.OnColorSelectedListener() {
+                    @Override
+                    public void onColorSelected(int color) {
+                        prefManager.intColor().put(color);
+                        prefManager.commit();
+                        chatEditText1.setTextColor(color);
+                    }
+                });
+                colorcalendar.show(getFragmentManager(), "cal");
+            }
+        });
+
+        if (savedInstanceState != null) {
+            mTypefaceSpinner.setSelection(savedInstanceState.getInt(STATE_SELECTED_FONT));
+        }
+
+
     }
 
-    private void sendMessage(final String messageText, final UserType userType)
-    {
-        if(messageText.trim().length()==0)
+    private void sendMessage(final String messageText, final UserType userType) {
+        if (messageText.trim().length() == 0)
             return;
 
         final ChatMessage message = new ChatMessage();
@@ -172,17 +309,17 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
         message.setMessageTime(new Date().getTime());
         chatMessages.add(message);
 
-        if(listAdapter!=null)
+        if (listAdapter != null)
             listAdapter.notifyDataSetChanged();
 
         // Mark message as delivered after one second
 
         final ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
 
-        exec.schedule(new Runnable(){
+        exec.schedule(new Runnable() {
             @Override
-            public void run(){
-               message.setMessageStatus(Status.DELIVERED);
+            public void run() {
+                message.setMessageStatus(Status.DELIVERED);
 
                 final ChatMessage message = new ChatMessage();
                 message.setMessageStatus(Status.SENT);
@@ -203,8 +340,7 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
 
     }
 
-    private Activity getActivity()
-    {
+    private Activity getActivity() {
         return this;
     }
 
@@ -260,7 +396,7 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
             final int currentHeight;
 
             if (keyboardHeight <= 0)
-                keyboardHeight = MainApplication.getInstance().getSharedPreferences("emoji", 0).getInt("kbd_height", AndroidUtilities.dp(200));
+                keyboardHeight = MainApplication.getInstance().getSharedPreferences("emo", 0).getInt("kbd_height", AndroidUtilities.dp(200));
 
             currentHeight = keyboardHeight;
 
@@ -292,8 +428,7 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
                 return;
             }
 
-        }
-        else {
+        } else {
             removeEmojiWindow();
             if (sizeNotifierRelativeLayout != null) {
                 sizeNotifierRelativeLayout.post(new Runnable() {
@@ -328,7 +463,6 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
     }
 
 
-
     /**
      * Hides the emoji popup
      */
@@ -346,7 +480,6 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
     public boolean isEmojiPopupShowing() {
         return showingEmoji;
     }
-
 
 
     /**
@@ -382,7 +515,7 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
 
         if (height > AndroidUtilities.dp(50) && keyboardVisible) {
             keyboardHeight = height;
-            MainApplication.getInstance().getSharedPreferences("emoji", 0).edit().putInt("kbd_height", keyboardHeight).commit();
+            MainApplication.getInstance().getSharedPreferences("emo", 0).edit().putInt("kbd_height", keyboardHeight).commit();
         }
 
 
@@ -430,6 +563,7 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
 
     /**
      * Get the system status bar height
+     *
      * @return
      */
     public int getStatusBarHeight() {
@@ -447,4 +581,77 @@ public class MainActivityChat extends ActionBarActivity implements SizeNotifierR
 
         hideEmojiPopup();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main_chat, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_attach:
+
+                return true;
+            case R.id.action_color:
+//                 dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
+//                dialog.setContentView(R.layout.dialog_custom_multiple_typefaces);
+//                dialog.show();
+
+                chat_font.setVisibility(View.VISIBLE);
+
+
+
+                return true;
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(STATE_SELECTED_FONT, mTypefaceSpinner.getSelectedItemPosition());
+    }
+
+    @Override
+    public void onClick(View v) {
+        applyDynamicTypeface(
+                (String) mTypefaceSpinner.getSelectedItem(),
+                mBtnBold.isChecked(),
+                mBtnItalic.isChecked());
+    }
+
+    private void applyDynamicTypeface(String selectedFont, boolean flgBold, boolean flgItalic) {
+        typeface(this, mTypefaceMap.get(selectedFont));
+        ActionBarHelper.setTitle(getSupportActionBar(), typeface(
+                getString(R.string.app_name),
+                mTypefaceMap.get(selectedFont),
+                getTypefaceStyle(flgBold, flgItalic)));
+
+        // Std typeface style set for ordinary textview
+        chatEditText1.setTypeface(null, getTypefaceStyle(flgBold, flgItalic));
+
+        // Apply custom typeface
+        typeface(chatEditText1, mTypefaceMap.get(selectedFont));
+        typeface(txt_preview, mTypefaceMap.get(selectedFont));
+
+    }
+
+    private int getTypefaceStyle(boolean flgBold, boolean flgItalic) {
+        if (flgBold && flgItalic) {
+            return Typeface.BOLD_ITALIC;
+        } else if (flgBold) {
+            return Typeface.BOLD;
+        } else if (flgItalic) {
+            return Typeface.ITALIC;
+        } else {
+            return Typeface.NORMAL;
+        }
+    }
+
+
 }

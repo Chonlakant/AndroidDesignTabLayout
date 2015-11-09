@@ -20,7 +20,7 @@ import natuan.org.androiddesigntablayout.widgets.Emoji;
  * Created by madhur on 17/01/15.
  */
 public class ChatListAdapter extends BaseAdapter {
-
+    PrefManager prefManager;
     private ArrayList<ChatMessage> chatMessages;
     private Context context;
     public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("HH:mm");
@@ -53,7 +53,8 @@ public class ChatListAdapter extends BaseAdapter {
         ChatMessage message = chatMessages.get(position);
         ViewHolder1 holder1;
         ViewHolder2 holder2;
-
+        prefManager = MainApplication.getPrefManager();
+        int color = prefManager.intColor().getOr(-3407872);
         if (message.getUserType() == UserType.SELF) {
             if (convertView == null) {
                 v = LayoutInflater.from(context).inflate(R.layout.chat_user1_item, null, false);
@@ -71,6 +72,7 @@ public class ChatListAdapter extends BaseAdapter {
             }
 
             holder1.messageTextView.setText(Emoji.replaceEmoji(message.getMessageText(), holder1.messageTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16)));
+            holder1.messageTextView.setTextColor(color);
             holder1.timeTextView.setText(SIMPLE_DATE_FORMAT.format(message.getMessageTime()));
 
         } else if (message.getUserType() == UserType.OTHER) {
@@ -79,6 +81,7 @@ public class ChatListAdapter extends BaseAdapter {
                 v = LayoutInflater.from(context).inflate(R.layout.chat_user2_item, null, false);
 
                 holder2 = new ViewHolder2();
+
 
 
                 holder2.messageTextView = (TextView) v.findViewById(R.id.message_text);
@@ -93,6 +96,7 @@ public class ChatListAdapter extends BaseAdapter {
             }
 
             holder2.messageTextView.setText(Emoji.replaceEmoji(message.getMessageText(), holder2.messageTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16) ));
+            holder2.messageTextView.setTextColor(color);
             //holder2.messageTextView.setText(message.getMessageText());
             holder2.timeTextView.setText(SIMPLE_DATE_FORMAT.format(message.getMessageTime()));
 

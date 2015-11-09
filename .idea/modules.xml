@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/cvlibrary/cvlibrary.iml" filepath="$PROJECT_DIR$/cvlibrary/cvlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/labeiui/labeiui.iml" filepath="$PROJECT_DIR$/labeiui/labeiui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/librarygestureview/librarygestureview.iml" filepath="$PROJECT_DIR$/librarygestureview/librarygestureview.iml" />
     </modules>
   </component>

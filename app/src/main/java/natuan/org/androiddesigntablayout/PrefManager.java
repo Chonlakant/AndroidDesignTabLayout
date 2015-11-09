@@ -20,6 +20,12 @@ public class PrefManager extends PrettySharedPreferences<PrefManager> {
     public BooleanEditor<PrefManager> isCheck() {
         return getBooleanEditor("isCheck");
     }
+    public StringEditor<PrefManager> font() {
+        return getStringEditor("font");
+    }
+    public IntegerEditor<PrefManager> intColor() {
+        return getIntegerEditor("intColor");
+    }
 
 }
 

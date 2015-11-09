@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"></uses-permission>
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".acivityLogin.splash"
+            android:windowSoftInputMode="adjustResize"
+            android:name=".MainActivityChat"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +28,7 @@
        <activity android:name=".acivityLogin.MainLogin"/>
         <activity android:name=".acivityLogin.MainActivityDisplayFragmentLogin" />
         <activity android:name=".activity.MainActivityTap" />
-        <activity android:name=".MainActivityChat" />
+      <!--<activity android:name=".MainActivityChat" />-->
         <activity android:name=".activity.PostPhotoActivity" />
         <activity android:name=".activity.TakePhotoActivity2" />
         <activity android:name=".activity.TakePhotoActivity" />

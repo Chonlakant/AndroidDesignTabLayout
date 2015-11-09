@@ -29,6 +29,10 @@ android {
     dexOptions {
         preDexLibraries = false
     }
+    sourceSets.main {
+        jniLibs.srcDir 'libs'
+        jni.srcDirs = [] //disable automatic ndk-build call
+    }
 }
 
 
@@ -58,4 +62,6 @@ dependencies {
     compile 'org.slf4j:slf4j-android:1.7.7'
     compile project(':alex')
     compile 'com.alexvasilkov:events:0.4.0'
+    compile project(':lib')
+
 }

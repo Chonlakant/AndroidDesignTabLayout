@@ -4,19 +4,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
 
-    <ListView
-        android:id="@+id/chat_list_view"
+    <include layout="@layout/tool_bar" />
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomlayout"
-        android:divider="@drawable/chat_divider"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:scrollbarStyle="outsideOverlay"></ListView>
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/chat_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="57dp"
+            android:background="#cccccc"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <include layout="@layout/custom_layout_font" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/chat_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:divider="@drawable/chat_divider"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:scrollbarStyle="outsideOverlay" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/bottomlayout"

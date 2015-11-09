@@ -230,7 +230,7 @@ public class Emoji {
             String imageName = String.format(Locale.US, "emoji%.01fx_%d.jpg", scale, page);
             File imageFile = MainApplication.getInstance().getFileStreamPath(imageName);
             if (!imageFile.exists()) {
-                InputStream is = MainApplication.getInstance().getAssets().open("emoji/" + imageName);
+                InputStream is = MainApplication.getInstance().getAssets().open("emo/" + imageName);
                 AndroidUtilities.copyFile(is, imageFile);
                 is.close();
             }
@@ -249,7 +249,7 @@ public class Emoji {
             imageName = String.format(Locale.US, "emoji%.01fx_a_%d.jpg", scale, page);
             imageFile = MainApplication.getInstance().getFileStreamPath(imageName);
             if (!imageFile.exists()) {
-                InputStream is = MainApplication.getInstance().getAssets().open("emoji/" + imageName);
+                InputStream is = MainApplication.getInstance().getAssets().open("emo/" + imageName);
                 AndroidUtilities.copyFile(is, imageFile);
                 is.close();
             }
