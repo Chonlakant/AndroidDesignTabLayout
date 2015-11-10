@@ -126,7 +126,10 @@ public class MainApplication extends Application {
         return prefManager;
     }
 
-    public static MainApplication getInstance() {
+
+
+    public static MainApplication getInstance()
+    {
         return Instance;
     }
 

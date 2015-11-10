@@ -79,7 +79,6 @@
                 android:maxLines="4"
                 android:paddingLeft="4dp"
                 android:scrollHorizontally="false"
-
                 android:singleLine="false"
                 android:textSize="18sp" />
 

@@ -8,21 +8,17 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,7 +27,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.norbsoft.typefacehelper.ActionBarHelper;
 import com.norbsoft.typefacehelper.TypefaceCollection;
 
 import java.util.ArrayList;
@@ -44,6 +39,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
+import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewFont;
 import natuan.org.androiddesigntablayout.model.ChatMessage;
 import natuan.org.androiddesigntablayout.model.Status;
 import natuan.org.androiddesigntablayout.model.UserType;
@@ -74,13 +70,15 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     Dialog dialog;
     TextView txt_preview;
 
+    public List<String> fontList;
+
     protected static final String TAG = "ShiftPicker";
 
     private LineColorPicker horizontalPicker;
     String[] pallete = new String[]{"#b8c847", "#67bb43", "#41b691",
             "#4182b6", "#4149b6", "#7641b6", "#b741a7", "#c54657", "#d1694a"};
     LinearLayout chat_font;
-
+    AdapterRecyclerviewFont mAdapter;
     private static final String STATE_SELECTED_FONT = "STATE_SELECTED_FONT";
 
     private static final String TYPEFACE_DEFAULT = "System default";
@@ -89,9 +87,9 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private static final String TYPEFACE_JUICE = "Juice";
     private static final String TYPEFACE_UBUNTU = "Ubuntu";
 
-    private Map<String, TypefaceCollection> mTypefaceMap;
+    public Map<String, TypefaceCollection> mTypefaceMap;
 
-
+    RecyclerView rvContacts;
     private Spinner mTypefaceSpinner;
     private ToggleButton mBtnItalic;
     private ToggleButton mBtnBold;
@@ -171,7 +169,9 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         chat_font = (LinearLayout) findViewById(R.id.chat_font);
         chatMessages = new ArrayList<>();
 
-
+        rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvContacts.setLayoutManager(layoutManager);
         chatListView = (ListView) findViewById(R.id.chat_list_view);
 
         chatEditText1 = (EditText) findViewById(R.id.chat_edit_text1);
@@ -215,6 +215,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
                 prefManager.intColor().put(c);
                 prefManager.commit();
                 chatEditText1.setTextColor(c);
+                txt_preview.setTextColor(c);
                 updateColor(c);
             }
         };
@@ -246,7 +247,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
         mBtnItalic = (ToggleButton) findViewById(R.id.btn_italic);
         mBtnBold = (ToggleButton) findViewById(R.id.btn_bold);
-        mTypefaceSpinner = (Spinner) findViewById(R.id.spinner);
+        // mTypefaceSpinner = (Spinner) findViewById(R.id.spinner);
 
         mBtnItalic.setOnClickListener(this);
         mBtnBold.setOnClickListener(this);
@@ -260,56 +261,26 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         mTypefaceMap.put(TYPEFACE_JUICE, myApp.getJuiceTypeface());
         mTypefaceMap.put(TYPEFACE_UBUNTU, myApp.getUbuntuTypeface());
 
-        final List<String> fontList = new ArrayList<String>(mTypefaceMap.keySet().size());
+        fontList = new ArrayList<String>(mTypefaceMap.keySet().size());
         fontList.addAll(mTypefaceMap.keySet());
 
-        mTypefaceSpinner.setAdapter(new BaseAdapter() {
+        mAdapter = new AdapterRecyclerviewFont(getActivity(), fontList);
+        rvContacts.setAdapter(mAdapter);
 
+        mAdapter.SetOnItemVideiosClickListener(new AdapterRecyclerviewFont.OnItemClickListener() {
             @Override
-            public int getCount() {
-                return fontList.size();
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return fontList.get(position);
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return fontList.get(position).hashCode();
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = LayoutInflater.from(MainActivityChat.this)
-                            .inflate(android.R.layout.simple_list_item_1, parent, false);
-                }
-                typeface(convertView, mTypefaceMap.get(fontList.get(position)));
-                ((TextView) convertView).setText(fontList.get(position));
-                return convertView;
-            }
-        });
-        mTypefaceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(View view, int position) {
                 applyDynamicTypeface(fontList.get(position), mBtnBold.isChecked(), mBtnItalic.isChecked());
                 Log.e("font55", fontList.get(position) + "");
-            }
+                prefManager.font().put(fontList.get(position));
+                prefManager.commit();
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-
-        if (savedInstanceState != null) {
-            mTypefaceSpinner.setSelection(savedInstanceState.getInt(STATE_SELECTED_FONT));
-        }
 
 
     }
+
 
     private void sendMessage(final String messageText, final UserType userType) {
         if (messageText.trim().length() == 0)
@@ -409,7 +380,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
             final int currentHeight;
 
             if (keyboardHeight <= 0)
-                keyboardHeight = MainApplication.getInstance().getSharedPreferences("emo", 0).getInt("kbd_height", AndroidUtilities.dp(200));
+                keyboardHeight = MainApplication.getInstance().getSharedPreferences("emoji", 0).getInt("kbd_height", AndroidUtilities.dp(200));
 
             currentHeight = keyboardHeight;
 
@@ -528,7 +499,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
         if (height > AndroidUtilities.dp(50) && keyboardVisible) {
             keyboardHeight = height;
-            MainApplication.getInstance().getSharedPreferences("emo", 0).edit().putInt("kbd_height", keyboardHeight).commit();
+            MainApplication.getInstance().getSharedPreferences("emoji", 0).edit().putInt("kbd_height", keyboardHeight).commit();
         }
 
 
@@ -626,23 +597,21 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(STATE_SELECTED_FONT, mTypefaceSpinner.getSelectedItemPosition());
+//        outState.putInt(STATE_SELECTED_FONT, mTypefaceSpinner.getSelectedItemPosition());
     }
 
     @Override
     public void onClick(View v) {
-        applyDynamicTypeface(
-                (String) mTypefaceSpinner.getSelectedItem(),
-                mBtnBold.isChecked(),
-                mBtnItalic.isChecked());
+//        applyDynamicTypeface(
+//                (String) mAdapter.getSelectedItem(),
+//                mBtnBold.isChecked(),
+//                mBtnItalic.isChecked());
     }
 
-    private void applyDynamicTypeface(String selectedFont, boolean flgBold, boolean flgItalic) {
-        typeface(this, mTypefaceMap.get(selectedFont));
-        ActionBarHelper.setTitle(getSupportActionBar(), typeface(
-                getString(R.string.app_name),
-                mTypefaceMap.get(selectedFont),
-                getTypefaceStyle(flgBold, flgItalic)));
+    public  void applyDynamicTypeface(String selectedFont, boolean flgBold, boolean flgItalic) {
+//        typeface(this, mTypefaceMap.get(selectedFont));
+//        ActionBarHelper.setTitle(getSupportActionBar(), typeface(getString(R.string.app_name), mTypefaceMap.get(selectedFont),
+//                getTypefaceStyle(flgBold, flgItalic)));
 
         // Std typeface style set for ordinary textview
         chatEditText1.setTypeface(null, getTypefaceStyle(flgBold, flgItalic));
@@ -650,6 +619,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         // Apply custom typeface
         typeface(chatEditText1, mTypefaceMap.get(selectedFont));
         typeface(txt_preview, mTypefaceMap.get(selectedFont));
+
+
 
     }
 
@@ -675,5 +646,6 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         hex = hex.toUpperCase();
 
     }
+
 
 }

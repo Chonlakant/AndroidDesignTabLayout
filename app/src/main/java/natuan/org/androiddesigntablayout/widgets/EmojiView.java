@@ -159,7 +159,7 @@ public class EmojiView extends LinearLayout {
         int i = arrayOfLong.length;
         for (int j = 0; ; j++) {
             if (j >= i) {
-                getContext().getSharedPreferences("emo", 0).edit().putString("recents", TextUtils.join(",", localArrayList)).commit();
+                getContext().getSharedPreferences("emoji", 0).edit().putString("recents", TextUtils.join(",", localArrayList)).commit();
                 return;
             }
             localArrayList.add(arrayOfLong[j]);
@@ -167,7 +167,7 @@ public class EmojiView extends LinearLayout {
     }
 
     public void loadRecents() {
-        String str = getContext().getSharedPreferences("emo", 0).getString("recents", "");
+        String str = getContext().getSharedPreferences("emoji", 0).getString("recents", "");
         String[] arrayOfString = null;
         if ((str != null) && (str.length() > 0)) {
             arrayOfString = str.split(",");

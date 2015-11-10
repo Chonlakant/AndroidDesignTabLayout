@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:background="#EEE"
+            android:background="#727272"
             android:orientation="horizontal">
 
             <TextView
@@ -26,6 +26,7 @@
                 android:layout_marginBottom="3dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
+                android:textColor="#fff"
                 android:contentDescription="silver"
                 android:drawableTop="@drawable/us"
                 android:gravity="center"
@@ -49,6 +50,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:contentDescription="silver"
+                android:textColor="#fff"
                 android:drawableTop="@drawable/th"
                 android:gravity="center"
                 android:text="TH"
@@ -58,6 +60,7 @@
                 android:layout_width="2dp"
                 android:layout_height="45dp"
                 android:layout_below="@+id/b"
+
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="20dp"
                 android:background="#B6B6B6" />
@@ -69,7 +72,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:contentDescription="silver"
-                android:drawableTop="@drawable/re"
+                android:textColor="#fff"
+                android:drawableTop="@drawable/re_w"
                 android:gravity="center"
                 android:text="History"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -88,14 +92,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:listitem="@android:layout/simple_list_item_1" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvContacts"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
 
             <ToggleButton
+                android:visibility="gone"
                 android:id="@+id/btn_italic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,6 +108,7 @@
 
             <ToggleButton
                 android:id="@+id/btn_bold"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOff="@string/btn_bold"
