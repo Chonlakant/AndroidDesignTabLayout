@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/labeiui/labeiui.iml" filepath="$PROJECT_DIR$/labeiui/labeiui.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/librarygestureview/librarygestureview.iml" filepath="$PROJECT_DIR$/librarygestureview/librarygestureview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shiftcolorpicker/shiftcolorpicker.iml" filepath="$PROJECT_DIR$/shiftcolorpicker/shiftcolorpicker.iml" />
     </modules>
   </component>
 </project>

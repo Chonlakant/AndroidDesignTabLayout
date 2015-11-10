@@ -1,1 +1,1 @@
-include ':app', ':labeiui', ':cvlibrary', ':librarygestureview', 'alex', ':lib'
+include ':app', ':labeiui', ':cvlibrary', ':librarygestureview', 'alex', ':lib', ':shiftcolorpicker'

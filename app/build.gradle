@@ -63,5 +63,5 @@ dependencies {
     compile project(':alex')
     compile 'com.alexvasilkov:events:0.4.0'
     compile project(':lib')
-
+    compile project(':shiftcolorpicker')
 }

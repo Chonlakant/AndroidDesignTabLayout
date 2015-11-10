@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/labeiui" />
             <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/librarygestureview" />
+            <option value="$PROJECT_DIR$/shiftcolorpicker" />
           </set>
         </option>
       </GradleProjectSettings>

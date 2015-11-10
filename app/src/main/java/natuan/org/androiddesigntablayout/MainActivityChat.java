@@ -3,6 +3,7 @@ package natuan.org.androiddesigntablayout;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -43,20 +44,20 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
-import natuan.org.androiddesigntablayout.calendarstock.ColorPickerDialog;
-import natuan.org.androiddesigntablayout.calendarstock.ColorPickerSwatch;
 import natuan.org.androiddesigntablayout.model.ChatMessage;
 import natuan.org.androiddesigntablayout.model.Status;
 import natuan.org.androiddesigntablayout.model.UserType;
 import natuan.org.androiddesigntablayout.widgets.Emoji;
 import natuan.org.androiddesigntablayout.widgets.EmojiView;
 import natuan.org.androiddesigntablayout.widgets.SizeNotifierRelativeLayout;
+import uz.shift.colorpicker.LineColorPicker;
+import uz.shift.colorpicker.OnColorChangedListener;
 
 import static com.norbsoft.typefacehelper.TypefaceHelper.typeface;
 
 
-public class MainActivityChat extends BaseActivity implements SizeNotifierRelativeLayout.SizeNotifierRelativeLayoutDelegate, NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
-    Toolbar toolbar;
+public class MainActivityChat extends BaseActivity implements SizeNotifierRelativeLayout.SizeNotifierRelativeLayoutDelegate
+        , NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
     private ListView chatListView;
     public EditText chatEditText1;
     private ArrayList<ChatMessage> chatMessages;
@@ -69,11 +70,15 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private boolean keyboardVisible;
     private WindowManager.LayoutParams windowLayoutParams;
     PrefManager prefManager;
-    private int mSelectedColorCal0 = 0;
+
     Dialog dialog;
     TextView txt_preview;
-    Button btn_color;
 
+    protected static final String TAG = "ShiftPicker";
+
+    private LineColorPicker horizontalPicker;
+    String[] pallete = new String[]{"#b8c847", "#67bb43", "#41b691",
+            "#4182b6", "#4149b6", "#7641b6", "#b741a7", "#c54657", "#d1694a"};
     LinearLayout chat_font;
 
     private static final String STATE_SELECTED_FONT = "STATE_SELECTED_FONT";
@@ -90,9 +95,6 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private Spinner mTypefaceSpinner;
     private ToggleButton mBtnItalic;
     private ToggleButton mBtnBold;
-
-
-    boolean isCheck = false;
 
 
     private EditText.OnKeyListener keyListener = new View.OnKeyListener() {
@@ -169,7 +171,6 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         chat_font = (LinearLayout) findViewById(R.id.chat_font);
         chatMessages = new ArrayList<>();
 
-        btn_color = (Button) findViewById(R.id.btn_color);
 
         chatListView = (ListView) findViewById(R.id.chat_list_view);
 
@@ -186,6 +187,39 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         });
 
 
+        horizontalPicker = (LineColorPicker) findViewById(R.id.picker);
+
+        // Create palette from HEX values
+        int[] colors = new int[pallete.length];
+
+        for (int i = 0; i < colors.length; i++) {
+            colors[i] = Color.parseColor(pallete[i]);
+        }
+
+        // Set palette
+        horizontalPicker.setColors(colors);
+
+        // Set selected color [optional]
+        horizontalPicker.setSelectedColor(colors[0]);
+
+        // Get selected color
+        int color = horizontalPicker.getColor();
+
+        updateColor(color);
+
+        OnColorChangedListener onChangeListener = new OnColorChangedListener() {
+
+            @Override
+            public void onColorChanged(int c) {
+                Log.d(TAG, "Selected color " + Integer.toHexString(c));
+                prefManager.intColor().put(c);
+                prefManager.commit();
+                chatEditText1.setTextColor(c);
+                updateColor(c);
+            }
+        };
+
+        horizontalPicker.setOnColorChangedListener(onChangeListener);
         emojiButton = (ImageView) findViewById(R.id.emojiButton);
 
         emojiButton.setOnClickListener(new View.OnClickListener() {
@@ -269,27 +303,6 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
             }
         });
 
-        btn_color.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int[] mColor = Utils2.ColorUtils.colorChoice(getActivity());
-                ColorPickerDialog colorcalendar = ColorPickerDialog.newInstance(
-                        R.string.color_picker_default_title, mColor,
-                        mSelectedColorCal0, 5,
-                        Utils2.isTablet(getActivity()) ? ColorPickerDialog.SIZE_LARGE
-                                : ColorPickerDialog.SIZE_SMALL);
-
-                colorcalendar.setOnColorSelectedListener(new ColorPickerSwatch.OnColorSelectedListener() {
-                    @Override
-                    public void onColorSelected(int color) {
-                        prefManager.intColor().put(color);
-                        prefManager.commit();
-                        chatEditText1.setTextColor(color);
-                    }
-                });
-                colorcalendar.show(getFragmentManager(), "cal");
-            }
-        });
 
         if (savedInstanceState != null) {
             mTypefaceSpinner.setSelection(savedInstanceState.getInt(STATE_SELECTED_FONT));
@@ -603,7 +616,6 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
                 chat_font.setVisibility(View.VISIBLE);
 
 
-
                 return true;
 
 
@@ -653,5 +665,15 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         }
     }
 
+
+    /**
+     * Display selected color
+     */
+    private void updateColor(int color) {
+        String hex = Integer.toHexString(color);
+
+        hex = hex.toUpperCase();
+
+    }
 
 }
