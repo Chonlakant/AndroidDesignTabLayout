@@ -24,10 +24,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -72,7 +74,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private boolean keyboardVisible;
     private WindowManager.LayoutParams windowLayoutParams;
     PrefManager prefManager;
-
+    Button btn_reset;
     Dialog dialog;
     TextView txt_preview;
 
@@ -85,7 +87,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private LineColorPicker horizontalPicker;
     String[] pallete = new String[]{"#000000", "#67bb43", "#41b691",
             "#4182b6", "#4149b6", "#7641b6", "#b741a7", "#c54657", "#d1694a"};
-    LinearLayout chat_font;
+    RelativeLayout chat_font;
     AdapterRecyclerviewFont mAdapter;
 
     private static final String TYPEFACE_ACTIONMAN = "Action man";
@@ -147,7 +149,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     };
 
     public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
@@ -183,10 +185,11 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_chat);
+        btn_reset = (Button) findViewById(R.id.btn_reset);
         prefManager = MainApplication.getPrefManager();
         txt_preview = (TextView) findViewById(R.id.txt_preview);
         AndroidUtilities.statusBarHeight = getStatusBarHeight();
-        chat_font = (LinearLayout) findViewById(R.id.chat_font);
+        chat_font = (RelativeLayout) findViewById(R.id.chat_font);
         chatMessages = new ArrayList<>();
 
         rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
@@ -224,7 +227,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         horizontalPicker.setSelectedColor(colors[0]);
 
         // Get selected color
-        int color = horizontalPicker.getColor();
+        final int color = horizontalPicker.getColor();
 
         updateColor(color);
 
@@ -290,8 +293,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         mTypefaceMap.put(TYPEFACE_ACTIONMAN, myApp.getActionManTypeface());
         mTypefaceMap.put(TYPEFACE_ARCHRIVAL, myApp.getArchRivalTypeface());
         mTypefaceMap.put(TYPEFACE_ZOOD, myApp.getZoodHaritTypeface());
-        mTypefaceMap.put(TYPEFACE_SUPERMARKET,myApp.getsUperMarketTypeface());
-        mTypefaceMap.put(TYPEFACE_THSARABUN,myApp.getThSarabunNewTypeface());
+        mTypefaceMap.put(TYPEFACE_SUPERMARKET, myApp.getsUperMarketTypeface());
+        mTypefaceMap.put(TYPEFACE_THSARABUN, myApp.getThSarabunNewTypeface());
         mTypefaceMap.put(TYPEFACE_JUICE, myApp.getJuiceTypeface());
         mTypefaceMap.put(TYPEFACE_DEFAULT, myApp.getSystemDefaultTypeface());
 
@@ -314,6 +317,17 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
                 prefManager.font().put(fontList.get(position));
                 prefManager.commit();
 
+            }
+        });
+
+
+        btn_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/ubuntu/Ubuntu-R.ttf");
+                txt_preview.setTextColor(Color.BLACK);
+                chatEditText1.setTextColor(Color.BLACK);
+                chatEditText1.setTypeface(typeface);
             }
         });
 
