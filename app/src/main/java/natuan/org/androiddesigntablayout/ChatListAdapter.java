@@ -3,9 +3,6 @@ package natuan.org.androiddesigntablayout;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.norbsoft.typefacehelper.TypefaceCollection;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import natuan.org.androiddesigntablayout.model.ChatMessage;
 import natuan.org.androiddesigntablayout.model.Font;
@@ -70,7 +63,9 @@ public class ChatListAdapter extends BaseAdapter {
         final String TYPEFACE_ACTIONMAN = "Action man";
         final String TYPEFACE_ARCHRIVAL = "Arch Rival";
         final String TYPEFACE_JUICE = "Juice";
-        final String TYPEFACE_ZOODHARIT = "ZoodHart";
+        final String TYPEFACE_ZOODHARIT = "Memory";
+        final String TYPEFACE_SUPERMARKET = "SuperMarket";
+        final String TYPEFACE_THSARABUN = "THSarabun";
 
 
         ChatMessage message = chatMessages.get(position);
@@ -87,12 +82,12 @@ public class ChatListAdapter extends BaseAdapter {
             colorName = Color.BLACK;
         }
         Typeface myTypeface = null;
-        if(type != null){
+        if (type != null) {
             if (type.equals(TYPEFACE_DEFAULT)) {
                 myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-R.ttf");
             }
             if (type.equals(TYPEFACE_ZOODHARIT)) {
-                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ZoodHarit-thai/ZoodHarit-thai.ttf");
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Memory/memory.ttf");
             }
             if (type.equals(TYPEFACE_ACTIONMAN)) {
                 myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Action-Man/Action_Man.ttf");
@@ -103,7 +98,13 @@ public class ChatListAdapter extends BaseAdapter {
             if (type.equals(TYPEFACE_ARCHRIVAL)) {
                 myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/arch_rival/SF_Arch_Rival.ttf");
             }
-        }else{
+            if (type.equals(TYPEFACE_SUPERMARKET)) {
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/supermarket/supermarket.ttf");
+            }
+            if (type.equals(TYPEFACE_THSARABUN)) {
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/THSarabunNew/THSarabunNew.ttf");
+            }
+        } else {
             myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-R.ttf");
         }
 

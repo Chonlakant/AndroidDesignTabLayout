@@ -6,22 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.norbsoft.typefacehelper.TypefaceCollection;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import natuan.org.androiddesigntablayout.MainApplication;
 import natuan.org.androiddesigntablayout.R;
-import natuan.org.androiddesigntablayout.model.Posts;
 
 
 public class AdapterRecyclerviewFont extends RecyclerView.Adapter<AdapterRecyclerviewFont.ViewHolder> {
@@ -57,28 +49,38 @@ public class AdapterRecyclerviewFont extends RecyclerView.Adapter<AdapterRecycle
             holder.txt_font.setTypeface(myTypeface);
         }
         if (position == 1) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ZoodHarit-thai/ZoodHarit-thai.ttf");
+            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/supermarket/supermarket.ttf");
+
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
+
         }
         if (position == 2) {
             myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Action-Man/Action_Man.ttf");
+
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
         }
         if (position == 3) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Juice/JUICE_Bold.ttf");
 
+            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/THSarabunNew/THSarabunNew.ttf");
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
         }
         if (position == 4) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/arch_rival/SF_Arch_Rival.ttf");
+            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Memory/memory.ttf");
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
         }
         if (position == 5) {
-
+            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Juice/JUICE_Bold.ttf");
+            holder.txt_font.setText(list.get(position));
+            holder.txt_font.setTypeface(myTypeface);
+        }
+        if (position == 6) {
+            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/arch_rival/SF_Arch_Rival.ttf");
+            holder.txt_font.setText(list.get(position));
+            holder.txt_font.setTypeface(myTypeface);
         }
 
 

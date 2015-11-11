@@ -34,6 +34,10 @@ public class MainApplication extends Application {
 
     private TypefaceCollection zoodHaritTypeface;
 
+    private TypefaceCollection sUperMarketTypeface;
+
+    private TypefaceCollection thSarabunNewTypeface;
+
     public static final String ENDPOINT = "http://ihdmovie.xyz/root";
     private static MainApplication Instance;
     public static volatile Handler applicationHandler = null;
@@ -89,7 +93,15 @@ public class MainApplication extends Application {
                 .create();
 
         zoodHaritTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/ZoodHarit-thai/ZoodHarit-thai.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/Memory/memory.ttf"))
+                .create());
+
+        sUperMarketTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/supermarket/supermarket.ttf"))
+                .create());
+
+        thSarabunNewTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/THSarabunNew/THSarabunNew.ttf"))
                 .create());
 
         // Multiple custom typefaces support
@@ -166,5 +178,13 @@ public class MainApplication extends Application {
 
     public TypefaceCollection getZoodHaritTypeface() {
         return zoodHaritTypeface;
+    }
+
+    public TypefaceCollection getsUperMarketTypeface() {
+        return sUperMarketTypeface;
+    }
+
+    public TypefaceCollection getThSarabunNewTypeface() {
+        return thSarabunNewTypeface;
     }
 }

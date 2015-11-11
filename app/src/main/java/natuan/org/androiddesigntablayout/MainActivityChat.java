@@ -1,8 +1,10 @@
 package natuan.org.androiddesigntablayout;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,6 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -87,8 +92,9 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private static final String TYPEFACE_ARCHRIVAL = "Arch Rival";
     private static final String TYPEFACE_JUICE = "Juice";
     private static final String TYPEFACE_DEFAULT = "System default";
-    private static final String TYPEFACE_ZOOD = "ZoodHart";
-    private static final String TYPEFACE_UBUN = "Ubuntu";
+    private static final String TYPEFACE_ZOOD = "Memory";
+    private static final String TYPEFACE_SUPERMARKET = "SuperMarket";
+    private static final String TYPEFACE_THSARABUN = "THSarabun";
 
 
     public Map<String, TypefaceCollection> mTypefaceMap;
@@ -124,18 +130,26 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     };
 
     private ImageView.OnClickListener clickListener = new View.OnClickListener() {
+
         @Override
         public void onClick(View v) {
 
             if (v == enterChatView1) {
                 sendMessage(chatEditText1.getText().toString(), UserType.OTHER);
                 chat_font.setVisibility(View.GONE);
+
+                hideKeyboard(v);
             }
 
             chatEditText1.setText("");
 
         }
     };
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
     private final TextWatcher watcher1 = new TextWatcher() {
         @Override
@@ -179,6 +193,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvContacts.setLayoutManager(layoutManager);
         chatListView = (ListView) findViewById(R.id.chat_list_view);
+        chatListView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
         chatEditText1 = (EditText) findViewById(R.id.chat_edit_text1);
         enterChatView1 = (ImageView) findViewById(R.id.enter_chat1);
@@ -239,7 +254,16 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
         listAdapter = new ChatListAdapter(chatMessages, this);
 
+
         chatListView.setAdapter(listAdapter);
+        listAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                chatListView.setSelection(listAdapter.getCount() - 1);
+            }
+        });
+
 
         chatEditText1.setOnKeyListener(keyListener);
 
@@ -261,11 +285,13 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
         // Retrieve custom typefaces from Application subclass
         MainApplication myApp = (MainApplication) getApplication();
-        mTypefaceMap = new HashMap<String, TypefaceCollection>(5);
+        mTypefaceMap = new HashMap<String, TypefaceCollection>(6);
 
         mTypefaceMap.put(TYPEFACE_ACTIONMAN, myApp.getActionManTypeface());
         mTypefaceMap.put(TYPEFACE_ARCHRIVAL, myApp.getArchRivalTypeface());
         mTypefaceMap.put(TYPEFACE_ZOOD, myApp.getZoodHaritTypeface());
+        mTypefaceMap.put(TYPEFACE_SUPERMARKET,myApp.getsUperMarketTypeface());
+        mTypefaceMap.put(TYPEFACE_THSARABUN,myApp.getThSarabunNewTypeface());
         mTypefaceMap.put(TYPEFACE_JUICE, myApp.getJuiceTypeface());
         mTypefaceMap.put(TYPEFACE_DEFAULT, myApp.getSystemDefaultTypeface());
 
