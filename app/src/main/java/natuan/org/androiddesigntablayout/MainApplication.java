@@ -32,6 +32,8 @@ public class MainApplication extends Application {
     /** Multiple custom typefaces support */
     private TypefaceCollection mUbuntuTypeface;
 
+    private TypefaceCollection zoodHaritTypeface;
+
     public static final String ENDPOINT = "http://ihdmovie.xyz/root";
     private static MainApplication Instance;
     public static volatile Handler applicationHandler = null;
@@ -85,6 +87,10 @@ public class MainApplication extends Application {
                 .set(Typeface.ITALIC, Typeface.createFromAsset(getAssets(), "fonts/ubuntu/Ubuntu-RI.ttf"))
                 .set(Typeface.BOLD_ITALIC, Typeface.createFromAsset(getAssets(), "fonts/ubuntu/Ubuntu-BI.ttf"))
                 .create();
+
+        zoodHaritTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/ZoodHarit-thai/ZoodHarit-thai.ttf"))
+                .create());
 
         // Multiple custom typefaces support
         mSystemDefaultTypeface = TypefaceCollection.createSystemDefault();
@@ -158,4 +164,7 @@ public class MainApplication extends Application {
         return mUbuntuTypeface;
     }
 
+    public TypefaceCollection getZoodHaritTypeface() {
+        return zoodHaritTypeface;
+    }
 }

@@ -1,6 +1,7 @@
 package natuan.org.androiddesigntablayout;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -33,14 +34,15 @@ public class ChatListAdapter extends BaseAdapter {
     PrefManager prefManager;
 
     private ArrayList<ChatMessage> chatMessages;
-    private ArrayList<Font> fontStyle = new ArrayList<>();
+    List<Font> fontList = new ArrayList<>();
     private Context context;
     public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("HH:mm");
 
-    public ChatListAdapter(ArrayList<ChatMessage> chatMessages, Context context,ArrayList<Font> fontStyle) {
+    public ChatListAdapter(ArrayList<ChatMessage> chatMessages, Context context) {
         this.chatMessages = chatMessages;
         this.context = context;
-        this.fontStyle = fontStyle;
+
+//        this.fontStyle = fontStyle;
 
     }
 
@@ -64,48 +66,54 @@ public class ChatListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = null;
 
-        Font listStyle = fontStyle.get(position);
-
         final String TYPEFACE_DEFAULT = "System default";
         final String TYPEFACE_ACTIONMAN = "Action man";
         final String TYPEFACE_ARCHRIVAL = "Arch Rival";
         final String TYPEFACE_JUICE = "Juice";
         final String TYPEFACE_UBUNTU = "Ubuntu";
+        final String TYPEFACE_ZOODHARIT = "ZoodHarit";
 
 
         ChatMessage message = chatMessages.get(position);
         ViewHolder1 holder1;
         ViewHolder2 holder2;
-        prefManager = MainApplication.getPrefManager();
-        int color = prefManager.intColor().getOr(-3407872);
-        String type = prefManager.font().getOr("ddd");
-        Log.e("ddddddqq", type);
 
+        String type = message.getTypeStyle();
+        String typeColor = message.getTypeColor();
+        int colorName;
+
+        if (typeColor != null) {
+            colorName = Integer.parseInt(typeColor);
+        } else {
+            colorName = Color.BLACK;
+        }
         Typeface myTypeface = null;
-
-
-        if (type.equals(TYPEFACE_DEFAULT)) {
+        if(type != null){
+            if (type.equals(TYPEFACE_DEFAULT)) {
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-R.ttf");
+            }
+            if (type.equals(TYPEFACE_UBUNTU)) {
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-B.ttf");
+            }
+            if (type.equals(TYPEFACE_ACTIONMAN)) {
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Action-Man/Action_Man.ttf");
+            }
+            if (type.equals(TYPEFACE_JUICE)) {
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Juice/JUICE_Bold.ttf");
+            }
+            if (type.equals(TYPEFACE_ARCHRIVAL)) {
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/arch_rival/SF_Arch_Rival.ttf");
+            }if(type.equals(TYPEFACE_ZOODHARIT)){
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ZoodHarit-thai/ZoodHarit-thai.ttf");
+            }
+        }else{
             myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-R.ttf");
         }
-        if (type.equals(TYPEFACE_UBUNTU)) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-B.ttf");
-        }
-        if (type.equals(TYPEFACE_ACTIONMAN)) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Action-Man/Action_Man.ttf");
-        }
-        if (type.equals(TYPEFACE_JUICE)) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Juice/JUICE_Bold.ttf");
-        }
-        if (type.equals(TYPEFACE_ARCHRIVAL)) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/arch_rival/SF_Arch_Rival.ttf");
-        }
-
 
         if (message.getUserType() == UserType.SELF) {
             if (convertView == null) {
                 v = LayoutInflater.from(context).inflate(R.layout.chat_user1_item, null, false);
                 holder1 = new ViewHolder1();
-
 
                 holder1.messageTextView = (TextView) v.findViewById(R.id.message_text);
                 holder1.timeTextView = (TextView) v.findViewById(R.id.time_text);
@@ -118,8 +126,9 @@ public class ChatListAdapter extends BaseAdapter {
             }
 
             holder1.messageTextView.setText(Emoji.replaceEmoji(message.getMessageText(), holder1.messageTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16)));
-            holder1.messageTextView.setTextColor(color);
-            holder1.messageTextView.setTypeface(myTypeface);
+//            holder1.messageTextView.setTypeface(myTypeface);
+//            holder1.messageTextView.setTextColor(colorName);
+
             holder1.timeTextView.setText(SIMPLE_DATE_FORMAT.format(message.getMessageTime()));
 
 
@@ -129,7 +138,6 @@ public class ChatListAdapter extends BaseAdapter {
                 v = LayoutInflater.from(context).inflate(R.layout.chat_user2_item, null, false);
 
                 holder2 = new ViewHolder2();
-
 
                 holder2.messageTextView = (TextView) v.findViewById(R.id.message_text);
                 holder2.timeTextView = (TextView) v.findViewById(R.id.time_text);
@@ -143,7 +151,9 @@ public class ChatListAdapter extends BaseAdapter {
             }
 
             holder2.messageTextView.setText(Emoji.replaceEmoji(message.getMessageText(), holder2.messageTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16)));
-            holder2.messageTextView.setTextColor(color);
+
+            holder2.messageTextView.setTextColor(colorName);
+            holder2.messageTextView.setTypeface(myTypeface);
             //holder2.messageTextView.setText(message.getMessageText());
             holder2.timeTextView.setText(SIMPLE_DATE_FORMAT.format(message.getMessageTime()));
 

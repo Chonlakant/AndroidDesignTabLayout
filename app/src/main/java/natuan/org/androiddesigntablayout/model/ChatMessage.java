@@ -8,6 +8,8 @@ public class ChatMessage {
     private String messageText;
     private UserType userType;
     private Status messageStatus;
+    private String typeStyle;
+    private String typeColor;
 
     public long getMessageTime() {
         return messageTime;
@@ -23,6 +25,26 @@ public class ChatMessage {
         this.messageText = messageText;
     }
 
+
+    public String getTypeStyle() {
+
+        return typeStyle;
+    }
+
+    public void setTypeStyle(String typeStyle) {
+        this.typeStyle = typeStyle;
+    }
+
+    public String getTypeColor() {
+
+        return typeColor;
+    }
+
+    public void setTypeColor(String typeColor) {
+        this.typeColor = typeColor;
+    }
+
+
     public void setUserType(UserType userType) {
         this.userType = userType;
     }
@@ -36,6 +58,7 @@ public class ChatMessage {
         return messageText;
     }
 
+
     public UserType getUserType() {
         return userType;
     }
@@ -43,4 +66,6 @@ public class ChatMessage {
     public Status getMessageStatus() {
         return messageStatus;
     }
+
+
 }

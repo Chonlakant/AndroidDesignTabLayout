@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.norbsoft.typefacehelper.TypefaceCollection;
 import com.squareup.picasso.Picasso;
@@ -61,20 +62,27 @@ public class AdapterRecyclerviewFont extends RecyclerView.Adapter<AdapterRecycle
             holder.txt_font.setTypeface(myTypeface);
         }
         if (position == 2) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Action-Man/Action_Man.ttf");
+            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ZoodHarit-thai/ZoodHarit-thai.ttf");
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
         }
         if (position == 3) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Juice/JUICE_Bold.ttf");
+            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Action-Man/Action_Man.ttf");
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
         }
         if (position == 4) {
+            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Juice/JUICE_Bold.ttf");
+
+            holder.txt_font.setText(list.get(position));
+            holder.txt_font.setTypeface(myTypeface);
+        }
+        if (position == 5) {
             myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/arch_rival/SF_Arch_Rival.ttf");
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
         }
+
 
         holder.txt_font.setText(list.get(position));
 

@@ -41,6 +41,7 @@ import java.util.concurrent.TimeUnit;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewFont;
 import natuan.org.androiddesigntablayout.model.ChatMessage;
+import natuan.org.androiddesigntablayout.model.Font;
 import natuan.org.androiddesigntablayout.model.Status;
 import natuan.org.androiddesigntablayout.model.UserType;
 import natuan.org.androiddesigntablayout.widgets.Emoji;
@@ -72,23 +73,26 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
     public List<String> fontList;
 
+    ArrayList<Font> listFontStyle = new ArrayList<>();
+
     protected static final String TAG = "ShiftPicker";
 
     private LineColorPicker horizontalPicker;
-    String[] pallete = new String[]{"#b8c847", "#67bb43", "#41b691",
+    String[] pallete = new String[]{"#000000", "#67bb43", "#41b691",
             "#4182b6", "#4149b6", "#7641b6", "#b741a7", "#c54657", "#d1694a"};
     LinearLayout chat_font;
     AdapterRecyclerviewFont mAdapter;
-    private static final String STATE_SELECTED_FONT = "STATE_SELECTED_FONT";
 
-    private static final String TYPEFACE_DEFAULT = "System default";
     private static final String TYPEFACE_ACTIONMAN = "Action man";
     private static final String TYPEFACE_ARCHRIVAL = "Arch Rival";
     private static final String TYPEFACE_JUICE = "Juice";
     private static final String TYPEFACE_UBUNTU = "Ubuntu";
+    private static final String TYPEFACE_DEFAULT = "System default";
+    private static final String TYPEFACE_ZOOD = "ZoodHart";
+
 
     public Map<String, TypefaceCollection> mTypefaceMap;
-
+    boolean isCheckBotton;
     RecyclerView rvContacts;
     private Spinner mTypefaceSpinner;
     private ToggleButton mBtnItalic;
@@ -158,6 +162,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         }
     };
 
+    String nameFont;
+    String typeColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,7 +217,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
             @Override
             public void onColorChanged(int c) {
-                Log.d(TAG, "Selected color " + Integer.toHexString(c));
+                Log.d("Selected color ", c + "");
+                typeColor = Integer.toString(c);
                 prefManager.intColor().put(c);
                 prefManager.commit();
                 chatEditText1.setTextColor(c);
@@ -255,23 +262,30 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         // Retrieve custom typefaces from Application subclass
         MainApplication myApp = (MainApplication) getApplication();
         mTypefaceMap = new HashMap<String, TypefaceCollection>(5);
-        mTypefaceMap.put(TYPEFACE_DEFAULT, myApp.getSystemDefaultTypeface());
+
         mTypefaceMap.put(TYPEFACE_ACTIONMAN, myApp.getActionManTypeface());
         mTypefaceMap.put(TYPEFACE_ARCHRIVAL, myApp.getArchRivalTypeface());
+        mTypefaceMap.put(TYPEFACE_ZOOD, myApp.getZoodHaritTypeface());
         mTypefaceMap.put(TYPEFACE_JUICE, myApp.getJuiceTypeface());
         mTypefaceMap.put(TYPEFACE_UBUNTU, myApp.getUbuntuTypeface());
+        mTypefaceMap.put(TYPEFACE_DEFAULT, myApp.getSystemDefaultTypeface());
 
         fontList = new ArrayList<String>(mTypefaceMap.keySet().size());
         fontList.addAll(mTypefaceMap.keySet());
 
+        Log.e("123456", fontList + "");
+
         mAdapter = new AdapterRecyclerviewFont(getActivity(), fontList);
         rvContacts.setAdapter(mAdapter);
+
+        final TextView textView32 = (TextView) findViewById(R.id.textView32);
 
         mAdapter.SetOnItemVideiosClickListener(new AdapterRecyclerviewFont.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 applyDynamicTypeface(fontList.get(position), mBtnBold.isChecked(), mBtnItalic.isChecked());
                 Log.e("font55", fontList.get(position) + "");
+                nameFont = fontList.get(position);
                 prefManager.font().put(fontList.get(position));
                 prefManager.commit();
 
@@ -285,12 +299,13 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private void sendMessage(final String messageText, final UserType userType) {
         if (messageText.trim().length() == 0)
             return;
-
         final ChatMessage message = new ChatMessage();
         message.setMessageStatus(Status.SENT);
         message.setMessageText(messageText);
         message.setUserType(userType);
         message.setMessageTime(new Date().getTime());
+        message.setTypeStyle(nameFont);
+        message.setTypeColor(typeColor);
         chatMessages.add(message);
 
         if (listAdapter != null)
@@ -304,9 +319,10 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
             @Override
             public void run() {
                 message.setMessageStatus(Status.DELIVERED);
-
                 final ChatMessage message = new ChatMessage();
                 message.setMessageStatus(Status.SENT);
+                message.setTypeStyle(nameFont);
+                message.setTypeColor(typeColor);
                 message.setMessageText(messageText);
                 message.setUserType(UserType.SELF);
                 message.setMessageTime(new Date().getTime());
@@ -575,23 +591,35 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
         switch (item.getItemId()) {
             case R.id.action_attach:
 
                 return true;
             case R.id.action_color:
-//                 dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
-//                dialog.setContentView(R.layout.dialog_custom_multiple_typefaces);
-//                dialog.show();
 
-                chat_font.setVisibility(View.VISIBLE);
-
+                onClick();
 
                 return true;
 
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick() {
+
+        if (isCheckBotton != true) {
+            chat_font.setVisibility(View.VISIBLE);
+            isCheckBotton = true;
+        } else {
+
+            chat_font.setVisibility(View.GONE);
+            isCheckBotton = false;
+        }
+
+
     }
 
     @Override
@@ -608,7 +636,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 //                mBtnItalic.isChecked());
     }
 
-    public  void applyDynamicTypeface(String selectedFont, boolean flgBold, boolean flgItalic) {
+    public void applyDynamicTypeface(String selectedFont, boolean flgBold, boolean flgItalic) {
 //        typeface(this, mTypefaceMap.get(selectedFont));
 //        ActionBarHelper.setTitle(getSupportActionBar(), typeface(getString(R.string.app_name), mTypefaceMap.get(selectedFont),
 //                getTypefaceStyle(flgBold, flgItalic)));
@@ -619,7 +647,6 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         // Apply custom typeface
         typeface(chatEditText1, mTypefaceMap.get(selectedFont));
         typeface(txt_preview, mTypefaceMap.get(selectedFont));
-
 
 
     }
