@@ -86,9 +86,9 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private static final String TYPEFACE_ACTIONMAN = "Action man";
     private static final String TYPEFACE_ARCHRIVAL = "Arch Rival";
     private static final String TYPEFACE_JUICE = "Juice";
-    private static final String TYPEFACE_UBUNTU = "Ubuntu";
     private static final String TYPEFACE_DEFAULT = "System default";
     private static final String TYPEFACE_ZOOD = "ZoodHart";
+    private static final String TYPEFACE_UBUN = "Ubuntu";
 
 
     public Map<String, TypefaceCollection> mTypefaceMap;
@@ -267,13 +267,12 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         mTypefaceMap.put(TYPEFACE_ARCHRIVAL, myApp.getArchRivalTypeface());
         mTypefaceMap.put(TYPEFACE_ZOOD, myApp.getZoodHaritTypeface());
         mTypefaceMap.put(TYPEFACE_JUICE, myApp.getJuiceTypeface());
-        mTypefaceMap.put(TYPEFACE_UBUNTU, myApp.getUbuntuTypeface());
         mTypefaceMap.put(TYPEFACE_DEFAULT, myApp.getSystemDefaultTypeface());
 
         fontList = new ArrayList<String>(mTypefaceMap.keySet().size());
         fontList.addAll(mTypefaceMap.keySet());
 
-        Log.e("123456", fontList + "");
+        Log.e("123456", fontList.size() + "");
 
         mAdapter = new AdapterRecyclerviewFont(getActivity(), fontList);
         rvContacts.setAdapter(mAdapter);

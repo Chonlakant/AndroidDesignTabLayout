@@ -70,8 +70,7 @@ public class ChatListAdapter extends BaseAdapter {
         final String TYPEFACE_ACTIONMAN = "Action man";
         final String TYPEFACE_ARCHRIVAL = "Arch Rival";
         final String TYPEFACE_JUICE = "Juice";
-        final String TYPEFACE_UBUNTU = "Ubuntu";
-        final String TYPEFACE_ZOODHARIT = "ZoodHarit";
+        final String TYPEFACE_ZOODHARIT = "ZoodHart";
 
 
         ChatMessage message = chatMessages.get(position);
@@ -92,8 +91,8 @@ public class ChatListAdapter extends BaseAdapter {
             if (type.equals(TYPEFACE_DEFAULT)) {
                 myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-R.ttf");
             }
-            if (type.equals(TYPEFACE_UBUNTU)) {
-                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-B.ttf");
+            if (type.equals(TYPEFACE_ZOODHARIT)) {
+                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ZoodHarit-thai/ZoodHarit-thai.ttf");
             }
             if (type.equals(TYPEFACE_ACTIONMAN)) {
                 myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Action-Man/Action_Man.ttf");
@@ -103,8 +102,6 @@ public class ChatListAdapter extends BaseAdapter {
             }
             if (type.equals(TYPEFACE_ARCHRIVAL)) {
                 myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/arch_rival/SF_Arch_Rival.ttf");
-            }if(type.equals(TYPEFACE_ZOODHARIT)){
-                myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ZoodHarit-thai/ZoodHarit-thai.ttf");
             }
         }else{
             myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-R.ttf");

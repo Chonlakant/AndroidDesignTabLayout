@@ -57,30 +57,28 @@ public class AdapterRecyclerviewFont extends RecyclerView.Adapter<AdapterRecycle
             holder.txt_font.setTypeface(myTypeface);
         }
         if (position == 1) {
-            myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ubuntu/Ubuntu-B.ttf");
-            holder.txt_font.setText(list.get(position));
-            holder.txt_font.setTypeface(myTypeface);
-        }
-        if (position == 2) {
             myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/ZoodHarit-thai/ZoodHarit-thai.ttf");
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
         }
-        if (position == 3) {
+        if (position == 2) {
             myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Action-Man/Action_Man.ttf");
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
         }
-        if (position == 4) {
+        if (position == 3) {
             myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/Juice/JUICE_Bold.ttf");
 
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
         }
-        if (position == 5) {
+        if (position == 4) {
             myTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/arch_rival/SF_Arch_Rival.ttf");
             holder.txt_font.setText(list.get(position));
             holder.txt_font.setTypeface(myTypeface);
+        }
+        if (position == 5) {
+
         }
 
 
