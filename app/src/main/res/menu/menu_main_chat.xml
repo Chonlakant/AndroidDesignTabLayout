@@ -10,66 +10,18 @@
         android:icon="@drawable/attach"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_color"
         android:title=""
         android:icon="@drawable/color"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/context_menu"
+        android:title=""
+        android:icon="@drawable/more_h"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/action"
-        android:orderInCategory="100"
-        android:icon="@drawable/color"
-        android:title="Search"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_contact"
-        android:icon="@drawable/attach"
-        android:orderInCategory="100"
-        android:title="Contact"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_invite"
-        android:icon="@drawable/attach"
-        android:orderInCategory="100"
-        android:title="Invite"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_media"
-        android:icon="@drawable/attach"
-        android:orderInCategory="100"
-        android:title="Media"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_status"
-        android:icon="@drawable/attach"
-        android:orderInCategory="100"
-        android:title="Contact"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_wa"
-        android:icon="@drawable/attach"
-        android:orderInCategory="100"
-        android:title="Wallpaper"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_noti"
-        android:icon="@drawable/attach"
-        android:orderInCategory="100"
-        android:title="Notifications"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_photo"
-        android:icon="@drawable/attach"
-        android:orderInCategory="100"
-        android:title="Photo"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_setting"
-        android:icon="@drawable/attach"
-        android:orderInCategory="100"
-        android:title="Settings"
-        app:showAsAction="never" />
 </menu>

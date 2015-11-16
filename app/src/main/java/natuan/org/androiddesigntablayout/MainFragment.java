@@ -1,56 +1,42 @@
 package natuan.org.androiddesigntablayout;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.database.DataSetObserver;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.norbsoft.typefacehelper.TypefaceCollection;
 
-import java.io.File;
-import java.io.IOException;
-import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -60,7 +46,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewFont;
 import natuan.org.androiddesigntablayout.model.ChatMessage;
 import natuan.org.androiddesigntablayout.model.Font;
@@ -74,9 +59,9 @@ import uz.shift.colorpicker.OnColorChangedListener;
 
 import static com.norbsoft.typefacehelper.TypefaceHelper.typeface;
 
+public class MainFragment extends Fragment implements SizeNotifierRelativeLayout.SizeNotifierRelativeLayoutDelegate
+        , NotificationCenter.NotificationCenterDelegate, View.OnClickListener{
 
-public class MainActivityChat extends BaseActivity implements SizeNotifierRelativeLayout.SizeNotifierRelativeLayoutDelegate
-        , NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
     private ListView chatListView;
     public EditText chatEditText1;
     private ArrayList<ChatMessage> chatMessages;
@@ -95,28 +80,6 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private FragmentManager fragmentManager;
     public List<String> fontList;
 
-    private static final int CAMERA_REQUEST = 1888;
-
-
-
-    static String str_Camera_Photo_ImagePath = "";
-    private static File f;
-    private static int Take_Photo = 2;
-    private static String str_randomnumber = "";
-    static String str_Camera_Photo_ImageName = "";
-    public static String str_SaveFolderName;
-    private static File wallpaperDirectory;
-    Bitmap bitmap;
-    int storeposition = 0;
-
-
-
-    TextView txt_take_photo;
-    TextView txt_video;
-
-    int TAKE_PHOTO_CODE = 0;
-    public static int count = 0;
-
     ArrayList<Font> listFontStyle = new ArrayList<>();
 
     protected static final String TAG = "ShiftPicker";
@@ -124,8 +87,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private LineColorPicker horizontalPicker;
     String[] pallete = new String[]{"#000000", "#67bb43", "#41b691",
             "#4182b6", "#4149b6", "#7641b6", "#b741a7", "#c54657", "#d1694a"};
-    RelativeLayout chat_font, chat_attament;
-    LinearLayout chat_more;
+    RelativeLayout chat_font;
     AdapterRecyclerviewFont mAdapter;
 
     private static final String TYPEFACE_ACTIONMAN = "Action man";
@@ -135,8 +97,6 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private static final String TYPEFACE_ZOOD = "Memory";
     private static final String TYPEFACE_SUPERMARKET = "SuperMarket";
     private static final String TYPEFACE_THSARABUN = "THSarabun";
-
-    Bitmap photoPath;
 
 
     public Map<String, TypefaceCollection> mTypefaceMap;
@@ -189,7 +149,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     };
 
     public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
@@ -221,73 +181,25 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     String nameFont;
     String typeColor;
 
-    Uri imageUri;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_chat);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_main_chat, container, false);
 
-        txt_take_photo = (TextView) findViewById(R.id.txt_take_photo);
-        txt_video = (TextView) findViewById(R.id.txt_video);
-
-
-        final String dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/picFolder/";
-        File newdir = new File(dir);
-        newdir.mkdirs();
-
-        btn_reset = (Button) findViewById(R.id.btn_reset);
+        btn_reset = (Button) rootView.findViewById(R.id.btn_reset);
         prefManager = MainApplication.getPrefManager();
-        txt_preview = (TextView) findViewById(R.id.txt_preview);
+        txt_preview = (TextView) rootView.findViewById(R.id.txt_preview);
         AndroidUtilities.statusBarHeight = getStatusBarHeight();
-        chat_font = (RelativeLayout) findViewById(R.id.chat_font);
-        chat_more = (LinearLayout) findViewById(R.id.chat_more);
-        chat_attament = (RelativeLayout) findViewById(R.id.chat_attament);
+        chat_font = (RelativeLayout) rootView.findViewById(R.id.chat_font);
         chatMessages = new ArrayList<>();
 
-        rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
+        rvContacts = (RecyclerView) rootView.findViewById(R.id.rvContacts);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvContacts.setLayoutManager(layoutManager);
-        chatListView = (ListView) findViewById(R.id.chat_list_view);
+        chatListView = (ListView) rootView.findViewById(R.id.chat_list_view);
         chatListView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
-        chatEditText1 = (EditText) findViewById(R.id.chat_edit_text1);
-        enterChatView1 = (ImageView) findViewById(R.id.enter_chat1);
-
-
-        txt_take_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "123", Toast.LENGTH_SHORT).show();
-                str_SaveFolderName = Environment
-                        .getExternalStorageDirectory()
-                        .getAbsolutePath()
-                        + "/rajeshsample";
-                str_randomnumber = String.valueOf(nextSessionId());
-                wallpaperDirectory = new File(str_SaveFolderName);
-                if (!wallpaperDirectory.exists())
-                    wallpaperDirectory.mkdirs();
-                str_Camera_Photo_ImageName = str_randomnumber
-                        + ".jpg";
-                str_Camera_Photo_ImagePath = str_SaveFolderName
-                        + "/" + str_randomnumber + ".jpg";
-                System.err.println(" str_Camera_Photo_ImagePath  "
-                        + str_Camera_Photo_ImagePath);
-                f = new File(str_Camera_Photo_ImagePath);
-                startActivityForResult(new Intent(
-                                MediaStore.ACTION_IMAGE_CAPTURE).putExtra(
-                                MediaStore.EXTRA_OUTPUT, Uri.fromFile(f)),
-                        Take_Photo);
-                System.err.println("f  " + f);
-            }
-        });
-
-        txt_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "456", Toast.LENGTH_SHORT).show();
-            }
-        });
+        chatEditText1 = (EditText) rootView.findViewById(R.id.chat_edit_text1);
+        enterChatView1 = (ImageView) rootView.findViewById(R.id.enter_chat1);
 
         // Hide the emoji on click of edit text
         chatEditText1.setOnClickListener(new View.OnClickListener() {
@@ -299,7 +211,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         });
 
 
-        horizontalPicker = (LineColorPicker) findViewById(R.id.picker);
+        horizontalPicker = (LineColorPicker) rootView.findViewById(R.id.picker);
 
         // Create palette from HEX values
         int[] colors = new int[pallete.length];
@@ -334,7 +246,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         };
 
         horizontalPicker.setOnColorChangedListener(onChangeListener);
-        emojiButton = (ImageView) findViewById(R.id.emojiButton);
+        emojiButton = (ImageView) rootView.findViewById(R.id.emojiButton);
 
         emojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,7 +255,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
             }
         });
 
-        listAdapter = new ChatListAdapter(chatMessages, this);
+        listAdapter = new ChatListAdapter(chatMessages, getActivity());
 
 
         chatListView.setAdapter(listAdapter);
@@ -362,20 +274,20 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
         chatEditText1.addTextChangedListener(watcher1);
 
-        sizeNotifierRelativeLayout = (SizeNotifierRelativeLayout) findViewById(R.id.chat_layout);
+        sizeNotifierRelativeLayout = (SizeNotifierRelativeLayout) rootView.findViewById(R.id.chat_layout);
         sizeNotifierRelativeLayout.delegate = this;
 
         NotificationCenter.getInstance().addObserver(this, NotificationCenter.emojiDidLoaded);
 
-        mBtnItalic = (ToggleButton) findViewById(R.id.btn_italic);
-        mBtnBold = (ToggleButton) findViewById(R.id.btn_bold);
+        mBtnItalic = (ToggleButton) rootView.findViewById(R.id.btn_italic);
+        mBtnBold = (ToggleButton) rootView.findViewById(R.id.btn_bold);
         // mTypefaceSpinner = (Spinner) findViewById(R.id.spinner);
 
         mBtnItalic.setOnClickListener(this);
         mBtnBold.setOnClickListener(this);
 
         // Retrieve custom typefaces from Application subclass
-        MainApplication myApp = (MainApplication) getApplication();
+        MainApplication myApp = (MainApplication) getActivity().getApplication();
         mTypefaceMap = new HashMap<String, TypefaceCollection>(6);
 
         mTypefaceMap.put(TYPEFACE_ACTIONMAN, myApp.getActionManTypeface());
@@ -394,7 +306,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         mAdapter = new AdapterRecyclerviewFont(getActivity(), fontList);
         rvContacts.setAdapter(mAdapter);
 
-        final TextView textView32 = (TextView) findViewById(R.id.textView32);
+        final TextView textView32 = (TextView) rootView.findViewById(R.id.textView32);
 
         mAdapter.SetOnItemVideiosClickListener(new AdapterRecyclerviewFont.OnItemClickListener() {
             @Override
@@ -412,26 +324,61 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         btn_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/ubuntu/Ubuntu-R.ttf");
+                Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ubuntu/Ubuntu-R.ttf");
                 txt_preview.setTextColor(Color.BLACK);
                 chatEditText1.setTextColor(Color.BLACK);
                 chatEditText1.setTypeface(typeface);
             }
         });
 
+        return rootView;
+    }
+
+    private void sendMessage(final String messageText, final UserType userType) {
+        if (messageText.trim().length() == 0)
+            return;
+        final ChatMessage message = new ChatMessage();
+        message.setMessageStatus(Status.SENT);
+        message.setMessageText(messageText);
+        message.setUserType(userType);
+        message.setMessageTime(new Date().getTime());
+        message.setTypeStyle(nameFont);
+        message.setTypeColor(typeColor);
+        chatMessages.add(message);
+
+        if (listAdapter != null)
+            listAdapter.notifyDataSetChanged();
+
+        // Mark message as delivered after one second
+
+        final ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
+
+        exec.schedule(new Runnable() {
+            @Override
+            public void run() {
+                message.setMessageStatus(Status.DELIVERED);
+                final ChatMessage message = new ChatMessage();
+                message.setMessageStatus(Status.SENT);
+                message.setTypeStyle(nameFont);
+                message.setTypeColor(typeColor);
+                message.setMessageText(messageText);
+                message.setUserType(UserType.SELF);
+                message.setMessageTime(new Date().getTime());
+                chatMessages.add(message);
+
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        listAdapter.notifyDataSetChanged();
+                    }
+                });
+
+
+            }
+        }, 1, TimeUnit.SECONDS);
 
     }
 
-    public String nextSessionId() {
-        SecureRandom random = new SecureRandom();
-        return new BigInteger(130, random).toString(32);
-    }
 
-
-
-    private Activity getActivity() {
-        return this;
-    }
 
 
     /**
@@ -665,42 +612,13 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
 
         hideEmojiPopup();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_chat, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        switch (item.getItemId()) {
-            case R.id.action_attach:
-                onClick3();
-                return true;
-            case R.id.action_color:
-
-                onClick();
-
-                return true;
-
-            case R.id.context_menu:
-
-                onClick2();
-                return true;
-
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     public void onClick() {
 
@@ -716,36 +634,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
     }
 
-    public void onClick2() {
-
-        if (isCheckBotton != true) {
-            chat_more.setVisibility(View.VISIBLE);
-            isCheckBotton = true;
-        } else {
-
-            chat_more.setVisibility(View.GONE);
-            isCheckBotton = false;
-        }
-
-
-    }
-
-    public void onClick3() {
-
-        if (isCheckBotton != true) {
-            chat_attament.setVisibility(View.VISIBLE);
-            isCheckBotton = true;
-        } else {
-
-            chat_attament.setVisibility(View.GONE);
-            isCheckBotton = false;
-        }
-
-
-    }
-
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 //        outState.putInt(STATE_SELECTED_FONT, mTypefaceSpinner.getSelectedItemPosition());
     }
@@ -795,95 +685,4 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         hex = hex.toUpperCase();
 
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.e("onActivityResult", requestCode + " + " + resultCode);
-
-        if (requestCode == Take_Photo) {
-            String filePath = null;
-
-            filePath = str_Camera_Photo_ImagePath;
-            if (filePath != null) {
-               Log.e("ddddddd",filePath);
-
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                photoPath = BitmapFactory.decodeFile(filePath, options);
-
-                Log.e("2346",photoPath+"");
-
-
-            } else {
-                photoPath = null;
-            }
-        }
-    }
-
-    public static Bitmap decodeFile(String photoPath){
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(photoPath, options);
-
-        options.inJustDecodeBounds = false;
-        options.inDither = false;
-        options.inPurgeable = true;
-        options.inInputShareable = true;
-        options.inPreferQualityOverSpeed = true;
-
-        return BitmapFactory.decodeFile(photoPath, options);
-    }
-
-    private void sendMessage(final String messageText, final UserType userType) {
-        if (messageText.trim().length() == 0)
-            return;
-        final ChatMessage message = new ChatMessage();
-        message.setMessageStatus(Status.SENT);
-        message.setMessageText(messageText);
-
-        message.setmImage(photoPath);
-
-        message.setUserType(userType);
-        message.setMessageTime(new Date().getTime());
-        message.setTypeStyle(nameFont);
-        message.setTypeColor(typeColor);
-        chatMessages.add(message);
-
-        if (listAdapter != null)
-            listAdapter.notifyDataSetChanged();
-
-        // Mark message as delivered after one second
-
-        final ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
-
-        exec.schedule(new Runnable() {
-            @Override
-            public void run() {
-                message.setMessageStatus(Status.DELIVERED);
-                final ChatMessage message = new ChatMessage();
-                message.setMessageStatus(Status.SENT);
-                message.setTypeStyle(nameFont);
-                message.setTypeColor(typeColor);
-
-                message.setmImage(photoPath);
-
-                message.setMessageText(messageText);
-                message.setUserType(UserType.SELF);
-                message.setMessageTime(new Date().getTime());
-                chatMessages.add(message);
-
-                MainActivityChat.this.runOnUiThread(new Runnable() {
-                    public void run() {
-                        listAdapter.notifyDataSetChanged();
-                    }
-                });
-
-
-            }
-        }, 1, TimeUnit.SECONDS);
-
-    }
-
-
 }

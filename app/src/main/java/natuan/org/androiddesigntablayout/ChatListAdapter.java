@@ -3,6 +3,7 @@ package natuan.org.androiddesigntablayout;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -140,6 +141,7 @@ public class ChatListAdapter extends BaseAdapter {
                 holder2.messageTextView = (TextView) v.findViewById(R.id.message_text);
                 holder2.timeTextView = (TextView) v.findViewById(R.id.time_text);
                 holder2.messageStatus = (ImageView) v.findViewById(R.id.user_reply_status);
+                holder2.photoImageView = (ImageView) v.findViewById(R.id.photoImageView);
                 v.setTag(holder2);
 
             } else {
@@ -154,6 +156,13 @@ public class ChatListAdapter extends BaseAdapter {
             holder2.messageTextView.setTypeface(myTypeface);
             //holder2.messageTextView.setText(message.getMessageText());
             holder2.timeTextView.setText(SIMPLE_DATE_FORMAT.format(message.getMessageTime()));
+
+            if(message.getmImage() != null){
+                Log.e("ok google",message.getmImage()+"");
+                holder2.photoImageView.setImageBitmap(message.getmImage());
+            }else{
+                holder2.photoImageView.setVisibility(View.GONE);
+            }
 
             if (message.getMessageStatus() == Status.DELIVERED) {
                 holder2.messageStatus.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_double_tick));
@@ -191,6 +200,7 @@ public class ChatListAdapter extends BaseAdapter {
         public ImageView messageStatus;
         public TextView messageTextView;
         public TextView timeTextView;
+        public ImageView photoImageView;
 
     }
 }

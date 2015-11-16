@@ -43,6 +43,7 @@
         <activity android:name=".activity.ActivitySetting"/>
 
 
+
         <activity android:name=".activity.ActivityLanguageSetting">
             <intent-filter>
                 <action android:name=".activity.ActivityLanguageSetting" />

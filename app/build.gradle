@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "natuan.org.androiddesigntablayout"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -65,4 +65,5 @@ dependencies {
     compile 'com.alexvasilkov:events:0.4.0'
     compile project(':lib')
     compile project(':shiftcolorpicker')
+    compile 'me.iwf.photopicker:PhotoPicker:0.2.8@aar'
 }

@@ -52,7 +52,21 @@
             android:autoLink="web"
             android:text="Rahul Agrawal is a good boy but he does not know what he wants." />
 
-
+        <ImageView
+            android:id="@+id/photoImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/message_text"
+            android:adjustViewBounds="true"
+            android:background="@drawable/adduser"
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="left|center"
+            android:maxWidth="460dp"
+            android:minHeight="100dp"
+            android:visibility="gone"
+            android:maxHeight="460dp"/>
 
     </natuan.org.androiddesigntablayout.widgets.ChatLayout>
 </RelativeLayout>
