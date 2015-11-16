@@ -1,8 +1,12 @@
 package natuan.org.androiddesigntablayout;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +14,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import natuan.org.androiddesigntablayout.activity.ImageViewSampleActivity;
 import natuan.org.androiddesigntablayout.model.ChatMessage;
 import natuan.org.androiddesigntablayout.model.Font;
 import natuan.org.androiddesigntablayout.model.Status;
@@ -29,7 +36,7 @@ public class ChatListAdapter extends BaseAdapter {
 
     private ArrayList<ChatMessage> chatMessages;
     List<Font> fontList = new ArrayList<>();
-    private Context context;
+    Context context;
     public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("HH:mm");
 
     public ChatListAdapter(ArrayList<ChatMessage> chatMessages, Context context) {
@@ -67,6 +74,34 @@ public class ChatListAdapter extends BaseAdapter {
         final String TYPEFACE_ZOODHARIT = "Memory";
         final String TYPEFACE_SUPERMARKET = "SuperMarket";
         final String TYPEFACE_THSARABUN = "THSarabun";
+
+        //EN
+        final String TYPEFACE_Cartoon = "Cartoon";
+        final String TYPEFACE_Comica = "Comica";
+        final String TYPEFACE_DaVia = "DaVia";
+        final String TYPEFACE_Facile = "Facile";
+        final String TYPEFACE_Goudosb = "Goudosb";
+        final String TYPEFACE_Koren = "Koren";
+        final String TYPEFACE_Mari = "Mari";
+        final String TYPEFACE_Noodle = "Noodle";
+        final String TYPEFACE_OneMore = "OneMore";
+        final String TYPEFACE_SanFrancisco = "SanFrancisco";
+        final String TYPEFACE_SfSppend = "SfSppend";
+        final String TYPEFACE_TheMillion = "TheMillion";
+        final String TYPEFACE_Vaground = "Vaground";
+        final String TYPEFACE_Weiss = "Weiss";
+
+        //TH
+        final String TYPEFACE_Bangna = "Bangna";
+        final String TYPEFACE_Cookies = "Cookies";
+        final String TYPEFACE_Domino = "Domino";
+        final String TYPEFACE_Drjoyfuk = "Drjoyfuk";
+        final String TYPEFACE_Paaymaay = "Paaymaay";
+        final String TYPEFACE_Parggar = "Parggar";
+        final String TYPEFACE_Pledite = "Pledite";
+        final String TYPEFACE_Prachachon = "Prachachon";
+        final String TYPEFACE_Rtemehua = "Rtemehua";
+        final String TYPEFACE_WrTish = "WrTish";
 
 
         ChatMessage message = chatMessages.get(position);
@@ -142,6 +177,7 @@ public class ChatListAdapter extends BaseAdapter {
                 holder2.timeTextView = (TextView) v.findViewById(R.id.time_text);
                 holder2.messageStatus = (ImageView) v.findViewById(R.id.user_reply_status);
                 holder2.photoImageView = (ImageView) v.findViewById(R.id.photoImageView);
+                holder2.ic_play = (ImageView) v.findViewById(R.id.ic_play);
                 v.setTag(holder2);
 
             } else {
@@ -151,17 +187,24 @@ public class ChatListAdapter extends BaseAdapter {
             }
 
             holder2.messageTextView.setText(Emoji.replaceEmoji(message.getMessageText(), holder2.messageTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16)));
-
             holder2.messageTextView.setTextColor(colorName);
             holder2.messageTextView.setTypeface(myTypeface);
-            //holder2.messageTextView.setText(message.getMessageText());
+            holder2.messageTextView.setText(message.getMessageText());
             holder2.timeTextView.setText(SIMPLE_DATE_FORMAT.format(message.getMessageTime()));
+            final Bitmap bitmap;
+            if (message.getmImage() != null) {
+                Log.e("ok google", message.getmImage() + "");
+                holder2.photoImageView.setVisibility(View.VISIBLE);
+                // Bitmap myBitmap = BitmapFactory.decodeFile(message.getmImage());
+                bitmap = message.getmImage();
+                holder2.photoImageView.setImageBitmap(bitmap);
 
-            if(message.getmImage() != null){
-                Log.e("ok google",message.getmImage()+"");
-                holder2.photoImageView.setImageBitmap(message.getmImage());
-            }else{
+                holder2.ic_play.setVisibility(View.GONE);
+
+
+            } else {
                 holder2.photoImageView.setVisibility(View.GONE);
+                Log.e("no google", message.getmImage() + "");
             }
 
             if (message.getMessageStatus() == Status.DELIVERED) {
@@ -176,6 +219,14 @@ public class ChatListAdapter extends BaseAdapter {
 
 
         return v;
+    }
+
+    public String BitMapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
     }
 
     @Override
@@ -200,7 +251,7 @@ public class ChatListAdapter extends BaseAdapter {
         public ImageView messageStatus;
         public TextView messageTextView;
         public TextView timeTextView;
-        public ImageView photoImageView;
+        public ImageView photoImageView, ic_play;
 
     }
 }

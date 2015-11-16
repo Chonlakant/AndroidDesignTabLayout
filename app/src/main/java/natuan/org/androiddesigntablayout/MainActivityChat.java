@@ -2,9 +2,12 @@ package natuan.org.androiddesigntablayout;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +19,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -24,6 +28,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -34,6 +39,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,8 +53,12 @@ import android.widget.ToggleButton;
 
 import com.norbsoft.typefacehelper.TypefaceCollection;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -96,8 +106,10 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     public List<String> fontList;
 
     private static final int CAMERA_REQUEST = 1888;
-
-
+    private static final int SELECT_PHOTO = 100;
+    private static final int RESULT_PICK_VIDEO = 4;
+    private static final int RESULT_VIDEO_CAP = 5;
+    private Uri imageToUploadUri;
 
     static String str_Camera_Photo_ImagePath = "";
     private static File f;
@@ -110,8 +122,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     int storeposition = 0;
 
 
-
     TextView txt_take_photo;
+    TextView txt_gallery;
     TextView txt_video;
 
     int TAKE_PHOTO_CODE = 0;
@@ -136,7 +148,36 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private static final String TYPEFACE_SUPERMARKET = "SuperMarket";
     private static final String TYPEFACE_THSARABUN = "THSarabun";
 
-    Bitmap photoPath;
+    //EN
+    private static final String TYPEFACE_Cartoon = "Cartoon";
+    private static final String TYPEFACE_Comica = "Comica";
+    private static final String TYPEFACE_DaVia = "DaVia";
+    private static final String TYPEFACE_Facile = "Facile";
+    private static final String TYPEFACE_Goudosb = "Goudosb";
+    private static final String TYPEFACE_Koren = "Koren";
+    private static final String TYPEFACE_Mari = "Mari";
+    private static final String TYPEFACE_Noodle = "Noodle";
+    private static final String TYPEFACE_OneMore = "OneMore";
+    private static final String TYPEFACE_SanFrancisco = "SanFrancisco";
+    private static final String TYPEFACE_SfSppend = "SfSppend";
+    private static final String TYPEFACE_TheMillion = "TheMillion";
+    private static final String TYPEFACE_Vaground = "Vaground";
+    private static final String TYPEFACE_Weiss = "Weiss";
+
+    //TH
+    private static final String TYPEFACE_Bangna = "Bangna";
+    private static final String TYPEFACE_Cookies = "Cookies";
+    private static final String TYPEFACE_Domino = "Domino";
+    private static final String TYPEFACE_Drjoyfuk = "Drjoyfuk";
+    private static final String TYPEFACE_Paaymaay = "Paaymaay";
+    private static final String TYPEFACE_Parggar = "Parggar";
+    private static final String TYPEFACE_Pledite = "Pledite";
+    private static final String TYPEFACE_Prachachon = "Prachachon";
+    private static final String TYPEFACE_Rtemehua = "Rtemehua";
+    private static final String TYPEFACE_WrTish = "WrTish";
+
+
+    String photoPath;
 
 
     public Map<String, TypefaceCollection> mTypefaceMap;
@@ -145,8 +186,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private Spinner mTypefaceSpinner;
     private ToggleButton mBtnItalic;
     private ToggleButton mBtnBold;
-
-
+    private Uri mFileURI = null;
+    String imageUrl;
     private EditText.OnKeyListener keyListener = new View.OnKeyListener() {
         @Override
         public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -160,6 +201,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
                 if (v == chatEditText1) {
                     sendMessage(editText.getText().toString(), UserType.OTHER);
+
                 }
 
                 chatEditText1.setText("");
@@ -179,7 +221,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
             if (v == enterChatView1) {
                 sendMessage(chatEditText1.getText().toString(), UserType.OTHER);
                 chat_font.setVisibility(View.GONE);
-
+                chat_attament.setVisibility(View.GONE);
+                bitmap = null;
                 hideKeyboard(v);
             }
 
@@ -229,6 +272,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         setContentView(R.layout.activity_main_chat);
 
         txt_take_photo = (TextView) findViewById(R.id.txt_take_photo);
+        txt_gallery = (TextView) findViewById(R.id.txt_gallery);
         txt_video = (TextView) findViewById(R.id.txt_video);
 
 
@@ -258,34 +302,29 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         txt_take_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "123", Toast.LENGTH_SHORT).show();
-                str_SaveFolderName = Environment
-                        .getExternalStorageDirectory()
-                        .getAbsolutePath()
-                        + "/rajeshsample";
-                str_randomnumber = String.valueOf(nextSessionId());
-                wallpaperDirectory = new File(str_SaveFolderName);
-                if (!wallpaperDirectory.exists())
-                    wallpaperDirectory.mkdirs();
-                str_Camera_Photo_ImageName = str_randomnumber
-                        + ".jpg";
-                str_Camera_Photo_ImagePath = str_SaveFolderName
-                        + "/" + str_randomnumber + ".jpg";
-                System.err.println(" str_Camera_Photo_ImagePath  "
-                        + str_Camera_Photo_ImagePath);
-                f = new File(str_Camera_Photo_ImagePath);
-                startActivityForResult(new Intent(
-                                MediaStore.ACTION_IMAGE_CAPTURE).putExtra(
-                                MediaStore.EXTRA_OUTPUT, Uri.fromFile(f)),
-                        Take_Photo);
-                System.err.println("f  " + f);
+
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                chat_attament.setVisibility(View.GONE);
+            }
+        });
+
+        txt_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+                chat_attament.setVisibility(View.GONE);
             }
         });
 
         txt_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "456", Toast.LENGTH_SHORT).show();
+                buildVideoDialog();
+
             }
         });
 
@@ -347,6 +386,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
 
         chatListView.setAdapter(listAdapter);
+
+
         listAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
@@ -385,6 +426,31 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         mTypefaceMap.put(TYPEFACE_THSARABUN, myApp.getThSarabunNewTypeface());
         mTypefaceMap.put(TYPEFACE_JUICE, myApp.getJuiceTypeface());
         mTypefaceMap.put(TYPEFACE_DEFAULT, myApp.getSystemDefaultTypeface());
+
+        mTypefaceMap.put(TYPEFACE_Cartoon, myApp.getEnCartoonTypeface());
+        mTypefaceMap.put(TYPEFACE_Comica, myApp.getEnComicaTypeface());
+        mTypefaceMap.put(TYPEFACE_DaVia, myApp.getEnDaViaTypeface());
+        mTypefaceMap.put(TYPEFACE_Facile, myApp.getEnFacileTypeface());
+        mTypefaceMap.put(TYPEFACE_Goudosb, myApp.getEnGoudosbTypeface());
+        mTypefaceMap.put(TYPEFACE_Koren, myApp.getEnKorenTypeface());
+        mTypefaceMap.put(TYPEFACE_Mari, myApp.getEnMariTypeface());
+        mTypefaceMap.put(TYPEFACE_Noodle, myApp.getEnNoodleTypeface());
+        mTypefaceMap.put(TYPEFACE_OneMore, myApp.getEnOneMoreTypeface());
+        mTypefaceMap.put(TYPEFACE_SanFrancisco, myApp.getEnSanFranciscoTypeface());
+        mTypefaceMap.put(TYPEFACE_SfSppend, myApp.getEnSfSppendTypeface());
+        mTypefaceMap.put(TYPEFACE_TheMillion, myApp.getEnTheMillionTypeface());
+        mTypefaceMap.put(TYPEFACE_Vaground, myApp.getEnVagroundTypeface());
+        mTypefaceMap.put(TYPEFACE_Weiss, myApp.getEnWeissTypeface());
+        mTypefaceMap.put(TYPEFACE_Bangna, myApp.getThBangnaTypeface());
+        mTypefaceMap.put(TYPEFACE_Cookies, myApp.getThCookiesTypeface());
+        mTypefaceMap.put(TYPEFACE_Domino, myApp.getThDominoTypeface());
+        mTypefaceMap.put(TYPEFACE_Drjoyfuk, myApp.getThDrjoyfukTypeface());
+        mTypefaceMap.put(TYPEFACE_Paaymaay, myApp.getThPaaymaayTypeface());
+        mTypefaceMap.put(TYPEFACE_Parggar, myApp.getThParggarTypeface());
+        mTypefaceMap.put(TYPEFACE_Pledite, myApp.getThPlediteTypeface());
+        mTypefaceMap.put(TYPEFACE_Prachachon, myApp.getThPrachachonTypeface());
+        mTypefaceMap.put(TYPEFACE_Rtemehua, myApp.getThRtemehuaTypeface());
+        mTypefaceMap.put(TYPEFACE_WrTish, myApp.getThWrTishTypeface());
 
         fontList = new ArrayList<String>(mTypefaceMap.keySet().size());
         fontList.addAll(mTypefaceMap.keySet());
@@ -426,7 +492,6 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         SecureRandom random = new SecureRandom();
         return new BigInteger(130, random).toString(32);
     }
-
 
 
     private Activity getActivity() {
@@ -796,44 +861,80 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
     }
 
+    public void recordVideo() {
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+        startActivityForResult(intent, RESULT_VIDEO_CAP);
+    }
+
+    public void pickVideo() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("video/*");
+        startActivityForResult(intent, RESULT_PICK_VIDEO);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.e("onActivityResult", requestCode + " + " + resultCode);
 
-        if (requestCode == Take_Photo) {
-            String filePath = null;
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            bitmap = (Bitmap) data.getExtras().get("data");
+            imageUrl = data.getStringExtra("data");
+            sendMessage("", UserType.OTHER);
 
-            filePath = str_Camera_Photo_ImagePath;
-            if (filePath != null) {
-               Log.e("ddddddd",filePath);
+        }
+        if (requestCode == SELECT_PHOTO && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            imageUrl = data.getStringExtra("data");
+            InputStream imageStream = null;
+            try {
+                imageStream = getContentResolver().openInputStream(selectedImage);
+                bitmap = BitmapFactory.decodeStream(imageStream);
+                Log.e("dfgk", bitmap + "");
+                sendMessage("", UserType.OTHER);
 
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                photoPath = BitmapFactory.decodeFile(filePath, options);
 
-                Log.e("2346",photoPath+"");
-
-
-            } else {
-                photoPath = null;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
+
+        } else if (requestCode == RESULT_PICK_VIDEO) {
+
+            mFileURI = data.getData();
+            if (mFileURI != null) {
+                String vdoThumb = ChatUtil.getThumbnailPathForLocalFile(getActivity(), mFileURI);
+                String dataJson = "";
+                if (vdoThumb != null)
+                    dataJson = "{'thumb':'" + vdoThumb + "'}";
+
+
+                String path = ChatUtil.getRealPathFromURIVideo(getActivity(), mFileURI);
+                File clip = new File(path);
+
+            }
+
+        } else if (requestCode == RESULT_VIDEO_CAP) {
+
+            mFileURI = data.getData();
+
+            if (mFileURI != null) {
+                String vdoThumb = ChatUtil.getThumbnailPathForLocalFile(getActivity(), mFileURI);
+                String dataJson = "";
+                if (vdoThumb != null)
+                    dataJson = "{'thumb':'" + vdoThumb + "'}";
+
+
+                String path = ChatUtil.getRealPathFromURIVideo(getActivity(), mFileURI);
+                File clip = new File(path);
+                Log.e("cccccc", clip + "");
+
+
+            }
+
         }
     }
 
-    public static Bitmap decodeFile(String photoPath){
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(photoPath, options);
-
-        options.inJustDecodeBounds = false;
-        options.inDither = false;
-        options.inPurgeable = true;
-        options.inInputShareable = true;
-        options.inPreferQualityOverSpeed = true;
-
-        return BitmapFactory.decodeFile(photoPath, options);
-    }
 
     private void sendMessage(final String messageText, final UserType userType) {
         if (messageText.trim().length() == 0)
@@ -842,16 +943,18 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         message.setMessageStatus(Status.SENT);
         message.setMessageText(messageText);
 
-        message.setmImage(photoPath);
-
+        message.setmImage(bitmap);
+        message.setmUrlImage(imageUrl);
         message.setUserType(userType);
         message.setMessageTime(new Date().getTime());
         message.setTypeStyle(nameFont);
         message.setTypeColor(typeColor);
         chatMessages.add(message);
 
+
         if (listAdapter != null)
             listAdapter.notifyDataSetChanged();
+
 
         // Mark message as delivered after one second
 
@@ -865,8 +968,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
                 message.setMessageStatus(Status.SENT);
                 message.setTypeStyle(nameFont);
                 message.setTypeColor(typeColor);
-
-                message.setmImage(photoPath);
+                message.setmUrlImage(imageUrl);
+                message.setmImage(bitmap);
 
                 message.setMessageText(messageText);
                 message.setUserType(UserType.SELF);
@@ -883,6 +986,29 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
             }
         }, 1, TimeUnit.SECONDS);
 
+    }
+
+    public void buildVideoDialog() {
+        final CharSequence[] items = {"Record Video", "Choose from Library",
+                "Cancel"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        //builder.setTitle("Add Video!");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (items[item].equals("Record Video")) {
+                    recordVideo();
+                    chat_attament.setVisibility(View.GONE);
+                } else if (items[item].equals("Choose from Library")) {
+                    pickVideo();
+                    chat_attament.setVisibility(View.GONE);
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
 
 

@@ -8,7 +8,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"></uses-permission>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -16,43 +17,42 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:windowSoftInputMode="adjustResize"
             android:name=".MainActivityChat"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-       <activity android:name=".acivityLogin.MainLogin"/>
+        <activity android:name=".acivityLogin.MainLogin" />
         <activity android:name=".acivityLogin.MainActivityDisplayFragmentLogin" />
         <activity android:name=".activity.MainActivityTap" />
-      <!--<activity android:name=".MainActivityChat" />-->
+        <!-- <activity android:name=".MainActivityChat" /> -->
         <activity android:name=".activity.PostPhotoActivity" />
         <activity android:name=".activity.TakePhotoActivity2" />
         <activity android:name=".activity.TakePhotoActivity" />
         <activity android:name=".acivityLogin.ActivityMainLogin" />
         <activity android:name=".activity.ActivityChatSetting" />
+        <activity android:name=".ActivityViewPhotoChat"/>
         <activity
             android:name=".activity.MianHomMe"
             android:label="@string/title_activity_mian_hom_me"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".activity.MianHomGroup"/>
-        <activity android:name=".fragments.fragmentTattooStore.TattooDetailActivity"/>
-        <activity android:name=".activity.ActivitySetting"/>
-
-
-
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.MianHomGroup" />
+        <activity android:name=".fragments.fragmentTattooStore.TattooDetailActivity" />
+        <activity android:name=".activity.ActivitySetting" />
         <activity android:name=".activity.ActivityLanguageSetting">
             <intent-filter>
                 <action android:name=".activity.ActivityLanguageSetting" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.ImageViewSampleActivity" />
+        <activity android:name=".activity.AdvancedDemoActivity" />
 
-        <activity android:name=".activity.ImageViewSampleActivity"/>
-        <activity android:name=".activity.AdvancedDemoActivity"/>
     </application>
 
 </manifest>

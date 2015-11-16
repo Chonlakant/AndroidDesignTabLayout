@@ -23,13 +23,21 @@ import retrofit.RestAdapter;
 public class MainApplication extends Application {
     private static PrefManager prefManager;
     private TypefaceCollection mJuiceTypeface;
-    /** Multiple custom typefaces support */
+    /**
+     * Multiple custom typefaces support
+     */
     private TypefaceCollection mArchRivalTypeface;
-    /** Multiple custom typefaces support */
+    /**
+     * Multiple custom typefaces support
+     */
     private TypefaceCollection mActionManTypeface;
-    /** Multiple custom typefaces support */
+    /**
+     * Multiple custom typefaces support
+     */
     private TypefaceCollection mSystemDefaultTypeface;
-    /** Multiple custom typefaces support */
+    /**
+     * Multiple custom typefaces support
+     */
     private TypefaceCollection mUbuntuTypeface;
 
     private TypefaceCollection zoodHaritTypeface;
@@ -38,11 +46,41 @@ public class MainApplication extends Application {
 
     private TypefaceCollection thSarabunNewTypeface;
 
+
+    private TypefaceCollection enCartoonTypeface;
+    private TypefaceCollection enComicaTypeface;
+    private TypefaceCollection enDaViaTypeface;
+    private TypefaceCollection enFacileTypeface;
+    private TypefaceCollection enGoudosbTypeface;
+    private TypefaceCollection enKorenTypeface;
+    private TypefaceCollection enMariTypeface;
+    private TypefaceCollection enNoodleTypeface;
+    private TypefaceCollection enOneMoreTypeface;
+    private TypefaceCollection enSanFranciscoTypeface;
+    private TypefaceCollection enSfSppendTypeface;
+    private TypefaceCollection enTheMillionTypeface;
+    private TypefaceCollection enVagroundTypeface;
+    private TypefaceCollection enWeissTypeface;
+
+    //TH
+    private TypefaceCollection thBangnaTypeface;
+    private TypefaceCollection thCookiesTypeface;
+    private TypefaceCollection thDominoTypeface;
+    private TypefaceCollection thDrjoyfukTypeface;
+    private TypefaceCollection thPaaymaayTypeface;
+    private TypefaceCollection thParggarTypeface;
+    private TypefaceCollection thPlediteTypeface;
+    private TypefaceCollection thPrachachonTypeface;
+    private TypefaceCollection thRtemehuaTypeface;
+    private TypefaceCollection thWrTishTypeface;
+
+
     public static final String ENDPOINT = "http://ihdmovie.xyz/root";
     private static MainApplication Instance;
     public static volatile Handler applicationHandler = null;
     private ApiHandler someApiHandler;
     public static PrefManager mPref;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -53,6 +91,85 @@ public class MainApplication extends Application {
 
         prefManager = new PrefManager(getSharedPreferences("App", MODE_PRIVATE));
         // Load helper with default custom typeface (single custom typeface)
+
+
+        enCartoonTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/Cartoon.ttf"))
+                .create());
+        enComicaTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/Comica.ttf"))
+                .create());
+        enDaViaTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/david.ttf"))
+                .create());
+        enFacileTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/Facile_Sans.ttf"))
+                .create());
+        enGoudosbTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/GOUDOSB.ttf"))
+                .create());
+        enKorenTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/Korean.ttf"))
+                .create());
+        enMariTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/MARI_DAVID.ttf"))
+                .create());
+        enNoodleTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/noodle.ttf"))
+                .create());
+        enOneMoreTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/OneMoreNight.ttf"))
+                .create());
+        enSanFranciscoTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/San_Francisco.ttf"))
+                .create());
+        enSfSppendTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/SF_Speedwaystar_Shaded.ttf"))
+                .create());
+        enTheMillionTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/The_Million_Mile_Man.ttf"))
+                .create());
+        enVagroundTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/VAGRounded_Bold.ttf"))
+                .create());
+        enWeissTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/Weissxb.ttf"))
+                .create());
+
+
+        //TH
+        thBangnaTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/bangna_new.ttf"))
+                .create());
+        thCookiesTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/cookies_lite.ttf"))
+                .create());
+        thDominoTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/DOMINO.ttf"))
+                .create());
+        thDrjoyfukTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/DRjoyful.ttf"))
+                .create());
+        thPaaymaayTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/paaymaay_regular.ttf"))
+                .create());
+        thParggarTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/Parggar_font.ttf"))
+                .create());
+        thPlediteTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/PL_EDIT1_02.ttf"))
+                .create());
+        thPrachachonTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/Prachachon.ttf"))
+                .create());
+        thRtemehuaTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/rtemehua.ttf"))
+                .create());
+        thWrTishTypeface = (new TypefaceCollection.Builder()
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/WR_Tish_Kid.ttf"))
+                .create());
+
+
         TypefaceHelper.init(new TypefaceCollection.Builder()
                 .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/ubuntu/Ubuntu-R.ttf"))
                 .set(Typeface.BOLD, Typeface.createFromAsset(getAssets(), "fonts/ubuntu/Ubuntu-B.ttf"))
@@ -140,38 +257,47 @@ public class MainApplication extends Application {
                 .build()
                 .create(ApiService.class);
     }
+
     public static PrefManager getPrefManager() {
         return prefManager;
     }
 
 
-
-    public static MainApplication getInstance()
-    {
+    public static MainApplication getInstance() {
         return Instance;
     }
 
-    /** Multiple custom typefaces support */
+    /**
+     * Multiple custom typefaces support
+     */
     public TypefaceCollection getJuiceTypeface() {
         return mJuiceTypeface;
     }
 
-    /** Multiple custom typefaces support */
+    /**
+     * Multiple custom typefaces support
+     */
     public TypefaceCollection getArchRivalTypeface() {
         return mArchRivalTypeface;
     }
 
-    /** Multiple custom typefaces support */
+    /**
+     * Multiple custom typefaces support
+     */
     public TypefaceCollection getActionManTypeface() {
         return mActionManTypeface;
     }
 
-    /** Multiple custom typefaces support */
+    /**
+     * Multiple custom typefaces support
+     */
     public TypefaceCollection getSystemDefaultTypeface() {
         return mSystemDefaultTypeface;
     }
 
-    /** Multiple custom typefaces support */
+    /**
+     * Multiple custom typefaces support
+     */
     public TypefaceCollection getUbuntuTypeface() {
         return mUbuntuTypeface;
     }
@@ -186,5 +312,137 @@ public class MainApplication extends Application {
 
     public TypefaceCollection getThSarabunNewTypeface() {
         return thSarabunNewTypeface;
+    }
+
+    public TypefaceCollection getmJuiceTypeface() {
+        return mJuiceTypeface;
+    }
+
+    public TypefaceCollection getmArchRivalTypeface() {
+        return mArchRivalTypeface;
+    }
+
+    public TypefaceCollection getmActionManTypeface() {
+        return mActionManTypeface;
+    }
+
+    public TypefaceCollection getmSystemDefaultTypeface() {
+        return mSystemDefaultTypeface;
+    }
+
+    public TypefaceCollection getmUbuntuTypeface() {
+        return mUbuntuTypeface;
+    }
+
+    public TypefaceCollection getEnCartoonTypeface() {
+        return enCartoonTypeface;
+    }
+
+    public TypefaceCollection getEnComicaTypeface() {
+        return enComicaTypeface;
+    }
+
+    public TypefaceCollection getEnDaViaTypeface() {
+        return enDaViaTypeface;
+    }
+
+    public TypefaceCollection getEnFacileTypeface() {
+        return enFacileTypeface;
+    }
+
+    public TypefaceCollection getEnGoudosbTypeface() {
+        return enGoudosbTypeface;
+    }
+
+    public TypefaceCollection getEnKorenTypeface() {
+        return enKorenTypeface;
+    }
+
+    public TypefaceCollection getEnMariTypeface() {
+        return enMariTypeface;
+    }
+
+    public TypefaceCollection getEnNoodleTypeface() {
+        return enNoodleTypeface;
+    }
+
+    public TypefaceCollection getEnOneMoreTypeface() {
+        return enOneMoreTypeface;
+    }
+
+    public TypefaceCollection getEnSanFranciscoTypeface() {
+        return enSanFranciscoTypeface;
+    }
+
+    public TypefaceCollection getEnSfSppendTypeface() {
+        return enSfSppendTypeface;
+    }
+
+    public TypefaceCollection getEnTheMillionTypeface() {
+        return enTheMillionTypeface;
+    }
+
+    public TypefaceCollection getEnVagroundTypeface() {
+        return enVagroundTypeface;
+    }
+
+    public TypefaceCollection getEnWeissTypeface() {
+        return enWeissTypeface;
+    }
+
+    public TypefaceCollection getThBangnaTypeface() {
+        return thBangnaTypeface;
+    }
+
+    public TypefaceCollection getThCookiesTypeface() {
+        return thCookiesTypeface;
+    }
+
+    public TypefaceCollection getThDominoTypeface() {
+        return thDominoTypeface;
+    }
+
+    public TypefaceCollection getThDrjoyfukTypeface() {
+        return thDrjoyfukTypeface;
+    }
+
+    public TypefaceCollection getThPaaymaayTypeface() {
+        return thPaaymaayTypeface;
+    }
+
+    public TypefaceCollection getThParggarTypeface() {
+        return thParggarTypeface;
+    }
+
+    public TypefaceCollection getThPlediteTypeface() {
+        return thPlediteTypeface;
+    }
+
+    public TypefaceCollection getThPrachachonTypeface() {
+        return thPrachachonTypeface;
+    }
+
+    public TypefaceCollection getThRtemehuaTypeface() {
+        return thRtemehuaTypeface;
+    }
+
+    public TypefaceCollection getThWrTishTypeface() {
+        return thWrTishTypeface;
+    }
+
+    public static String getENDPOINT() {
+        return ENDPOINT;
+    }
+
+    public static Handler getApplicationHandler() {
+        return applicationHandler;
+    }
+
+    public ApiHandler getSomeApiHandler() {
+        return someApiHandler;
+    }
+
+    public static PrefManager getmPref() {
+        return mPref;
     }
 }

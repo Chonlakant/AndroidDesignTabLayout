@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
  */
 public class ChatMessage {
     private Bitmap mImage;
-
+    private String mUrlImage;
     private String messageText;
     private UserType userType;
     private Status messageStatus;
@@ -81,5 +81,13 @@ public class ChatMessage {
 
     public void setmImage(Bitmap mImage) {
         this.mImage = mImage;
+    }
+
+    public String getmUrlImage() {
+        return mUrlImage;
+    }
+
+    public void setmUrlImage(String mUrlImage) {
+        this.mUrlImage = mUrlImage;
     }
 }
