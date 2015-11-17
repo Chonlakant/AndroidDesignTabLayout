@@ -19,6 +19,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
@@ -89,7 +90,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         , NotificationCenter.NotificationCenterDelegate, View.OnClickListener {
     private ListView chatListView;
     public EditText chatEditText1;
-    private ArrayList<ChatMessage> chatMessages;
+     ArrayList<ChatMessage> chatMessages;
     private ImageView enterChatView1, emojiButton;
     private ChatListAdapter listAdapter;
     private EmojiView emojiView;
@@ -120,7 +121,7 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     private static File wallpaperDirectory;
     Bitmap bitmap;
     int storeposition = 0;
-
+    EditText editText;
 
     TextView txt_take_photo;
     TextView txt_gallery;
@@ -197,10 +198,20 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
                     (keyCode == KeyEvent.KEYCODE_ENTER)) {
                 // Perform action on key press
 
-                EditText editText = (EditText) v;
+                editText = (EditText) v;
+
+                ChatMessage chatMessage = new ChatMessage();
+
 
                 if (v == chatEditText1) {
-                    sendMessage(editText.getText().toString(), UserType.OTHER);
+                    bitmap = null;
+                    chatMessage.setMessageText(chatEditText1.getText().toString());
+                    chatMessage.setMessageTime(new Date().getTime());
+                    chatMessage.setTypeStyle(nameFont);
+                    chatMessage.setTypeColor(typeColor);
+                    chatMessage.setmType(ChatMessage.MSG_TYPE_TEXT);
+                    chatMessage.setUserType(UserType.OTHER);
+                    sendMessage(chatMessage);
 
                 }
 
@@ -217,12 +228,19 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
         @Override
         public void onClick(View v) {
-
+            ChatMessage chatMessage = new ChatMessage();
             if (v == enterChatView1) {
-                sendMessage(chatEditText1.getText().toString(), UserType.OTHER);
+                bitmap = null;
+                chatMessage.setMessageText(chatEditText1.getText().toString());
+                chatMessage.setMessageTime(new Date().getTime());
+                chatMessage.setTypeStyle(nameFont);
+                chatMessage.setTypeColor(typeColor);
+                chatMessage.setUserType(UserType.OTHER);
+                chatMessage.setmType(ChatMessage.MSG_TYPE_TEXT);
+                sendMessage(chatMessage);
                 chat_font.setVisibility(View.GONE);
                 chat_attament.setVisibility(View.GONE);
-                bitmap = null;
+
                 hideKeyboard(v);
             }
 
@@ -880,19 +898,47 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             bitmap = (Bitmap) data.getExtras().get("data");
-            imageUrl = data.getStringExtra("data");
-            sendMessage("", UserType.OTHER);
+            final int THUMBNAIL_HEIGHT = 75;//48
+            final int THUMBNAIL_WIDTH = 75;//66
+            Float width  = new Float(bitmap.getWidth());
+            Float height = new Float(bitmap.getHeight());
+            Float ratio = width/height;
+            bitmap = Bitmap.createScaledBitmap(bitmap, (int) (THUMBNAIL_HEIGHT * ratio), THUMBNAIL_HEIGHT, false);
 
-        }
-        if (requestCode == SELECT_PHOTO && resultCode == RESULT_OK && null != data) {
+            ChatMessage message = new ChatMessage();
+            message.setMessageStatus(Status.SENT);
+            message.setmImage(bitmap);
+            message.setUserType(UserType.OTHER);
+            message.setMessageTime(new Date().getTime());
+            message.setTypeStyle(nameFont);
+            message.setmType(ChatMessage.MSG_TYPE_CAMERA);
+            message.setTypeColor(typeColor);
+            sendMessage(message);
+
+        } else if (requestCode == SELECT_PHOTO && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
-            imageUrl = data.getStringExtra("data");
             InputStream imageStream = null;
             try {
                 imageStream = getContentResolver().openInputStream(selectedImage);
                 bitmap = BitmapFactory.decodeStream(imageStream);
+
+                final int THUMBNAIL_HEIGHT = 75;//48
+                final int THUMBNAIL_WIDTH = 75;//66
+                Float width  = new Float(bitmap.getWidth());
+                Float height = new Float(bitmap.getHeight());
+                Float ratio = width/height;
+                bitmap = Bitmap.createScaledBitmap(bitmap, (int) (THUMBNAIL_HEIGHT * ratio), THUMBNAIL_HEIGHT, false);
+
                 Log.e("dfgk", bitmap + "");
-                sendMessage("", UserType.OTHER);
+                ChatMessage message = new ChatMessage();
+                message.setMessageStatus(Status.SENT);
+                message.setmImage(bitmap);
+                message.setUserType(UserType.OTHER);
+                message.setMessageTime(new Date().getTime());
+                message.setTypeStyle(nameFont);
+                message.setmType(ChatMessage.MSG_TYPE_PHOTO);
+                message.setTypeColor(typeColor);
+                sendMessage(message);
 
 
             } catch (FileNotFoundException e) {
@@ -911,6 +957,17 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
 
                 String path = ChatUtil.getRealPathFromURIVideo(getActivity(), mFileURI);
                 File clip = new File(path);
+
+                ChatMessage message = new ChatMessage();
+                message.setMessageStatus(Status.SENT);
+                message.setMessageText("");
+                message.setmImage(bitmap);
+                message.setUserType(UserType.OTHER);
+                message.setMessageTime(new Date().getTime());
+                message.setTypeStyle(nameFont);
+                message.setmType(ChatMessage.MSG_TYPE_VIDEO);
+                message.setTypeColor(typeColor);
+                sendMessage(message);
 
             }
 
@@ -936,20 +993,12 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
     }
 
 
-    private void sendMessage(final String messageText, final UserType userType) {
-        if (messageText.trim().length() == 0)
-            return;
-        final ChatMessage message = new ChatMessage();
-        message.setMessageStatus(Status.SENT);
-        message.setMessageText(messageText);
+    private void sendMessage(final ChatMessage chatMessage) {
+//        if (chatMessage.getMessageText().trim().length() == 0)
+//            return;
+        //final ChatMessage message = new ChatMessage();
 
-        message.setmImage(bitmap);
-        message.setmUrlImage(imageUrl);
-        message.setUserType(userType);
-        message.setMessageTime(new Date().getTime());
-        message.setTypeStyle(nameFont);
-        message.setTypeColor(typeColor);
-        chatMessages.add(message);
+        chatMessages.add(chatMessage);
 
 
         if (listAdapter != null)
@@ -963,18 +1012,8 @@ public class MainActivityChat extends BaseActivity implements SizeNotifierRelati
         exec.schedule(new Runnable() {
             @Override
             public void run() {
-                message.setMessageStatus(Status.DELIVERED);
-                final ChatMessage message = new ChatMessage();
-                message.setMessageStatus(Status.SENT);
-                message.setTypeStyle(nameFont);
-                message.setTypeColor(typeColor);
-                message.setmUrlImage(imageUrl);
-                message.setmImage(bitmap);
-
-                message.setMessageText(messageText);
-                message.setUserType(UserType.SELF);
-                message.setMessageTime(new Date().getTime());
-                chatMessages.add(message);
+                //chatMessage.setUserType(UserType.SELF);
+                chatMessages.add(chatMessage);
 
                 MainActivityChat.this.runOnUiThread(new Runnable() {
                     public void run() {

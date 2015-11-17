@@ -6,6 +6,11 @@ import android.graphics.Bitmap;
  * Created by madhur on 17/01/15.
  */
 public class ChatMessage {
+    public final static int MSG_TYPE_TEXT 	= 0;
+    public final static int MSG_TYPE_CAMERA = 1;
+    public final static int MSG_TYPE_PHOTO 	= 2;
+    public final static int MSG_TYPE_VIDEO	= 3;
+
     private Bitmap mImage;
     private String mUrlImage;
     private String messageText;
@@ -13,6 +18,8 @@ public class ChatMessage {
     private Status messageStatus;
     private String typeStyle;
     private String typeColor;
+
+    private int mType;
 
 
     public  ChatMessage(){
@@ -89,5 +96,13 @@ public class ChatMessage {
 
     public void setmUrlImage(String mUrlImage) {
         this.mUrlImage = mUrlImage;
+    }
+
+    public int getmType() {
+        return mType;
+    }
+
+    public void setmType(int mType) {
+        this.mType = mType;
     }
 }

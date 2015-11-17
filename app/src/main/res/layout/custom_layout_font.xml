@@ -28,7 +28,7 @@
                 android:layout_marginTop="5dp"
                 android:textColor="#fff"
                 android:contentDescription="silver"
-                android:drawableTop="@drawable/us"
+                android:drawableTop="@drawable/en_language_icon"
                 android:gravity="center"
                 android:text="ENG"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -51,7 +51,7 @@
                 android:layout_marginTop="5dp"
                 android:contentDescription="silver"
                 android:textColor="#fff"
-                android:drawableTop="@drawable/th"
+                android:drawableTop="@drawable/th_language_icon"
                 android:gravity="center"
                 android:text="TH"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -167,9 +167,9 @@
                         android:id="@+id/btn_reset"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="#fff"
                         android:layout_gravity="right"
-                        android:drawableTop="@drawable/re"
-                        android:text="Reset"
+                        android:drawableTop="@drawable/colorful_reset_icon"
                         android:textSize="10dp" />
 
 

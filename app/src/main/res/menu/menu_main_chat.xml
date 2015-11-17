@@ -7,20 +7,20 @@
     <item
         android:id="@+id/action_attach"
         android:title=""
-        android:icon="@drawable/attach"
+        android:icon="@drawable/attach_icon"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_color"
         android:title=""
-        android:icon="@drawable/color"
+        android:icon="@drawable/colorful_icon_chat"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/context_menu"
         android:title=""
-        android:icon="@drawable/more_h"
+        android:icon="@drawable/more_icon"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
 

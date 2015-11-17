@@ -142,31 +142,31 @@ public class MainApplication extends Application {
                 .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/bangna_new.ttf"))
                 .create());
         thCookiesTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/cookies_lite.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/cookies_lite.ttf"))
                 .create());
         thDominoTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/DOMINO.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/DOMINO.ttf"))
                 .create());
         thDrjoyfukTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/DRjoyful.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/DRjoyful.ttf"))
                 .create());
         thPaaymaayTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/paaymaay_regular.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/paaymaay_regular.ttf"))
                 .create());
         thParggarTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/Parggar_font.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/Parggar_font.ttf"))
                 .create());
         thPlediteTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/PL_EDIT1_02.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/PL_EDIT1_02.ttf"))
                 .create());
         thPrachachonTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/Prachachon.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/Prachachon.ttf"))
                 .create());
         thRtemehuaTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/rtemehua.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/rtemehua.ttf"))
                 .create());
         thWrTishTypeface = (new TypefaceCollection.Builder()
-                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/eng/WR_Tish_Kid.ttf"))
+                .set(Typeface.NORMAL, Typeface.createFromAsset(getAssets(), "fonts/th/WR_Tish_Kid.ttf"))
                 .create());
 
 
