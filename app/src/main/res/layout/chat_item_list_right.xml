@@ -12,94 +12,79 @@
         android:visibility="gone" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp">
+        android:id="@+id/chat_item_layout_content"
+        style="@style/chat_item_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="right"
+        android:background="@drawable/chat_to_bg_selector">
 
 
-        <RelativeLayout
-            android:id="@+id/chat_item_layout_content"
-            style="@style/chat_item_content"
-            android:background="@drawable/chat_to_bg_selector"
-            android:layout_alignParentTop="true"
-            android:layout_alignRight="@+id/time_text"
-            android:layout_alignEnd="@+id/time_text">
+        <TextView
+            android:id="@+id/message_text"
+            style="@style/chat_item_text_content"
+            android:textSize="32dp" />
 
-            <TextView
-                android:id="@+id/message_text"
-                android:textSize="32dp"
-                style="@style/chat_item_text_content" />
-
-            <ImageView
-                android:id="@+id/photoImageView"
-                style="@style/chat_item_image_content" />
-
-            <ImageView
-                android:id="@+id/ic_play"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:background="@color/transparent"
-                android:padding="10dp"
-                android:src="@drawable/ic_play"
-                android:visibility="gone" />
-
-        </RelativeLayout>
 
         <ImageView
-            android:id="@+id/chat_item_fail"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/chat_item_layout_content"
-            android:background="@drawable/msg_state_fail_resend"
-            android:focusable="false"
+            android:id="@+id/photoImageView"
+            style="@style/chat_item_image_content" />
+
+        <ImageView
+            android:id="@+id/ic_play"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:background="@color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_play"
             android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/chat_item_fail"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/chat_item_layout_content"
+        android:background="@drawable/msg_state_fail_resend"
+        android:focusable="false"
+        android:visibility="gone" />
+
+
+    <ProgressBar
+        android:id="@+id/chat_item_progress"
+        style="@android:style/Widget.ProgressBar.Small.Inverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/chat_item_layout_content"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right">
 
         <ImageView
             android:id="@+id/user_reply_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_single_tick"
-            android:visibility="visible"
             android:layout_marginRight="10dp"
-            android:layout_alignTop="@+id/time_text"
-            android:layout_toLeftOf="@+id/time_text"
-            android:layout_toStartOf="@+id/time_text" />
+            android:src="@drawable/ic_single_tick" />
 
         <TextView
             android:id="@+id/time_text"
-            style="@style/chat_timings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:paddingBottom="5dp"
             android:text="17:10"
-            android:textColor="@color/gray"
-            
-            android:layout_marginEnd="8dp"
-            android:layout_alignBottom="@+id/chat_item_layout_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <ProgressBar
-            android:id="@+id/chat_item_progress"
-            style="@android:style/Widget.ProgressBar.Small.Inverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/chat_item_layout_content"
-            android:visibility="gone" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/textView34"
-            android:layout_alignBottom="@+id/user_reply_status"
-            android:layout_toLeftOf="@+id/chat_item_layout_content"
-            android:layout_toStartOf="@+id/chat_item_layout_content" />
-    </RelativeLayout>
+            android:textColor="@color/gray" />
+    </LinearLayout>
 
 </LinearLayout>

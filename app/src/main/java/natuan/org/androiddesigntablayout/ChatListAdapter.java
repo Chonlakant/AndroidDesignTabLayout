@@ -254,7 +254,6 @@ public class ChatListAdapter extends BaseAdapter {
                 holder2.timeTextView = (TextView) v.findViewById(R.id.time_text);
                 holder2.messageStatus = (ImageView) v.findViewById(R.id.user_reply_status);
                 holder2.photoImageView = (ImageView) v.findViewById(R.id.photoImageView);
-                holder2.textView34 = (TextView) v.findViewById(R.id.textView34);
                 holder2.ic_play = (ImageView) v.findViewById(R.id.ic_play);
                 v.setTag(holder2);
 
@@ -264,7 +263,7 @@ public class ChatListAdapter extends BaseAdapter {
 
             }
             final Bitmap bitmap;
-            holder2.textView34.setText(message.getmType() + "");
+
             Log.e("dsdsds", message.getmType() + "");
             switch (message.getmType()) {
                 case 0://text
@@ -332,13 +331,7 @@ public class ChatListAdapter extends BaseAdapter {
         return v;
     }
 
-    public String BitMapToString(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String temp = Base64.encodeToString(b, Base64.DEFAULT);
-        return temp;
-    }
+
 
     @Override
     public int getViewTypeCount() {
@@ -361,7 +354,7 @@ public class ChatListAdapter extends BaseAdapter {
     private class ViewHolder2 {
         public ImageView messageStatus;
         public TextView messageTextView;
-        public TextView timeTextView, textView34;
+        public TextView timeTextView;
         public ImageView photoImageView, ic_play;
 
     }
