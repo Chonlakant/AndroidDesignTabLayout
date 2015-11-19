@@ -20,7 +20,7 @@
             android:layout_marginTop="5dp"
             android:src="@drawable/candy_logo" />
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/ExListChild"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/txt_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

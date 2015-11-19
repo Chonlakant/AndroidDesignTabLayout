@@ -2,6 +2,7 @@ package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -54,13 +55,14 @@ import natuan.org.androiddesigntablayout.model.Posts;
 public class MainFragment extends BaseFragment {
     Toolbar toolbar;
 
-
     CustomExpandableListView listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    List<Posts> list = new ArrayList<>();
-    List<Posts> list2 = new ArrayList<>();
+    List<Posts> listMe = new ArrayList<>();
+    List<Posts> listGroup = new ArrayList<>();
+    List<Posts> listFavorite = new ArrayList<>();
+    List<Posts> listFriends = new ArrayList<>();
 
     public static final Integer[] images = {
             R.drawable.candy_logo,
@@ -72,20 +74,21 @@ public class MainFragment extends BaseFragment {
 
     public static final List<Posts> listurl = new ArrayList<>();
 
-    String name;
-    String strMe;
+    String stringMe;
+    String stringGroup;
+    String stringFavorite;
+    String stringFriends;
 
     List<String> me = new ArrayList<String>();
-    List<String> thor = new ArrayList<String>();
-    List<String> ironMan = new ArrayList<String>();
-    List<String> captainAmerica = new ArrayList<String>();
+    List<String> group = new ArrayList<String>();
+    List<String> favorite = new ArrayList<String>();
+    List<String> friends = new ArrayList<String>();
     Button btnNewGroup;
     private String message;
     TextView txt_profile_username, txt_profile_edit;
     ImageView ivUserAvatar;
 
     boolean isCheck = false;
-    Toolbar mToolbar;
 
     public static MainFragment getInstance(String message) {
         MainFragment mainFragment = new MainFragment();
@@ -98,11 +101,12 @@ public class MainFragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
         expListView = (ExpandableListView) rootView.findViewById(R.id.expand);
         btnNewGroup = (Button) rootView.findViewById(R.id.btn_new_group);
         ApiBus.getInstance().post(new SomeEvent());
 
-
+        btnNewGroup.setTypeface(type);
         prepareListData();
         listAdapter = new CustomExpandableListView(getActivity(), listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
@@ -308,10 +312,12 @@ public class MainFragment extends BaseFragment {
                         }
                     });
 
+                    String logo = listFriends.get(childPosition).getImage();
+
                     ImageView img_friend = (ImageView) dialog.findViewById(R.id.img_friend);
 
                     Picasso.with(getActivity())
-                            .load("http://fbi.dek-d.com/27/0333/9527/114608673")
+                            .load(logo)
                             .centerCrop()
                             .resize(200, 200)
                             .transform(new RoundedTransformation(100, 4))
@@ -343,7 +349,7 @@ public class MainFragment extends BaseFragment {
     @Subscribe
     public void getMovie(SuccessEvent event) {
 
-        for(int i = 0 ; i < event.getSomeResponse().size();i++){
+        for (int i = 0; i < event.getSomeResponse().size(); i++) {
             Log.e("Name:qwe", event.getSomeResponse().get(i).getPosts().get(i).getName());
         }
 
@@ -353,43 +359,91 @@ public class MainFragment extends BaseFragment {
     private void prepareListData() {
 
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-        asyncHttpClient.get("http://ihdmovie.xyz/root/api_movie/get_movie2.php?uid=1&cat=1", new JsonHttpResponseHandler() {
+        asyncHttpClient.get("http://api.vdomax.com/user/3082/relations", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 try {
 
                     if (response != null) {
-                        JSONArray ja = response.getJSONArray("posts");
+                        JSONArray ja = response.getJSONArray("friends");
                         for (int i = 0; i < ja.length(); i++) {
                             JSONObject obj = ja.getJSONObject(i);
-
+                            Log.e("aaaa", obj + "");
                             String name = obj.getString("name");
-                            String image = obj.getString("image");
+                            String image = obj.getString("avatar");
+
+                            String urlImage = "https://www.vdomax.com/" + image;
+
+                            String imageUrl = "http://www.mx7.com/i/91b/9SNAed.png";
 
                             Posts mainModel = new Posts();
                             mainModel.setName(name);
-                            mainModel.setImage(image);
-                            list.add(mainModel);
+                            mainModel.setImage(imageUrl);
+                            listMe.add(mainModel);
                             listurl.add(mainModel);
-                            list2.add(mainModel);
+                            listFriends.add(mainModel);
+
+                        }
+                        for (int j = 0; j < listMe.size(); j++) {
+                            stringMe = listMe.get(j).getName();
+                            me.add(stringMe);
+                        }
+                        for (int j = 0; j < listFriends.size(); j++) {
+                            stringFriends = listFriends.get(j).getName();
+                            friends.add(stringFriends);
                         }
 
-                        for (int i = 5; i < list.size(); i++) {
+                        JSONArray jo = response.getJSONArray("followers");
+                        for (int i = 0; i < jo.length(); i++) {
+                            JSONObject obj = jo.getJSONObject(i);
+                            Log.e("dddd", obj + "");
+                            String name = obj.getString("name");
+                            String image = obj.getString("avatar");
+                            String urlImage = "https://www.vdomax.com/" + image;
 
-                            name = list.get(i).getName();
-                            Log.e("zzzz", name);
+                            String imageUrl = "http://www.mx7.com/i/91b/9SNAed.png";
 
-                            thor.add(name);
-                            captainAmerica.add(name);
-                            ironMan.add(name);
+                            Posts postGroup = new Posts();
+                            postGroup.setName(name);
+                            postGroup.setImage(imageUrl);
+                            listGroup.add(postGroup);
+                            listurl.add(postGroup);
+
+                        }
+                        for (int j = 0; j < listGroup.size(); j++) {
+                            stringGroup = listGroup.get(j).getName();
+                            group.add(stringGroup);
                         }
 
-                        for (int j = 8; j < list2.size(); j++) {
-                            strMe = list.get(j).getName();
-                            me.add(strMe);
+
+                        JSONArray following = response.getJSONArray("following");
+                        for (int i = 0; i < following.length(); i++) {
+                            JSONObject obj = following.getJSONObject(i);
+                            Log.e("dddd", obj + "");
+                            String name = obj.getString("name");
+                            String image = obj.getString("avatar");
+                            String urlImage = "https://www.vdomax.com/" + image;
+
+                            String imageUrl = "http://www.mx7.com/i/91b/9SNAed.png";
+
+                            Posts postGroup = new Posts();
+                            postGroup.setName(name);
+                            postGroup.setImage(imageUrl);
+                            listFavorite.add(postGroup);
+                            listurl.add(postGroup);
+
                         }
+
+                        for (int j = 0; j < listFavorite.size(); j++) {
+                            stringFavorite = listFavorite.get(j).getName();
+                            favorite.add(stringFavorite);
+                        }
+
+
                         // expListView.expandGroup(0);
+                        // expListView.expandGroup(1);
+                        // expListView.expandGroup(2);
                         expListView.expandGroup(3);
 
                     }
@@ -417,9 +471,9 @@ public class MainFragment extends BaseFragment {
 
         // Header, Child data
         listDataChild.put(listDataHeader.get(0), me);
-        listDataChild.put(listDataHeader.get(1), thor);
-        listDataChild.put(listDataHeader.get(2), captainAmerica);
-        listDataChild.put(listDataHeader.get(3), ironMan);
+        listDataChild.put(listDataHeader.get(1), group);
+        listDataChild.put(listDataHeader.get(2), friends);
+        listDataChild.put(listDataHeader.get(3), favorite);
 
     }
 

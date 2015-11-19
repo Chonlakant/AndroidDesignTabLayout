@@ -112,12 +112,12 @@
     <orderEntry type="library" exported="" name="PhotoPicker-0.2.8" level="project" />
     <orderEntry type="library" exported="" name="flickrj-android-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="slf4j-android-1.7.7" level="project" />
-    <orderEntry type="library" exported="" name="transfuse-api-0.2.10" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.1.0" level="project" />
-    <orderEntry type="library" exported="" name="glide-3.6.1" level="project" />
+    <orderEntry type="library" exported="" name="transfuse-api-0.2.10" level="project" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
-    <orderEntry type="library" exported="" name="transfuse-core-0.2.10" level="project" />
+    <orderEntry type="library" exported="" name="glide-3.6.1" level="project" />
     <orderEntry type="library" exported="" name="prettysharedpreferences-1.0.2" level="project" />
+    <orderEntry type="library" exported="" name="transfuse-core-0.2.10" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="android-async-http-1.4.9" level="project" />
     <orderEntry type="library" exported="" name="okhttp-urlconnection-2.4.0" level="project" />

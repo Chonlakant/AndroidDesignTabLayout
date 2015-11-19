@@ -20,7 +20,7 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/candy_logo" />
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -29,7 +29,7 @@
             android:id="@+id/txt_count"
             android:layout_gravity="center_vertical" />
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/ExListHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

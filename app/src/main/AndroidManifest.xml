@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivityChat"
+            android:name=".activity.MainActivityTap"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -28,7 +28,7 @@
         </activity>
         <activity android:name=".acivityLogin.MainLogin" />
         <activity android:name=".acivityLogin.MainActivityDisplayFragmentLogin" />
-        <activity android:name=".activity.MainActivityTap" />
+        <!--<activity android:name=".activity.MainActivityTap" />-->
         <!-- <activity android:name=".MainActivityChat" /> -->
         <activity android:name=".activity.PostPhotoActivity" />
         <activity android:name=".activity.TakePhotoActivity2" />
