@@ -12,7 +12,7 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/search"
+        android:icon="@drawable/ic_more_search_invite"
         android:orderInCategory="100"
         android:title=""
         app:showAsAction="ifRoom" />
@@ -36,14 +36,12 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/action_send"
-        android:icon="@drawable/settings"
         android:orderInCategory="100"
         android:title="Send multi chats"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/Settings"
-        android:icon="@drawable/settings"
         android:orderInCategory="100"
         android:title="Settings"
         app:showAsAction="never" />

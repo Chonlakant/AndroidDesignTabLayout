@@ -7,7 +7,7 @@
     <item
         android:id="@+id/action_noti"
         android:title=""
-        android:icon="@drawable/noti"
+        android:icon="@drawable/ic_nav_bar_notification_icon"
         android:orderInCategory="100"
         app:showAsAction="ifRoom" />
 

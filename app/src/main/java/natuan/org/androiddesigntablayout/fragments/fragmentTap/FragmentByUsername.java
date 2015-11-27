@@ -1,5 +1,6 @@
 package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,8 @@ public class FragmentByUsername extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_by_username, container, false);
+
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
 
         return rootView;
     }

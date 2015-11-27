@@ -20,10 +20,10 @@
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="20dp"
                 android:hint="Email address*"
-                android:inputType="textEmailAddress"
-               />
+                android:layout_marginTop="25dp"
+                android:inputType="textEmailAddress" />
 
 
 
@@ -32,19 +32,20 @@
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="20dp"
                 android:hint="Password*"
+                android:layout_marginTop="25dp"
                 android:inputType="textPassword" />
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/textView3"
                 android:textStyle="bold"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/password"
                 android:text="Forgotten your password"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="15dp" />
 
 
 
@@ -82,14 +83,14 @@
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_facebook" />
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/txt_sign_up_facebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="Sign up with Facebook"
                 android:textColor="#335c99"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="15dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -109,23 +110,23 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
                     android:orientation="horizontal"
-                    android:paddingTop="80dp">
+                    android:paddingTop="65dp">
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="Not member? "
-                        android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        android:textSize="15dp"/>
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:id="@+id/txt_sign_up_now"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:textColor="#5db2d6"
                         android:text="Sign up now"
-                        android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        android:textSize="15dp"/>
                 </LinearLayout>
 
 

@@ -114,8 +114,8 @@
     <orderEntry type="library" exported="" name="slf4j-android-1.7.7" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="transfuse-api-0.2.10" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="glide-3.6.1" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="prettysharedpreferences-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="transfuse-core-0.2.10" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-22.2.0" level="project" />
@@ -129,15 +129,13 @@
     <orderEntry type="library" exported="" name="appcompat-v7-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="okhttp-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="codemodel-2.6" level="project" />
-    <orderEntry type="library" exported="" name="transfuse-bootstrap-0.2.10" level="project" />
     <orderEntry type="library" exported="" name="parceler-0.2.10" level="project" />
+    <orderEntry type="library" exported="" name="transfuse-bootstrap-0.2.10" level="project" />
     <orderEntry type="library" exported="" name="javax.inject-1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.4.0" level="project" />
-    <orderEntry type="module" module-name="shiftcolorpicker" exported="" />
     <orderEntry type="module" module-name="cvlibrary" exported="" />
     <orderEntry type="module" module-name="lib" exported="" />
-    <orderEntry type="module" module-name="alex" exported="" />
     <orderEntry type="module" module-name="librarygestureview" exported="" />
     <orderEntry type="module" module-name="labeiui" exported="" />
   </component>

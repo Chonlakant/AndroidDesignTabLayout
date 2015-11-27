@@ -1,22 +1,8 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#0081B3"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
-
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:background="?attr/colorPrimary"-->
-            <!--app:layout_scrollFlags="scroll|enterAlways"-->
-            <!--app:popupTheme="@style/MyMaterialTheme" />-->
-    <!--</android.support.design.widget.AppBarLayout>-->
+    android:layout_height="match_parent"
+    android:background="#0081B3">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -33,32 +19,32 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_marginTop="30dp"
                 android:id="@+id/imageView6"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
                 android:src="@drawable/done" />
 
-            <TextView
-                android:layout_marginTop="10dp"
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
                 android:text="Welcome to CandyChat"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#fff"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#fff"
                 android:text="Happy Chat Society"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#fff"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -69,21 +55,21 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
                     android:baselineAligned="false"
-                    android:layout_gravity="center_horizontal">
+                    android:orientation="horizontal">
 
                     <Button
-                        android:layout_marginBottom="20dp"
                         android:id="@+id/btn_start"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-
-                        android:background="@drawable/btn_done"
-                        android:textColor="#fff"
                         android:layout_gravity="bottom"
-                        android:text="START" />
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/btn_done"
+                        android:text="START"
+                        android:textColor="#fff"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>

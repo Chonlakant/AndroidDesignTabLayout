@@ -64,33 +64,47 @@
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
         </LinearLayout>
-
+        <View
+            android:layout_marginTop="5dp"
+            android:background="#B6B6B6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
                 android:id="@+id/wall"
+                android:src="@drawable/ic_media_menu_active"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Wall" />
 
-            <Button
+            <ImageView
                 android:id="@+id/media"
+                android:src="@drawable/ic_wall_menu_active"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Media" />
 
-            <Button
+            <ImageView
                 android:id="@+id/member"
+                android:src="@drawable/ic_member_menu_active"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Members" />
         </LinearLayout>
+
+        <View
+            android:layout_marginTop="5dp"
+            android:background="#B6B6B6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
         <LinearLayout
             android:id="@+id/contan_home"

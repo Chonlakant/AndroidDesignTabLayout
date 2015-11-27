@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.alexvasilkov.android.commons.state.InstanceStateManager;
 import com.alexvasilkov.events.Events;
 
 public class BaseActivityPhoto extends AppCompatActivity {
@@ -14,7 +13,7 @@ public class BaseActivityPhoto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        InstanceStateManager.restoreInstanceState(this, savedInstanceState);
+
     }
 
     @Override
@@ -25,7 +24,6 @@ public class BaseActivityPhoto extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        InstanceStateManager.saveInstanceState(this, outState);
         super.onSaveInstanceState(outState);
     }
 

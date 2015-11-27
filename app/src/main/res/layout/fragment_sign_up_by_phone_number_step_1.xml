@@ -18,17 +18,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
                 android:hint="Sign up by phone number"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
 
 
             <Spinner
+                android:layout_marginTop="10dp"
                 android:id="@+id/popupspinner"
                 android:spinnerMode="dialog"
                 android:layout_width="wrap_content"
@@ -40,10 +41,10 @@
                 android:id="@+id/input_number_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:hint="Enter your Phone number"
                 android:inputType="number"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="20dp"
                 android:layout_gravity="center_vertical" />
 
 
@@ -96,7 +97,8 @@
                             android:layout_marginLeft="5dp"
                             android:background="@drawable/btn"
                             android:text="Next"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold"
+                            android:textSize="20dp"
                             android:textColor="#3daae2" />
                     </LinearLayout>
                 </LinearLayout>
@@ -118,13 +120,13 @@
                     android:orientation="horizontal"
                     android:paddingTop="5dp">
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="Please confirm you country (country code) and
 enter your phone number "
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textSize="15dp"/>
 
                 </LinearLayout>
 

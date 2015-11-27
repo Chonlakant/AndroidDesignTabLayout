@@ -28,7 +28,7 @@
                     android:layout_marginLeft="10dp"
                     android:src="@drawable/photo" />
 
-                <TextView
+                <natuan.org.androiddesigntablayout.MyCustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -50,7 +50,7 @@
                         android:orientation="horizontal" />
 
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:id="@+id/menu_more_picture"
                         android:text="more"
                         android:textStyle="bold"
@@ -97,7 +97,7 @@
                     android:layout_marginLeft="10dp"
                     android:src="@drawable/voices" />
 
-                <TextView
+                <natuan.org.androiddesigntablayout.MyCustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -119,7 +119,7 @@
                         android:orientation="horizontal" />
 
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:id="@+id/menu_more_voices"
                         android:text="more"
                         android:textStyle="bold"
@@ -166,7 +166,7 @@
                     android:layout_marginLeft="10dp"
                     android:src="@drawable/film" />
 
-                <TextView
+                <natuan.org.androiddesigntablayout.MyCustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

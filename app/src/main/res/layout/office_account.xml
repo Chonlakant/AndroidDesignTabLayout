@@ -22,6 +22,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="Search by name"
+                android:background="@drawable/edit_text"
                 style="@style/venus.center"
                 android:drawableLeft="@drawable/searchc"
                 android:id="@+id/editText"

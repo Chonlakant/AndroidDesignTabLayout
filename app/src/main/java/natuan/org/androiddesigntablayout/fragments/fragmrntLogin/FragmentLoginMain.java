@@ -1,5 +1,6 @@
 package natuan.org.androiddesigntablayout.fragments.fragmrntLogin;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -24,8 +25,9 @@ public class FragmentLoginMain extends AppCompatActivity {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_view_login, container, false);
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/SWZ721BR.ttf");
 
-
+        btnLogin.setTypeface(type);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentWall;
@@ -13,16 +14,16 @@ import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentInfomatio
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentInfomation_group_data;
 
 public class MianHomGroup extends BaseActivity {
-    Button wall, media, member;
+    ImageView wall, media, member;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_info_group);
 
-        wall = (Button) findViewById(R.id.wall);
-        media = (Button) findViewById(R.id.media);
-        member = (Button) findViewById(R.id.member);
+        wall = (ImageView) findViewById(R.id.wall);
+        media = (ImageView) findViewById(R.id.media);
+        member = (ImageView) findViewById(R.id.member);
 
         FragmentWall threeFragment = new FragmentWall();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

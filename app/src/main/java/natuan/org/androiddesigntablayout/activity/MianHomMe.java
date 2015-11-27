@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +19,7 @@ import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentWall;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentInfomation_home_me_data;
 
 public class MianHomMe extends BaseActivity {
-    Button btn_wall, media;
+    ImageView btn_wall, media;
     String[] DayOfWeek = {"Only me", "Singel"};
 
     @Override
@@ -27,8 +28,8 @@ public class MianHomMe extends BaseActivity {
         setContentView(R.layout.fragment_info_home);
 
 
-        btn_wall = (Button) findViewById(R.id.btn_wall);
-        media = (Button) findViewById(R.id.media);
+        btn_wall = (ImageView) findViewById(R.id.btn_wall);
+        media = (ImageView) findViewById(R.id.media);
 
         Spinner mySpinner = (Spinner) findViewById(R.id.button3);
         mySpinner.setAdapter(new MyCustomAdapter(getApplicationContext(), R.layout.row, DayOfWeek));

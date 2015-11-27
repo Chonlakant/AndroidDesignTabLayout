@@ -27,13 +27,14 @@ import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.AdapterMore;
 import natuan.org.androiddesigntablayout.fragments.fragmentTattooStore.TattooStoreFragment;
 
+
 public class FragmentMore extends Fragment {
     Toolbar toolbar;
     AdapterMore mAdpater;
     GridView gridView;
     ImageView imag_setting, imag_profile;
     LinearLayout click;
-    int[] res = {R.drawable.d_b, R.drawable.adduer_b, R.drawable.setting_b, R.drawable.st_b, R.drawable.noti_b, R.drawable.sp_b, R.drawable.id_b, R.drawable.hp_b, R.drawable.sing_up_b};
+    int[] res = {R.drawable.ic_chat_pop_contact, R.drawable.ic_activities_add, R.drawable.ic_activities_setting, R.drawable.ic_activities_officialaccount, R.drawable.ic_activities_notice, R.drawable.ic_activities_tell, R.drawable.ic_activities_tips, R.drawable.ic_activities_support, R.drawable.ic_doodle};
     String[] title = {"Sticker shop", "Add friends", "Settings", "Official accounts", "Notices", "Tell friend", "Tips & Tricks", "Help & Support", "Put doodle"};
 
     public static FragmentMore getInstance(String message) {
@@ -50,8 +51,12 @@ public class FragmentMore extends Fragment {
         gridView = (GridView) rootView.findViewById(R.id.gridView);
         imag_profile = (ImageView) rootView.findViewById(R.id.imag_profile);
         click = (LinearLayout) rootView.findViewById(R.id.click);
-        imag_setting = (ImageView) rootView.findViewById(R.id.imag_setting);
         mAdpater = new AdapterMore(getActivity(), title, res);
+
+
+//        click.setPadding(10, 10, 10, 10);
+//        click.setBackgroundDrawable(new Border(0xff0000ff, 10));
+
         gridView.setAdapter(mAdpater);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,14 +92,6 @@ public class FragmentMore extends Fragment {
                 }
             }
         });
-        imag_setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ActivityChatSetting.class);
-                startActivity(i);
-
-            }
-        });
 
         click.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +115,7 @@ public class FragmentMore extends Fragment {
             }
         });
         Picasso.with(getActivity())
-                .load("http://pe2.isanook.com/sp/0/ud/7/37796/353091-01.jpg")
+                .load("http://www.mx7.com/i/91b/9SNAed.png")
                 .centerCrop()
                 .resize(200, 200)
                 .transform(new RoundedTransformation(100, 4))
@@ -137,8 +134,8 @@ public class FragmentMore extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-        // toolbar.inflateMenu(R.menu.menu_main_recent_chat);
-        toolbar.setTitle("Add Frinds");
+         toolbar.inflateMenu(R.menu.menu_main_more);
+        toolbar.setTitle("Avtivites");
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.menu_main_noti,menu);
     }
@@ -146,14 +143,10 @@ public class FragmentMore extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.action_add:
-//                Toast.makeText(getActivity(), "Add", Toast.LENGTH_SHORT).show();
-//                FragmentAddFriends fragment = new FragmentAddFriends();
-//                FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.add(R.id.flContainer, fragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-//                return true;
+            case R.id.action_setting:
+                Intent i = new Intent(getActivity(), ActivityChatSetting.class);
+                startActivity(i);
+                return true;
 
 
         }

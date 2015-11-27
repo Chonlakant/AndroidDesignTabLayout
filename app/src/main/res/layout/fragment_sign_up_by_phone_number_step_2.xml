@@ -19,19 +19,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Sign up by phone number"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="20dp"
                 android:textStyle="bold" />
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/txt_show_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_marginTop="8dp"
+                android:textSize="15dp"
                 android:text="+6624241515"
                 android:textColorHint="#000" />
         </LinearLayout>
@@ -39,9 +39,9 @@
 
 
             <EditText
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:id="@+id/input_email"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -50,8 +50,8 @@
 
 
             <EditText
-                android:layout_marginTop="10dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_marginTop="25dp"
+                android:textSize="20dp"
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,13 +66,13 @@
             android:layout_gravity="right"
             android:layout_marginTop="5dp">
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/password"
                 android:text="*must be 6-24 characters"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                android:textSize="15dp"/>
         </android.support.design.widget.TextInputLayout>
 
 
@@ -104,13 +104,13 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/check_show_password" />
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="Show my password"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -123,11 +123,11 @@
                     android:layout_weight="1"
                     android:orientation="vertical" >
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="15dp"
                         android:text="By registraion as a member the CandyChat in any way you  accpet these terms  of use and privacy policy"
                         android:id="@+id/textView23" />
                 </LinearLayout>
@@ -146,14 +146,14 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <natuan.org.androiddesigntablayout.MyCustomTextView
                             android:layout_marginLeft="60dp"
                             android:id="@+id/txt_skip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:text="SKIP"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            android:textSize="20dp" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -162,7 +162,7 @@
                             android:layout_marginRight="5dp"
                             android:orientation="vertical">
 
-                            <TextView
+                            <natuan.org.androiddesigntablayout.MyCustomTextView
                                 android:id="@+id/btn_register_now"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
                                 android:textStyle="bold"
                                 android:textColor="#0FA6E0"
                                 android:background="@drawable/spinner_item_border"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
+                                android:textSize="20dp" />
 
                         </LinearLayout>
                     </LinearLayout>

@@ -27,7 +27,7 @@
                 android:id="@+id/img_info"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/im"
+                android:src="@drawable/ic_help_pop_contact"
                 android:layout_gravity="center_vertical" />
             <TextView
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
                     android:id="@+id/imageView7"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/settings"
+                    android:src="@drawable/ic_pop_setting"
                     android:layout_gravity="right" />
             </LinearLayout>
 

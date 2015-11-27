@@ -1,6 +1,7 @@
 package natuan.org.androiddesigntablayout.acivityLogin;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -34,20 +35,26 @@ public class MainLogin extends BaseActivity {
     Button btnSignIn;
     LinearLayout view_toolbar_login;
     Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_main_view_login);
 
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/SWZ721BR.ttf");
+
+
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnSignIn = (Button) findViewById(R.id.btn_sign_in);
+        btnLogin.setTypeface(type);
+        btnSignIn.setTypeface(type);
         LoginAndSignIn();
 //        getSupportActionBar().hide();
         ApiBus.getInstance().post(new SomeEvent());
 
     }
 
-    public void LoginAndSignIn(){
+    public void LoginAndSignIn() {
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {

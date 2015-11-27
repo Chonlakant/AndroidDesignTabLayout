@@ -28,7 +28,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/im" />
+                android:src="@drawable/ic_help_pop_contact" />
 
             <TextView
                 android:id="@+id/textView20"
@@ -51,7 +51,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/star_b" />
+                android:src="@drawable/ic_fave_pop_contact" />
 
         </LinearLayout>
 
@@ -88,34 +88,38 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/user" />
+                android:src="@drawable/user"
+                android:layout_gravity="center_vertical" />
 
             <ImageView
                 android:id="@+id/img_friend_2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/user" />
+                android:src="@drawable/user"
+                android:layout_gravity="center_vertical" />
 
             <ImageView
                 android:id="@+id/img_friend_3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/user" />
+                android:src="@drawable/user"
+                android:layout_gravity="center_vertical" />
             <ImageView
                 android:id="@+id/img_friend_4"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/user" />
+                android:src="@drawable/user"
+                android:layout_gravity="center_vertical" />
 
             <ImageView
                 android:id="@+id/img_next"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/next_s"
+                android:src="@drawable/ic_view_more_group"
                 android:layout_gravity="center_vertical" />
 
         </LinearLayout>

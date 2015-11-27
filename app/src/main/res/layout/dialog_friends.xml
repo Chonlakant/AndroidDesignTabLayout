@@ -27,7 +27,7 @@
                 android:id="@+id/img_info"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/im"
+                android:src="@drawable/ic_help_pop_contact"
                 android:layout_gravity="center_vertical" />
 
             <TextView
@@ -50,7 +50,7 @@
                 android:id="@+id/satr"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/star_b"
+                android:src="@drawable/ic_fave_pop_contact"
                 android:layout_gravity="center_vertical" />
 
         </LinearLayout>

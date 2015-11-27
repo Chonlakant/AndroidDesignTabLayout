@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <TextView
+                <natuan.org.androiddesigntablayout.MyCustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/person_name"
@@ -40,7 +40,7 @@
                     android:singleLine="true"
                     android:ellipsize="end"/>
 
-                <TextView
+                <natuan.org.androiddesigntablayout.MyCustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/person_age"

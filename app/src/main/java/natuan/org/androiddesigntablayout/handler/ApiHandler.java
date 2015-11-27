@@ -4,10 +4,19 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.squareup.otto.Subscribe;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.event.SomeEvent;
 import natuan.org.androiddesigntablayout.event.SuccessEvent;
 import natuan.org.androiddesigntablayout.model.Posts;
@@ -46,7 +55,7 @@ public class ApiHandler {
                 ArrayList<postss> list = new ArrayList<postss>();
 
 
-                for(int i = 0 ; i < postss.getPosts().size();i++ ){
+                for (int i = 0; i < postss.getPosts().size(); i++) {
                     list.add(postss);
                     Log.e("SizeGetMoview", list.size() + "");
                 }
@@ -55,9 +64,11 @@ public class ApiHandler {
 
             @Override
             public void failure(RetrofitError error) {
-            Log.e("7777","2222");
+                Log.e("7777", "2222");
             }
         });
 
     }
+
+
 }

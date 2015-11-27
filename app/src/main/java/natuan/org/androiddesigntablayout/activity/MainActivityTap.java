@@ -1,20 +1,24 @@
 package natuan.org.androiddesigntablayout.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import butterknife.InjectView;
+import natuan.org.androiddesigntablayout.CustomViewPager;
 import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.adapter.FragmentPageAdapter;
 import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentFeedView;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentCamera;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentMore;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.FragmentRecentChats;
 import natuan.org.androiddesigntablayout.fragments.fragmentTap.MainFragment;
 import natuan.org.androiddesigntablayout.impls.OnFragmentInteractionListener;
-import natuan.org.androiddesigntablayout.widgets.CustomViewPager;
-import natuan.org.androiddesigntablayout.widgets.adapters.FragmentPageAdapter;
 
 
 public class MainActivityTap extends BaseActivity implements OnFragmentInteractionListener {
@@ -22,7 +26,7 @@ public class MainActivityTap extends BaseActivity implements OnFragmentInteracti
     CustomViewPager mViewpager;
     @InjectView(R.id.tabs)
     TabLayout mTabs;
-    Toolbar mToolbar;
+
 
 
     private FragmentPageAdapter pageAdapter;
@@ -43,19 +47,24 @@ public class MainActivityTap extends BaseActivity implements OnFragmentInteracti
         mViewpager.setPagingEnabled(false);
         setupViewPager(mViewpager);
 
+
+
         setupTabLayout(mTabs);
+
+
 
     }
 
 
     public void setupViewPager(ViewPager viewPager) {
         pageAdapter = new FragmentPageAdapter(getApplicationContext(), getSupportFragmentManager());
-        pageAdapter.addFragment(FragmentFeedView.getInstance(library), "Timeline", R.drawable.clock);
-        pageAdapter.addFragment(MainFragment.getInstance(recents), "Friends", R.drawable.user);
-        pageAdapter.addFragment(FragmentCamera.getInstance(favourites), "Camera", R.drawable.camera_addon);
-        pageAdapter.addFragment(FragmentRecentChats.getInstance(notifications), "Chats", R.drawable.chat);
-        pageAdapter.addFragment(FragmentMore.getInstance(settings), "more", R.drawable.more);
+        pageAdapter.addFragment(FragmentFeedView.getInstance(library), "Timeline", R.drawable.ic_time_line,"3");
+        pageAdapter.addFragment(MainFragment.getInstance(recents), "Friends", R.drawable.ic_friends,"");
+        pageAdapter.addFragment(FragmentCamera.getInstance(favourites), "Camera", R.drawable.ic_photo,"");
+        pageAdapter.addFragment(FragmentRecentChats.getInstance(notifications), "Chats", R.drawable.ic_chat, "9");
+        pageAdapter.addFragment(FragmentMore.getInstance(settings), "more", R.drawable.ic_more_tap,"");
         viewPager.setAdapter(pageAdapter);
+
     }
 
     public void setupTabLayout(TabLayout tabLayout) {
@@ -67,6 +76,7 @@ public class MainActivityTap extends BaseActivity implements OnFragmentInteracti
             tab.setCustomView(pageAdapter.getTabView(i));
         }
         tabLayout.requestFocus();
+
     }
 
 

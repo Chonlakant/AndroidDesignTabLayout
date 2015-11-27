@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <natuan.org.androiddesigntablayout.MyCustomTextView
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_vertical">
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:id="@+id/textView19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             </LinearLayout>
 
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/tvComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <natuan.org.androiddesigntablayout.MyCustomTextView
                     android:id="@+id/tvAgo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                     android:textColor="@color/material_drawer_secondary_text"
                     android:textSize="12dp" />
 
-                <TextView
+                <natuan.org.androiddesigntablayout.MyCustomTextView
                     android:id="@+id/comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

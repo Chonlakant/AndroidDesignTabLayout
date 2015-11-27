@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -23,8 +22,6 @@ import java.util.List;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.TopMovieListView;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
-import natuan.org.androiddesigntablayout.activity.ImageViewSampleActivity;
-import natuan.org.androiddesigntablayout.adapter.AdapterChatInfomation;
 import natuan.org.androiddesigntablayout.adapter.AdapterListViewChatInfomation;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewHorizontalMedia;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewHorizontalVideos;
@@ -86,10 +83,7 @@ public class FragmentInfomation extends Fragment implements TopMovieListView {
             public void onItemClick(View view, int position) {
                 String imagUrl = articles.get(position).getImage();
                 String title = articles.get(position).getName();
-                Intent i = new Intent(getActivity(), ImageViewSampleActivity.class);
-                i.putExtra("imagUrl", imagUrl);
-                i.putExtra("title", title);
-                startActivity(i);
+
             }
         });
 

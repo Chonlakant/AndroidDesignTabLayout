@@ -20,7 +20,7 @@
         android:paddingLeft="@dimen/padding_size_layout_medium"
         android:paddingRight="@dimen/padding_size_layout_medium">
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         android:paddingRight="@dimen/padding_size_layout_medium"
         android:visibility="gone">
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/smile_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 android:layout_marginRight="6dp"
                 android:src="@drawable/ic_clip" />
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

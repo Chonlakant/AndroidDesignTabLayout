@@ -20,9 +20,9 @@ import natuan.org.androiddesigntablayout.model.postss;
 
 public class AdapterRecentChats extends BaseAdapter {
     Context mContext;
-    ArrayList<postss> list = new ArrayList<>();
+    ArrayList<Posts> list = new ArrayList<>();
 
-    public AdapterRecentChats(Context context, ArrayList<postss> list) {
+    public AdapterRecentChats(Context context, ArrayList<Posts> list) {
         this.mContext = context;
         this.list = list;
 
@@ -43,7 +43,7 @@ public class AdapterRecentChats extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         ViewHolder viewHolder;
 
-        postss i = list.get(position);
+        Posts i = list.get(position);
         LayoutInflater mInflater =
                 (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -56,14 +56,14 @@ public class AdapterRecentChats extends BaseAdapter {
         }
 
 
-        viewHolder.txt_name.setText(i.getPosts().get(position).getName());
+        viewHolder.txt_name.setText(i.getName());
 
 
-        viewHolder.txt_msg.setText(i.getPosts().get(position).getUrl());
+        viewHolder.txt_msg.setText(i.getName());
 
 
         Picasso.with(mContext)
-                .load(i.getPosts().get(position).getImage())
+                .load(i.getImage())
                 .centerCrop()
                 .resize(200, 200)
                 .transform(new RoundedTransformation(100, 4))

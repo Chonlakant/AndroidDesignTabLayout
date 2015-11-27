@@ -1,5 +1,6 @@
 package natuan.org.androiddesigntablayout.fragments.fragmrntLogin;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -31,18 +32,21 @@ public class FragmentUserNameSetting extends Fragment {
     CheckBox imgAllowAdd;
     //@InjectView(R.id.img_auto_add_friend)
     CheckBox imgAutoAddFriend;
-   // @InjectView(R.id.btn_done)
+    // @InjectView(R.id.btn_done)
     Button btnDone;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.username_setting, container, false);
-
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
 
         dtUserName = (EditText) rootView.findViewById(R.id.input_username);
         imgAvatar = (ImageView) rootView.findViewById(R.id.img_avatar);
         imgAllowAdd = (CheckBox) rootView.findViewById(R.id.img_allow_add);
         imgAutoAddFriend = (CheckBox) rootView.findViewById(R.id.img_auto_add_friend);
+
         btnDone = (Button) rootView.findViewById(R.id.btn_done);
+        btnDone.setTypeface(type);
+        dtUserName.setTypeface(type);
 
         Done();
         return rootView;

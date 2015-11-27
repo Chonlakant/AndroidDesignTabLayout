@@ -21,10 +21,10 @@
 
             <ImageView
                 android:id="@+id/img_edit_profile"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/add_candy" />
+                android:src="@drawable/ic_profile_photo" />
             <EditText
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
@@ -43,7 +43,7 @@
             android:layout_gravity="right"
             android:orientation="vertical">
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -57,12 +57,14 @@
             android:orientation="horizontal">
 
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:layout_marginTop="5dp"
                 android:layout_gravity="center_vertical"
                 android:text="Group members "
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textSize="15dp"/>
 
         </LinearLayout>
 
@@ -76,20 +78,27 @@
             android:layout_height="fill_parent">
 
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_gravity="center_horizontal">
                 <EditText
+                    android:layout_weight="1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="Search by name"
                     style="@style/venus.center"
-                    android:drawableLeft="@drawable/searchc"
                     android:id="@+id/editText"
                     android:layout_gravity="center_horizontal" />
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_plus_group"
+                    android:id="@+id/imageView11" />
 
             </LinearLayout>
 

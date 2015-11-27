@@ -1,6 +1,7 @@
 package natuan.org.androiddesigntablayout.fragments.fragmrntLogin;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -39,9 +40,12 @@ public class FragmentSignByPhoneStep1 extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sign_up_by_phone_number_step_1, container, false);
-
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
         dtInputPhone = (EditText) rootView.findViewById(R.id.input_number_phone);
         btnNext = (Button) rootView.findViewById(R.id.btn_next);
+
+        btnNext.setTypeface(type);
+        dtInputPhone.setTypeface(type);
 
         final Spinner mySpinner = (Spinner) rootView.findViewById(R.id.popupspinner);
         mySpinner.setPrompt("Choose your country");

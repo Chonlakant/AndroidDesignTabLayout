@@ -6,31 +6,46 @@
     android:orientation="vertical">
 
     <LinearLayout
-
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:background="#EEE"
         android:orientation="horizontal">
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_write_icon_top"
+            android:id="@+id/imageView20"
+            android:layout_gravity="center_vertical" />
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/txt_write"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/sing_up_b"
             android:text="Write"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="16dp" />
+
+        <ImageView
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_info_picture_icon_top"
+            android:layout_gravity="center_vertical" />
 
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/textView29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,21 +53,31 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/photo_b"
+            android:layout_marginBottom="5dp"
             android:text="Photo"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="16dp" />
 
-        <TextView
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_sticker_icon_top"
+            android:layout_gravity="center_vertical" />
+
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/textView30"
+            android:layout_marginBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/d_b"
             android:text="Sticker"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="16dp" />
 
 
     </LinearLayout>
@@ -66,6 +91,7 @@
         android:background="#B6B6B6" />
 
     <LinearLayout
+        android:visibility="gone"
         android:background="#EEE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -25,7 +25,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
 
-import com.alexvasilkov.android.commons.state.InstanceStateManager;
 import com.alexvasilkov.events.Events;
 
 import butterknife.ButterKnife;
@@ -100,7 +99,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        InstanceStateManager.restoreInstanceState(this, savedInstanceState);
         mContext = this;
 
     }
@@ -142,7 +140,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        InstanceStateManager.saveInstanceState(this, outState);
         super.onSaveInstanceState(outState);
     }
 

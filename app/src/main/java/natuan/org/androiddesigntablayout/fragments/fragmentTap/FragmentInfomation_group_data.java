@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,10 +18,7 @@ import java.util.List;
 
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.TopMovieListView;
-import natuan.org.androiddesigntablayout.activity.AdvancedDemoActivity;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
-import natuan.org.androiddesigntablayout.activity.ImageViewSampleActivity;
-import natuan.org.androiddesigntablayout.adapter.AdapterChatInfomation;
 import natuan.org.androiddesigntablayout.adapter.AdapterListViewChatInfomation;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewHorizontalMedia;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewHorizontalVideos;
@@ -66,8 +62,7 @@ public class FragmentInfomation_group_data extends Fragment implements TopMovieL
         menu_more_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), AdvancedDemoActivity.class);
-                startActivity(i);
+
             }
         });
 
@@ -87,10 +82,7 @@ public class FragmentInfomation_group_data extends Fragment implements TopMovieL
 
                 String imagUrl = articles.get(position).getImage();
                 String title = articles.get(position).getName();
-                Intent i = new Intent(getActivity(), ImageViewSampleActivity.class);
-                i.putExtra("imagUrl", imagUrl);
-                i.putExtra("title", title);
-                startActivity(i);
+
             }
         });
 

@@ -36,7 +36,6 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.BaseFragment;
-import natuan.org.androiddesigntablayout.MainActivityChat;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.RoundedTransformation;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
@@ -66,9 +65,9 @@ public class MainFragment extends BaseFragment {
 
     public static final Integer[] images = {
             R.drawable.candy_logo,
-            R.drawable.group,
-            R.drawable.star,
-            R.drawable.user
+            R.drawable.ic_group_friends,
+            R.drawable.ic_favorite_friends,
+            R.drawable.ic_friend_arrow_up
     };
 
 
@@ -89,7 +88,7 @@ public class MainFragment extends BaseFragment {
     ImageView ivUserAvatar;
 
     boolean isCheck = false;
-
+    boolean checkData = false;
     public static MainFragment getInstance(String message) {
         MainFragment mainFragment = new MainFragment();
         Bundle bundle = new Bundle();
@@ -107,7 +106,16 @@ public class MainFragment extends BaseFragment {
         ApiBus.getInstance().post(new SomeEvent());
 
         btnNewGroup.setTypeface(type);
-        prepareListData();
+    Log.e("checkData",checkData+"");
+        if(checkData == false){
+            prepareListData();
+            checkData = true;
+            Log.e("checkData",checkData+"");
+        }else{
+            Toast.makeText(getContext(),"NO",Toast.LENGTH_SHORT).show();
+        }
+
+
         listAdapter = new CustomExpandableListView(getActivity(), listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
 
@@ -152,8 +160,7 @@ public class MainFragment extends BaseFragment {
                     txt_chat.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(getActivity(), MainActivityChat.class);
-                            startActivity(i);
+
                             dialog.dismiss();
                         }
                     });
@@ -202,8 +209,6 @@ public class MainFragment extends BaseFragment {
                     txt_chat.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(getActivity(), MainActivityChat.class);
-                            startActivity(i);
                             dialog.dismiss();
                         }
                     });
@@ -267,8 +272,7 @@ public class MainFragment extends BaseFragment {
                     txt_chat.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(getActivity(), MainActivityChat.class);
-                            startActivity(i);
+
                             dialog.dismiss();
                         }
                     });
@@ -293,8 +297,7 @@ public class MainFragment extends BaseFragment {
                     txt_chat.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent i = new Intent(getActivity(), MainActivityChat.class);
-                            startActivity(i);
+
                             dialog.dismiss();
                         }
                     });
@@ -357,7 +360,6 @@ public class MainFragment extends BaseFragment {
     }
 
     private void prepareListData() {
-
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
         asyncHttpClient.get("http://api.vdomax.com/user/3082/relations", new JsonHttpResponseHandler() {
             @Override
@@ -369,26 +371,30 @@ public class MainFragment extends BaseFragment {
                         JSONArray ja = response.getJSONArray("friends");
                         for (int i = 0; i < ja.length(); i++) {
                             JSONObject obj = ja.getJSONObject(i);
-                            Log.e("aaaa", obj + "");
                             String name = obj.getString("name");
                             String image = obj.getString("avatar");
-
-                            String urlImage = "https://www.vdomax.com/" + image;
-
+                            Log.e("aaaa", name + "");
                             String imageUrl = "http://www.mx7.com/i/91b/9SNAed.png";
 
-                            Posts mainModel = new Posts();
-                            mainModel.setName(name);
-                            mainModel.setImage(imageUrl);
-                            listMe.add(mainModel);
-                            listurl.add(mainModel);
-                            listFriends.add(mainModel);
+
+                            boolean check = false;
+                            if(check != true){
+                                Posts mainModel = new Posts();
+                                mainModel.setName(name);
+                                mainModel.setImage(imageUrl);
+                               // listMe.add(mainModel);
+                                listurl.add(mainModel);
+                                listFriends.add(mainModel);
+                                check = true;
+                            }else{
+                                listFriends.clear();
+                            }
 
                         }
-                        for (int j = 0; j < listMe.size(); j++) {
-                            stringMe = listMe.get(j).getName();
-                            me.add(stringMe);
-                        }
+//                        for (int j = 0; j < listMe.size(); j++) {
+//                            stringMe = listMe.get(j).getName();
+//                            me.add(stringMe);
+//                        }
                         for (int j = 0; j < listFriends.size(); j++) {
                             stringFriends = listFriends.get(j).getName();
                             friends.add(stringFriends);
@@ -397,7 +403,6 @@ public class MainFragment extends BaseFragment {
                         JSONArray jo = response.getJSONArray("followers");
                         for (int i = 0; i < jo.length(); i++) {
                             JSONObject obj = jo.getJSONObject(i);
-                            Log.e("dddd", obj + "");
                             String name = obj.getString("name");
                             String image = obj.getString("avatar");
                             String urlImage = "https://www.vdomax.com/" + image;
@@ -420,7 +425,6 @@ public class MainFragment extends BaseFragment {
                         JSONArray following = response.getJSONArray("following");
                         for (int i = 0; i < following.length(); i++) {
                             JSONObject obj = following.getJSONObject(i);
-                            Log.e("dddd", obj + "");
                             String name = obj.getString("name");
                             String image = obj.getString("avatar");
                             String urlImage = "https://www.vdomax.com/" + image;
@@ -441,10 +445,10 @@ public class MainFragment extends BaseFragment {
                         }
 
 
-                        // expListView.expandGroup(0);
+                         expListView.expandGroup(0);
                         // expListView.expandGroup(1);
-                        // expListView.expandGroup(2);
-                        expListView.expandGroup(3);
+                         expListView.expandGroup(2);
+                        //expListView.expandGroup(3);
 
                     }
 
@@ -468,6 +472,8 @@ public class MainFragment extends BaseFragment {
         listDataHeader.add("Favorite");
         listDataHeader.add("Friends");
 
+
+        me.add("CandyChat");
 
         // Header, Child data
         listDataChild.put(listDataHeader.get(0), me);
@@ -548,6 +554,5 @@ public class MainFragment extends BaseFragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }

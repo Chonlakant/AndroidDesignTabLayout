@@ -3,17 +3,14 @@ package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -21,14 +18,11 @@ import java.util.List;
 
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.TopMovieListView;
-import natuan.org.androiddesigntablayout.activity.AdvancedDemoActivity;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
-import natuan.org.androiddesigntablayout.activity.ImageViewSampleActivity;
 import natuan.org.androiddesigntablayout.adapter.AdapterChatInfomation;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewHorizontalMedia;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewHorizontalVideos;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecyclerviewHorizontalVoices;
-import natuan.org.androiddesigntablayout.fragments.fragmentFeed.FragmentWall;
 import natuan.org.androiddesigntablayout.model.Posts;
 import natuan.org.androiddesigntablayout.presenter.MainPresenter;
 
@@ -66,8 +60,7 @@ public class FragmentInfomation_home_me_data extends Fragment implements TopMovi
         menu_pictures.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent i =new Intent(getActivity(), AdvancedDemoActivity.class);
-                startActivity(i);
+
             }
         });
 
@@ -86,10 +79,7 @@ public class FragmentInfomation_home_me_data extends Fragment implements TopMovi
             public void onItemClick(View view, int position) {
                 String imagUrl = articles.get(position).getImage();
                 String title = articles.get(position).getName();
-                Intent i = new Intent(getActivity(), ImageViewSampleActivity.class);
-                i.putExtra("imagUrl",imagUrl);
-                i.putExtra("title",title);
-                startActivity(i);
+
             }
         });
 

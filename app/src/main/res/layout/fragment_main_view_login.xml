@@ -45,17 +45,17 @@
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="CANDY"
                         android:textColor="@color/color_text"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="18dp"
                        />
 
-                    <TextView
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
                         android:textStyle="bold"
                         android:id="@+id/textView14"
                         android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
                         android:layout_gravity="center_vertical"
                         android:text="CHAT"
                         android:textColor="#8a8a8a"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textSize="18dp" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -88,23 +88,24 @@
                         android:layout_gravity="center_vertical"
                         android:orientation="vertical">
 
-                        <TextView
+                        <natuan.org.androiddesigntablayout.MyCustomTextView
                             android:id="@+id/textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="Sign in join your friends"
                             android:textColor="#8a8a8a"
-                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                            android:textSize="18dp"/>
 
-                        <TextView
+                        <natuan.org.androiddesigntablayout.MyCustomTextView
                             android:id="@+id/textView2"
+                            android:layout_marginTop="3dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="in candy chat community"
                             android:textColor="#8a8a8a"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            android:textSize="18dp" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -145,7 +146,7 @@
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:textColor="#000"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="15dp"
                             android:background="@drawable/button_bg_transparent"
                             android:text="Log in" />
 
@@ -163,7 +164,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
                             android:layout_weight="1"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="15dp"
                             android:background="@drawable/button_bg_transparent"
                             android:text="Sign up" />
                     </LinearLayout>

@@ -1,5 +1,6 @@
 package natuan.org.androiddesigntablayout.fragments.fragmrntLogin;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -34,13 +35,15 @@ public class FragmentRegister extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sign_up_by_email_register, container, false);
-
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
         dtEmail = (EditText) rootView.findViewById(R.id.input_email);
         dtPassword = (EditText) rootView.findViewById(R.id.input_password);
         btnNext = (TextView) rootView.findViewById(R.id.btn_register_now);
         txtSkip = (TextView) rootView.findViewById(R.id.txt_skip);
         imgShowPassword = (CheckBox) rootView.findViewById(R.id.check_show_password);
 
+        dtEmail.setTypeface(type);
+        dtPassword.setTypeface(type);
         Next();
         txtSkip.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -22,7 +22,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/ago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
     <!--android:orientation="vertical"-->
     <!--android:layout_weight="1"></LinearLayout>-->
 
-    <TextView
+    <natuan.org.androiddesigntablayout.MyCustomTextView
         android:id="@+id/number1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
         android:visibility="gone"/>
 
 
-    <TextView
+    <natuan.org.androiddesigntablayout.MyCustomTextView
         android:id="@+id/number2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
         android:textSize="@dimen/size_text_icon"
         android:visibility="gone"/>
 
-    <TextView
+    <natuan.org.androiddesigntablayout.MyCustomTextView
         android:id="@+id/number3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

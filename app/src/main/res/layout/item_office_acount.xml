@@ -24,7 +24,7 @@
     </LinearLayout>
 
     <!-- Title Of Song-->
-    <TextView
+    <natuan.org.androiddesigntablayout.MyCustomTextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

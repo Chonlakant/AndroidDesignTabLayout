@@ -1,5 +1,6 @@
 package natuan.org.androiddesigntablayout.fragments.fragmrntLogin;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -43,7 +44,7 @@ public class FragmentSignByPhoneStep2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sign_up_by_phone_number_step_2, container, false);
 
-
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -57,6 +58,9 @@ public class FragmentSignByPhoneStep2 extends Fragment {
         txtSkip = (TextView) rootView.findViewById(R.id.txt_skip);
         imgShowPassword = (CheckBox) rootView.findViewById(R.id.check_show_password);
         showPhone = (TextView) rootView.findViewById(R.id.txt_show_phone_number);
+
+        dtEmail.setTypeface(type);
+        dtPassword.setTypeface(type);
 
         txtSkip.setOnClickListener(new View.OnClickListener() {
             @Override

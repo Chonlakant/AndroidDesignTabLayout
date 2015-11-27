@@ -34,7 +34,6 @@
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/tab_min_height</item>
-        <item name="tabIndicatorColor">@android:color/transparent</item>
         <item name="android:layout_alignParentBottom">false</item>
         <item name="android:layout_alignParentTop">true</item>
     </style>

@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -14,57 +13,34 @@
             android:layout_weight="1"
             android:id="@+id/txtChat"
             android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:drawableBottom="@drawable/profile_b" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:drawableBottom="@drawable/msg"
-            android:id="@+id/txt_chat"
-            android:gravity="center"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:id="@+id/vdoChat"
-            android:gravity="center"
-            android:drawableBottom="@drawable/home_b"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp">
-
-        <TextView
-            android:layout_weight="1"
             android:text="Profile"
-            android:gravity="center"
-            android:layout_marginTop="3dp"
             android:textColor="@color/primary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_profile_pop_contact" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_chat_pop_contact"
+            android:id="@+id/txt_chat"
             android:text="Chat"
             android:textColor="@color/primary"
-            android:layout_marginTop="3dp"
+            android:layout_gravity="center_vertical"
             android:gravity="center"
             android:layout_weight="1" />
 
         <TextView
             android:text="Home"
-            android:gravity="center"
-            android:layout_marginTop="3dp"
-            android:textColor="@color/primary"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/vdoChat"
+            android:textColor="@color/primary"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_home_pop_contact"
             android:layout_weight="1" />
     </LinearLayout>
+
 </LinearLayout>

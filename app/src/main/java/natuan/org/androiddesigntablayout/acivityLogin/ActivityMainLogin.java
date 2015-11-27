@@ -37,7 +37,7 @@ public class ActivityMainLogin extends BaseActivity {
             FragmentLogin threeFragment = new FragmentLogin();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.content, threeFragment);
-            transaction.addToBackStack(null);
+            //transaction.addToBackStack(null);
             transaction.commit();
         }else if(type == 1){
 
@@ -51,7 +51,7 @@ public class ActivityMainLogin extends BaseActivity {
             FragmentSignUpSelection threeFragment = new FragmentSignUpSelection();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.content, threeFragment);
-            transaction.addToBackStack(null);
+            //transaction.addToBackStack(null);
             transaction.commit();
         }
 

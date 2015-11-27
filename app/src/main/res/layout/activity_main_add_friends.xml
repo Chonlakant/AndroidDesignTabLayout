@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/phone"
+                android:drawableTop="@drawable/ic_add_friend_phone"
                 android:textColor="#3daae2"
                 android:gravity="center"
                 android:text="by Phone no" />
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/ic_invite"
+                android:drawableTop="@drawable/ic_friend_invite"
                 android:textColor="#3daae2"
                 android:gravity="center"
                 android:text="Invite" />
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/qr_code"
+                android:drawableTop="@drawable/ic_add_friend_qrcode"
                 android:textColor="#3daae2"
                 android:gravity="center"
                 android:text="QR Code" />
@@ -55,10 +55,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/ic_search"
+                android:drawableTop="@drawable/ic_add_friend_username"
                 android:textColor="#3daae2"
                 android:gravity="center"
-                android:text="by username" />
+                android:text="by Username" />
 
         </LinearLayout>
 

@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="15dp"
                 android:hint="Enter your friend’s username"
                 android:inputType="textPassword" />
 
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/textView4"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_gravity="center_vertical" />
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
             android:id="@+id/imageView12"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_search"
+            android:src="@drawable/ic_sear_username"
             android:layout_gravity="center_horizontal" />
 
 
