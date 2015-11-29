@@ -27,7 +27,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_gravity="center_horizontal"
-                android:hint="Sign up with Phone Number"
+                android:text="Sign up with phone number"
                 android:textSize="20dp"
                 android:textColor="#000"
                 android:textStyle="bold" />
@@ -46,7 +46,7 @@
 
                 <View
                     android:layout_width="50dp"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:layout_below="@+id/b"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="5dp"
@@ -62,7 +62,7 @@
 
                 <View
                     android:layout_width="50dp"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:layout_below="@+id/b"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:hint="Sign up with email address"
+                android:text="Sign up with email address"
                 android:textSize="20dp"
                 android:layout_marginBottom="20dp"
                 android:textColor="#000"
@@ -145,7 +145,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_facebook" />
+                android:src="@drawable/ic_facebook_icon" />
 
             <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/txt_login_facebook"
@@ -167,7 +167,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
-                android:paddingTop="35dp">
+                android:paddingTop="20dp">
 
                 <LinearLayout
                     android:layout_weight="1"
@@ -190,10 +190,19 @@
                         android:id="@+id/txt_login_here"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/spinner_item_border"
                         android:layout_gravity="center_vertical"
-                        android:text=" Login here"
+                        android:text="Login"
                         android:textSize="18dp"
                         android:textColor="#5db2d6"
+                        android:textStyle="bold" />
+
+                    <natuan.org.androiddesigntablayout.MyCustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text=" here"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -203,6 +212,7 @@
 
         <LinearLayout
             android:layout_weight="1"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
@@ -215,8 +225,9 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_below="@+id/b"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="15dp"
                 android:background="#B6B6B6" />
 
@@ -226,16 +237,23 @@
                 android:layout_gravity="center_horizontal"
                 android:hint="To create a CandyChat account, please verify your
 phone number, email or Facebook account"
-                android:paddingBottom="25dp"
+                android:paddingBottom="12dp"
                 android:textSize="15dp" />
 
-            <natuan.org.androiddesigntablayout.MyCustomTextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:hint="By signing up, you agree to our Terms and Policy"
-                android:paddingBottom="15dp"
-                android:textSize="15dp"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <natuan.org.androiddesigntablayout.MyCustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="By signing up, you agree to our Terms and Policy"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 

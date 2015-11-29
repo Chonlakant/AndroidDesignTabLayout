@@ -27,26 +27,39 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <Spinner
-                android:layout_marginTop="10dp"
-                android:id="@+id/popupspinner"
-                android:spinnerMode="dialog"
+            <natuan.org.androiddesigntablayout.MyCustomTextView
+                android:id="@+id/label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical" />
+                android:padding="5dp"
+                android:text="Select Language" />
 
-            <EditText
-
-                android:id="@+id/input_number_phone"
-                android:layout_width="match_parent"
+            <com.rajasharan.widget.SearchableSpinner
+                android:id="@+id/search3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:hint="Enter your Phone number"
-                android:inputType="number"
-                android:textSize="20dp"
-                android:layout_gravity="center_vertical" />
+                android:padding="5dp" />
+        </LinearLayout>
 
+
+        <EditText
+
+            android:id="@+id/input_number_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="25dp"
+            android:hint="Enter your phone number"
+            android:inputType="number"
+            android:textColor="#bfbfbf"
+            android:textColorHint="#bfbfbf"
+            android:textSize="20dp" />
 
 
         <LinearLayout
@@ -97,9 +110,10 @@
                             android:layout_marginLeft="5dp"
                             android:background="@drawable/btn"
                             android:text="Next"
-                            android:textStyle="bold"
-                            android:textSize="20dp"
-                            android:textColor="#3daae2" />
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="#3daae2"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -126,7 +140,7 @@
                         android:layout_gravity="center_vertical"
                         android:text="Please confirm you country (country code) and
 enter your phone number "
-                        android:textSize="15dp"/>
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 

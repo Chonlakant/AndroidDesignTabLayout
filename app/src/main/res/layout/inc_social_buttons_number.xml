@@ -48,7 +48,7 @@ android:layout_height="match_parent">
               android:layout_weight="4"/>
 
         <ImageView
-            android:src="@drawable/heart_grey"
+            android:src="@drawable/ic_like_icon"
             android:layout_marginRight="5dp"
             android:layout_width="15dp"
             android:layout_height="15dp"

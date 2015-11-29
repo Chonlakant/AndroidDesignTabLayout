@@ -64,5 +64,6 @@ dependencies {
     compile 'com.alexvasilkov:events:0.4.0'
     compile project(':lib')
     compile 'me.iwf.photopicker:PhotoPicker:0.2.8@aar'
-
+    compile project(':libraryspinner')
+    compile 'com.weiwangcn.betterspinner:library:1.1.0'
 }

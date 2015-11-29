@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:background="@drawable/rounded_footer"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -18,6 +19,8 @@
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:layout_marginBottom="3dp"
             android:drawableTop="@drawable/ic_profile_pop_contact" />
 
         <TextView
@@ -26,6 +29,8 @@
             android:drawableTop="@drawable/ic_chat_pop_contact"
             android:id="@+id/txt_chat"
             android:text="Chat"
+            android:textSize="12dp"
+            android:layout_marginBottom="3dp"
             android:textColor="@color/primary"
             android:layout_gravity="center_vertical"
             android:gravity="center"
@@ -36,9 +41,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/vdoChat"
+            android:textSize="12dp"
             android:textColor="@color/primary"
             android:layout_gravity="center_vertical"
             android:gravity="center"
+            android:layout_marginBottom="3dp"
             android:drawableTop="@drawable/ic_home_pop_contact"
             android:layout_weight="1" />
     </LinearLayout>

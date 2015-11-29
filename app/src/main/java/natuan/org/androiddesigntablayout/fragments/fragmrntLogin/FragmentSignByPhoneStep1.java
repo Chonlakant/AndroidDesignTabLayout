@@ -21,11 +21,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rajasharan.widget.SearchableSpinner;
+
 import butterknife.InjectView;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 
-public class FragmentSignByPhoneStep1 extends Fragment {
+public class FragmentSignByPhoneStep1 extends Fragment implements SearchableSpinner.OnSelectionChangeListener{
 
     Toolbar toolbar;
     // @InjectView(R.id.input_email)
@@ -36,7 +38,7 @@ public class FragmentSignByPhoneStep1 extends Fragment {
     Button btnNext;
     String code;
     // @InjectView(R.id.txt_skip)
-    String[] DayOfWeek = {"(+60) Malaysia", "(+61) Australia", "(+62) Indonesia", "(+63) Philippines", "(+64) New Zealand", "(+65) Singapore", "(+66) Thailand"};
+    String[] codeContry = {"All Code","(+60) Malaysia", "(+61) Australia", "(+62) Indonesia", "(+63) Philippines", "(+64) New Zealand", "(+65) Singapore", "(+66) Thailand"};
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sign_up_by_phone_number_step_1, container, false);
@@ -47,23 +49,9 @@ public class FragmentSignByPhoneStep1 extends Fragment {
         btnNext.setTypeface(type);
         dtInputPhone.setTypeface(type);
 
-        final Spinner mySpinner = (Spinner) rootView.findViewById(R.id.popupspinner);
-        mySpinner.setPrompt("Choose your country");
-        mySpinner.setAdapter(new MyCustomAdapter(getActivity(), R.layout.row, DayOfWeek));
-
-        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String items = mySpinner.getSelectedItem().toString();
-                code = items.substring(1, 4);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+        SearchableSpinner spinner2 = (SearchableSpinner) rootView.findViewById(R.id.search3);
+        spinner2.setOnSelectionChangeListener(this);
+        spinner2.setList(codeContry);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,39 +110,12 @@ public class FragmentSignByPhoneStep1 extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public class MyCustomAdapter extends ArrayAdapter<String> {
 
-        public MyCustomAdapter(Context context, int textViewResourceId,
-                               String[] objects) {
-            super(context, textViewResourceId, objects);
-            // TODO Auto-generated constructor stub
-        }
+    @Override
+    public void onSelectionChanged(String selection) {
+        code = selection.substring(1, 4);
+        Log.e("code",code);
+        Toast.makeText(getContext(), selection + " selected", Toast.LENGTH_SHORT).show();
 
-        @Override
-        public View getDropDownView(int position, View convertView,
-                                    ViewGroup parent) {
-            // TODO Auto-generated method stub
-            return getCustomView(position, convertView, parent);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            // TODO Auto-generated method stub
-            return getCustomView(position, convertView, parent);
-        }
-
-        public View getCustomView(int position, View convertView, ViewGroup parent) {
-            // TODO Auto-generated method stub
-            //return super.getView(position, convertView, parent);
-
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            View row = inflater.inflate(R.layout.row, parent, false);
-            TextView label = (TextView) row.findViewById(R.id.weekofday);
-            label.setText(DayOfWeek[position]);
-
-
-            return row;
-        }
     }
-
 }

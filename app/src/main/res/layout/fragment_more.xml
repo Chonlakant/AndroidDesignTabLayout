@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:orientation="vertical">
 
     <LinearLayout
@@ -38,7 +39,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="My profile"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="0dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />
@@ -48,9 +49,11 @@
         <LinearLayout
             android:id="@+id/click"
             android:layout_marginTop="5dp"
-            android:background="#335f50e1"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/edit_text_more"
             android:layout_width="fill_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:orientation="horizontal">
 
 
@@ -83,13 +86,13 @@
                 android:orientation="vertical">
 
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
-                    <!--android:text="See more"-->
-                    <!--android:id="@+id/textView8"-->
-                    <!--android:layout_gravity="right" />-->
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_more"
+                    android:id="@+id/textView8"
+                    android:layout_gravity="right" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout

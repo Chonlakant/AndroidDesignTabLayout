@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -501,9 +503,11 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-
+        SpannableString title = new SpannableString(getResources().getString(R.string.friends));
+        title.setSpan(Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf"), 0, title.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //toolbar.inflateMenu(R.menu.menu_main_friends);
-        toolbar.setTitle("Friends");
+        toolbar.setTitle(title);
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_main_friends, menu);
     }

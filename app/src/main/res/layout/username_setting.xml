@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/img_avatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_profile_photo" />
 
@@ -31,7 +31,7 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="50dp"
-                android:src="@drawable/camera" />
+                android:src="@drawable/ic_tabbar_photo" />
         </LinearLayout>
 
 
@@ -70,8 +70,8 @@
 
                 <CheckBox
                     android:id="@+id/img_allow_add"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                      />
 
                 <natuan.org.androiddesigntablayout.MyCustomTextView
@@ -79,9 +79,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Allow others to add"
                     android:layout_marginLeft="5dp"
-                    android:textSize="20dp"
+                    android:text="Allow others to add"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -89,13 +89,12 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <CheckBox
                     android:id="@+id/img_auto_add_friend"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                   />
 
                 <natuan.org.androiddesigntablayout.MyCustomTextView
@@ -104,7 +103,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="Auto add friend"
                     android:layout_marginLeft="5dp"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -121,9 +120,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:textColor="#3daae2"
-                    android:textSize="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="DONE" />
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="18dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Done" />
             </LinearLayout>
 
         </LinearLayout>

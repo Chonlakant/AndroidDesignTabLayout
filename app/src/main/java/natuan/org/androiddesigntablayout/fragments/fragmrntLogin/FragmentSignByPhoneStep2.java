@@ -33,7 +33,7 @@ public class FragmentSignByPhoneStep2 extends Fragment {
     //@InjectView(R.id.input_password)
     EditText dtPassword;
     //@InjectView(R.id.btn_next)
-    TextView btnNext;
+    Button btnNext;
     //@InjectView(R.id.txt_skip)
     TextView txtSkip;
    // @InjectView(R.id.check_show_password)
@@ -54,7 +54,7 @@ public class FragmentSignByPhoneStep2 extends Fragment {
 
         dtEmail = (EditText) rootView.findViewById(R.id.input_email);
         dtPassword = (EditText) rootView.findViewById(R.id.input_password);
-        btnNext = (TextView) rootView.findViewById(R.id.btn_register_now);
+        btnNext = (Button) rootView.findViewById(R.id.btn_register_now);
         txtSkip = (TextView) rootView.findViewById(R.id.txt_skip);
         imgShowPassword = (CheckBox) rootView.findViewById(R.id.check_show_password);
         showPhone = (TextView) rootView.findViewById(R.id.txt_show_phone_number);

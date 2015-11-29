@@ -47,6 +47,7 @@ public class FragmentSignByEmailStep1 extends Fragment {
         btnNext = (Button) rootView.findViewById(R.id.btn_next);
         dtEmail.setTypeface(type);
         dtPassword.setTypeface(type);
+        btnNext.setTypeface(type);
         imgShowPassword = (CheckBox) rootView.findViewById(R.id.check_show_password);
 
         imgShowPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

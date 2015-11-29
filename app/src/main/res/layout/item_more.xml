@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="Small Text"
             android:textColor="@color/font"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="12dp"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 

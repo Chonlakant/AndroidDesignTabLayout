@@ -1,29 +1,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="fill_parent">
 
 
 
     <LinearLayout
-        android:layout_margin="10dp"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
+                android:background="@drawable/edit_text"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/input_username"
-                android:background="@drawable/edit_text"
-                android:textSize="15dp"
+                android:drawableLeft="@drawable/ic_search_icon_grey"
+                android:textSize="18dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="42dip"
                 android:hint="Search for Chats and Messages"
                 android:inputType="text" />
+        </LinearLayout>
 
 
         <LinearLayout
@@ -34,7 +40,7 @@
             <ListView
                 android:id="@+id/listView"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
     </LinearLayout>

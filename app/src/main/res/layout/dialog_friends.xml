@@ -3,10 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/header"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#fff">
+    android:layout_height="wrap_content">
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded"
+        android:orientation="vertical">
     <!-- title-->
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -81,7 +84,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:background="#EEE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout"
@@ -89,4 +91,6 @@
 
         <include layout="@layout/button_friend" />
     </LinearLayout>
+    </LinearLayout>
+
 </RelativeLayout>

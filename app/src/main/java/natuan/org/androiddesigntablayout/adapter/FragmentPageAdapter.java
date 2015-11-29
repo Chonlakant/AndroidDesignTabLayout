@@ -66,16 +66,11 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter  {
         if (position == 0) {
             tab.setSelected(true);
         }if(position == 1){
-            tab.setSelected(true);
             text_count.setVisibility(View.GONE);
         }if(position == 2){
-            tab.setSelected(true);
             text_count.setVisibility(View.GONE);
         }if(position == 3){
-            tab.setSelected(true);
-
         }if(position == 4){
-            tab.setSelected(true);
             text_count.setVisibility(View.GONE);
         }
         return tab;

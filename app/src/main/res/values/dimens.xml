@@ -8,7 +8,7 @@
     <dimen name="movie_detail_fanart_height">224dp</dimen>
     <dimen name="content_details_portrait_thumb_width">100dp</dimen>
     <dimen name="content_details_portrait_thumb_height">150dp</dimen>
-    <dimen name="content_details_baseline_margin">16dp</dimen>
+    <dimen name="content_details_baseline_margin">13dp</dimen>
     <dimen name="content_details_portrait_thumb_negative_margin">-32dp</dimen>
     <dimen name="content_details_title_margin_top">-12dp</dimen>
     <dimen name="content_details_title">28sp</dimen>

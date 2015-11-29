@@ -15,14 +15,13 @@
 
 
 
-            <EditText
-                android:id="@+id/input_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:textSize="15dp"
-                android:hint="Thailand (+66)"
-                android:inputType="textPassword" />
+        <com.weiwangcn.betterspinner.library.BetterSpinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:hint="Thailand (+66)" />
 
 
 
@@ -30,7 +29,7 @@
             <EditText
 
                 android:id="@+id/input_phone"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -2,13 +2,12 @@ package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,15 +31,11 @@ import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.BaseFragment;
-import natuan.org.androiddesigntablayout.MainApplication;
 import natuan.org.androiddesigntablayout.PrefManager;
 import natuan.org.androiddesigntablayout.R;
-import natuan.org.androiddesigntablayout.TopMovieListView;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecentChats;
 import natuan.org.androiddesigntablayout.event.SomeEvent;
@@ -53,7 +48,7 @@ import natuan.org.androiddesigntablayout.presenter.MainPresenter;
 /**
  * Created by Tuan on 6/18/2015.
  */
-public class FragmentRecentChats extends BaseFragment {
+public class FragmentChats extends BaseFragment {
     Toolbar toolbar;
     ListView listView;
     AdapterRecentChats adapterRecentChats;
@@ -65,8 +60,8 @@ public class FragmentRecentChats extends BaseFragment {
 
     EditText input_username;
 
-    public static FragmentRecentChats getInstance(String message) {
-        FragmentRecentChats mainFragment = new FragmentRecentChats();
+    public static FragmentChats getInstance(String message) {
+        FragmentChats mainFragment = new FragmentChats();
         Bundle bundle = new Bundle();
         bundle.putString("MSG", message);
         mainFragment.setArguments(bundle);
@@ -201,8 +196,12 @@ public class FragmentRecentChats extends BaseFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
+        SpannableString title = new SpannableString(getResources().getString(R.string.recentchat));
+        title.setSpan(Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf"), 0, title.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         toolbar.inflateMenu(R.menu.menu_main_recent_chat);
-        toolbar.setTitle("RecentChat");
+        toolbar.setTitle(title);
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.menu_main_noti,menu);
     }

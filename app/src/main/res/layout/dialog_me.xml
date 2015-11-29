@@ -4,7 +4,7 @@
     android:id="@+id/header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fff">
+    android:background="@drawable/rounded">
 
 
     <!-- title-->
@@ -80,7 +80,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:background="#EEE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout"

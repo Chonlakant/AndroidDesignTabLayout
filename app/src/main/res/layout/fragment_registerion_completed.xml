@@ -23,8 +23,7 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/done" />
+                android:src="@drawable/ic_start_page_bg" />
 
             <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:id="@+id/textView5"
@@ -34,7 +33,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Welcome to CandyChat"
                 android:textColor="#fff"
-                android:textSize="25dp"
+                android:textSize="22dp"
                 android:textStyle="bold" />
 
             <natuan.org.androiddesigntablayout.MyCustomTextView
@@ -44,7 +43,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Happy Chat Society"
                 android:textColor="#fff"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -66,9 +65,10 @@
                         android:layout_gravity="bottom"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/btn_done"
-                        android:text="START"
+                        android:text="Start"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="#fff"
-                        android:textSize="20dp"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
                 </LinearLayout>
 

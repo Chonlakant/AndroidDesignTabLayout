@@ -43,7 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:hint="First name (required)*"
-            android:inputType="textPassword"
+            android:textColor="#bfbfbf"
+            android:textColorHint="#bfbfbf"
+            android:inputType="text"
             android:textSize="20dp" />
 
 
@@ -51,15 +53,17 @@
             android:id="@+id/input_lastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#bfbfbf"
+            android:textColorHint="#bfbfbf"
             android:layout_marginTop="25dp"
             android:hint="Last name (optional)"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:textSize="20dp" />
 
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -78,54 +82,53 @@
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="80dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:paddingTop="5dp">
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
 
-                        <natuan.org.androiddesigntablayout.MyCustomTextView
-                            android:id="@+id/txt_skip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="60dp"
-                            android:text="SKIP"
-                            android:textSize="20dp" />
-
-                        <LinearLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="5dp"
-                            android:orientation="vertical">
-
-                            <natuan.org.androiddesigntablayout.MyCustomTextView
-                                android:id="@+id/btn_register_now"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginLeft="20dp"
-                                android:background="@drawable/spinner_item_border"
-                                android:text="REGISTER NOW"
-                                android:textColor="#0FA6E0"
-                                android:textSize="20dp"
-                                android:textStyle="bold" />
-
-
-                        </LinearLayout>
-                    </LinearLayout>
 
                 </LinearLayout>
 
 
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal">
+
+
+            <natuan.org.androiddesigntablayout.MyCustomTextView
+                android:id="@+id/txt_skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="18dp"
+                android:layout_weight="1"
+                android:text="Skip"
+                android:textSize="18dp" />
+
+
+            <natuan.org.androiddesigntablayout.MyCustomTextView
+                android:id="@+id/btn_register_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="18dp"
+                android:background="@drawable/spinner_item_border"
+                android:text="Register now"
+                android:textColor="#0FA6E0"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </LinearLayout>
