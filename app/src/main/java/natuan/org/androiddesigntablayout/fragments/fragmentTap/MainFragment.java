@@ -71,7 +71,7 @@ public class MainFragment extends BaseFragment {
             R.drawable.ic_favorite_friends,
             R.drawable.ic_friend_arrow_up
     };
-
+    Dialog dialog;
 
     public static final List<Posts> listurl = new ArrayList<>();
 
@@ -91,6 +91,8 @@ public class MainFragment extends BaseFragment {
 
     boolean isCheck = false;
     boolean checkData = false;
+    boolean checkOnclick = false;
+
     public static MainFragment getInstance(String message) {
         MainFragment mainFragment = new MainFragment();
         Bundle bundle = new Bundle();
@@ -108,13 +110,12 @@ public class MainFragment extends BaseFragment {
         ApiBus.getInstance().post(new SomeEvent());
 
         btnNewGroup.setTypeface(type);
-    Log.e("checkData",checkData+"");
-        if(checkData == false){
+        Log.e("checkData", checkData + "");
+        if (checkData == false) {
             prepareListData();
             checkData = true;
-            Log.e("checkData",checkData+"");
-        }else{
-            Toast.makeText(getContext(),"NO",Toast.LENGTH_SHORT).show();
+            Log.e("checkData", checkData + "");
+        } else {
         }
 
 
@@ -137,9 +138,11 @@ public class MainFragment extends BaseFragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
+                if (checkOnclick != true) {
+                    Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
+                    checkOnclick = false;
 
-                Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
-                isCheck = true;
+                }
 
 
                 return false;
@@ -154,54 +157,25 @@ public class MainFragment extends BaseFragment {
 //                        Toast.LENGTH_SHORT).show();
 
 
-                if (listDataHeader.get(groupPosition) == "Me") {
-                    final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
-                    dialog.setContentView(R.layout.dialog_me);
+                if (checkOnclick != true) {
+                    if (listDataHeader.get(groupPosition) == "Me") {
+                        dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
+                        dialog.setContentView(R.layout.dialog_me);
 
-                    TextView txt_chat = (TextView) dialog.findViewById(R.id.txt_chat);
-                    txt_chat.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                        TextView txt_chat = (TextView) dialog.findViewById(R.id.txt_chat);
+                        txt_chat.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
 
-                            dialog.dismiss();
-                        }
-                    });
+                                dialog.dismiss();
+                            }
+                        });
 
 
-                    ImageView imageView7 = (ImageView) dialog.findViewById(R.id.imageView7);
-                    imageView7.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            FragmentEditName fragment = new FragmentEditName();
-                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            transaction.add(R.id.flContainer, fragment);
-                            transaction.addToBackStack(null);
-                            transaction.commit();
-                            dialog.dismiss();
-                        }
-                    });
-
-                    TextView home = (TextView) dialog.findViewById(R.id.home);
-                    home.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                        }
-                    });
-
-                    ImageView img_info = (ImageView) dialog.findViewById(R.id.img_info);
-                    img_info.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent i = new Intent(getActivity(), MianHomMe.class);
-                            startActivity(i);
-                            dialog.dismiss();
-                        }
-                    });
-
-                    dialog.show();
-
+                    }
                 }
+
+
                 if (listDataHeader.get(groupPosition) == "Groups") {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                     dialog.setContentView(R.layout.dialog_group);
@@ -379,26 +353,18 @@ public class MainFragment extends BaseFragment {
                             String imageUrl = "http://www.mx7.com/i/91b/9SNAed.png";
 
 
-                            boolean check = false;
-                            if(check != true){
-                                Posts mainModel = new Posts();
-                                mainModel.setName(name);
-                                mainModel.setImage(imageUrl);
-                               // listMe.add(mainModel);
-                                listurl.add(mainModel);
-                                listFriends.add(mainModel);
-                                check = true;
-                            }else{
-                                listFriends.clear();
-                            }
+                            Posts mainModel = new Posts();
+                            mainModel.setName(name);
+                            mainModel.setImage(imageUrl);
+                            // listMe.add(mainModel);
+                            listFriends.add(mainModel);
+                            listurl.add(mainModel);
+
 
                         }
-//                        for (int j = 0; j < listMe.size(); j++) {
-//                            stringMe = listMe.get(j).getName();
-//                            me.add(stringMe);
-//                        }
-                        for (int j = 0; j < listFriends.size(); j++) {
-                            stringFriends = listFriends.get(j).getName();
+
+                        for (int x = 0; x < listFriends.size(); x++) {
+                            stringFriends = listFriends.get(x).getName();
                             friends.add(stringFriends);
                         }
 
@@ -447,10 +413,10 @@ public class MainFragment extends BaseFragment {
                         }
 
 
-                         expListView.expandGroup(0);
+                        expListView.expandGroup(0);
                         // expListView.expandGroup(1);
-                         expListView.expandGroup(2);
-                        //expListView.expandGroup(3);
+                        //expListView.expandGroup(2);
+                        expListView.expandGroup(3);
 
                     }
 
@@ -480,8 +446,8 @@ public class MainFragment extends BaseFragment {
         // Header, Child data
         listDataChild.put(listDataHeader.get(0), me);
         listDataChild.put(listDataHeader.get(1), group);
-        listDataChild.put(listDataHeader.get(2), friends);
-        listDataChild.put(listDataHeader.get(3), favorite);
+        listDataChild.put(listDataHeader.get(2), favorite);
+        listDataChild.put(listDataHeader.get(3), friends);
 
     }
 

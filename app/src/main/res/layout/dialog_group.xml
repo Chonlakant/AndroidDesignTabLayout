@@ -30,6 +30,7 @@
                     android:id="@+id/info_group"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_help_pop_contact" />
 
@@ -53,6 +54,7 @@
                     android:id="@+id/satr"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+                    android:layout_marginRight="5dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_fave_pop_contact" />
 

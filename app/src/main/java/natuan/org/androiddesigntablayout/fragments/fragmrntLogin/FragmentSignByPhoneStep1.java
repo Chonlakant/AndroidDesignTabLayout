@@ -45,7 +45,6 @@ public class FragmentSignByPhoneStep1 extends Fragment implements SearchableSpin
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
         dtInputPhone = (EditText) rootView.findViewById(R.id.input_number_phone);
         btnNext = (Button) rootView.findViewById(R.id.btn_next);
-
         btnNext.setTypeface(type);
         dtInputPhone.setTypeface(type);
 

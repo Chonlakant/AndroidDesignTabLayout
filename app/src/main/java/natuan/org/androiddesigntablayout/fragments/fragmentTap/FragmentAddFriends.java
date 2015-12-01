@@ -1,5 +1,6 @@
 package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +45,7 @@ public class FragmentAddFriends extends Fragment {
     List<String> thor = new ArrayList<String>();
     String name;
     String strMe;
+    Button button2;
 
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
@@ -50,12 +53,14 @@ public class FragmentAddFriends extends Fragment {
     TextView txtAddPhone, txtInvite, txtQr, txtAddUsername;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_main_add_friends, container, false);
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
         txtAddPhone = (TextView) rootView.findViewById(R.id.txtAddPhone);
         txtInvite = (TextView) rootView.findViewById(R.id.txtInvite);
         txtQr = (TextView) rootView.findViewById(R.id.txtQr);
         txtAddUsername = (TextView) rootView.findViewById(R.id.txtAddUsername);
         expListView = (ExpandableListView) rootView.findViewById(R.id.expand);
-
+        button2 = (Button) rootView.findViewById(R.id.button2);
+        button2.setTypeface(type);
         prepareListData();
         Invite();
         AddPhone();
@@ -70,7 +75,7 @@ public class FragmentAddFriends extends Fragment {
             public void onClick(View v) {
                 FragmentInvite fragment = new FragmentInvite();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.flContainer, fragment);
+                transaction.replace(R.id.flContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -83,7 +88,7 @@ public class FragmentAddFriends extends Fragment {
             public void onClick(View v) {
                 FragmentByPhone fragment = new FragmentByPhone();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.flContainer, fragment);
+                transaction.replace(R.id.flContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -96,7 +101,7 @@ public class FragmentAddFriends extends Fragment {
             public void onClick(View v) {
                 FragmentByUsername fragment = new FragmentByUsername();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.flContainer, fragment);
+                transaction.replace(R.id.flContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -109,7 +114,7 @@ public class FragmentAddFriends extends Fragment {
             public void onClick(View v) {
                 FragmentMoreQqCode fragment = new FragmentMoreQqCode();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.flContainer, fragment);
+                transaction.replace(R.id.flContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

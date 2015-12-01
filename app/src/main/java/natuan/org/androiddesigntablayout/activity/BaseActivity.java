@@ -25,7 +25,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
 
-import com.alexvasilkov.events.Events;
+
 
 import butterknife.ButterKnife;
 import natuan.org.androiddesigntablayout.R;

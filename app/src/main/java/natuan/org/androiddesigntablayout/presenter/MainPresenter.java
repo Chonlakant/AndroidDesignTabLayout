@@ -15,8 +15,10 @@ import natuan.org.androiddesigntablayout.TopMovieListView;
 import natuan.org.androiddesigntablayout.model.Posts;
 
 
-public class MainPresenter implements Presenter<TopMovieListView> {
+public class MainPresenter implements Presenter<TopMovieListView>{
     private TopMovieListView mMainView;
+
+    String urlListChat = "http://api.candychat.net:1314/api/chat/recent/user/6";
 
     List<Posts> list = new ArrayList<>();
 
@@ -64,7 +66,6 @@ public class MainPresenter implements Presenter<TopMovieListView> {
             }
         });
     }
-
 
     @Override
     public void detachView() {

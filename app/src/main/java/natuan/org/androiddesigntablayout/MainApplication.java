@@ -5,7 +5,6 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.util.Log;
 
-import com.alexvasilkov.events.Events;
 import com.alexvasilkov.gestures.internal.GestureDebug;
 import com.norbsoft.typefacehelper.TypefaceCollection;
 import com.norbsoft.typefacehelper.TypefaceHelper;
@@ -13,7 +12,6 @@ import com.norbsoft.typefacehelper.TypefaceHelper;
 import natuan.org.androiddesigntablayout.handler.ApiBus;
 import natuan.org.androiddesigntablayout.handler.ApiHandler;
 import natuan.org.androiddesigntablayout.handler.ApiService;
-import natuan.org.androiddesigntablayout.logic.FlickrApi;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 
@@ -75,7 +73,7 @@ public class MainApplication extends Application {
     private TypefaceCollection thWrTishTypeface;
 
 
-    public static final String ENDPOINT = "http://ihdmovie.xyz/root";
+    public static final String ENDPOINT = "http://api.candychat.net:1314";
     private static MainApplication Instance;
     public static volatile Handler applicationHandler = null;
     private ApiHandler someApiHandler;
@@ -223,10 +221,6 @@ public class MainApplication extends Application {
 
         // Multiple custom typefaces support
         mSystemDefaultTypeface = TypefaceCollection.createSystemDefault();
-
-
-        Events.init(this);
-        Events.register(FlickrApi.class);
 
         GestureDebug.setDebugFps(true);
         GestureDebug.setDebugAnimator(true);

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#BFBFBF"
+    android:background="#fdf9fa"
     android:orientation="vertical"
     android:padding="5dp">
 
@@ -21,7 +21,7 @@
             android:src="@drawable/candy_logo" />
 
 
-        <TextView
+        <natuan.org.androiddesigntablayout.MyCustomTextView
             android:id="@+id/ExListHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:orientation="vertical">
 
 
-            <TextView
+            <natuan.org.androiddesigntablayout.MyCustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"

@@ -1,6 +1,7 @@
 package natuan.org.androiddesigntablayout.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,19 +12,25 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.RoundedTransformation;
+import natuan.org.androiddesigntablayout.model.Conversation;
 import natuan.org.androiddesigntablayout.model.Posts;
 import natuan.org.androiddesigntablayout.model.postss;
 
 public class AdapterRecentChats extends BaseAdapter {
     Context mContext;
-    ArrayList<Posts> list = new ArrayList<>();
+    ArrayList<Conversation> list = new ArrayList<>();
 
-    public AdapterRecentChats(Context context, ArrayList<Posts> list) {
+    public AdapterRecentChats(Context context, ArrayList<Conversation> list) {
         this.mContext = context;
         this.list = list;
 
@@ -44,7 +51,7 @@ public class AdapterRecentChats extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         ViewHolder viewHolder;
 
-        Posts i = list.get(position);
+        Conversation i = list.get(position);
         LayoutInflater mInflater =
                 (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -57,14 +64,25 @@ public class AdapterRecentChats extends BaseAdapter {
         }
 
 
-        viewHolder.txt_name.setText(i.getName());
+        viewHolder.txt_name.setText(Html.fromHtml(i.getUserName()));
+
+        Date date = null;
+        try {
+            date = (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")).parse(i.getTime().replaceAll("Z$", "+0000"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        PrettyTime p = new PrettyTime();
+        String ago = p.format(date);
 
 
-        viewHolder.txt_msg.setText(i.getName());
+
+        viewHolder.txt_msg.setText(i.getMsg());
 
 
         Picasso.with(mContext)
-                .load(i.getImage())
+                .load(i.getAvatraUrl())
                 .centerCrop()
                 .resize(200, 200)
                 .transform(new RoundedTransformation(100, 4))

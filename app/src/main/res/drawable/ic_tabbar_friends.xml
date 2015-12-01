@@ -6,29 +6,29 @@
         android:state_focused="false"
         android:state_selected="false"
         android:state_pressed="false"
-        android:drawable="@drawable/ic_friends_grey" />
+        android:drawable="@mipmap/ic_friends_grey" />
     <item
         android:left="2dp" android:right="4dp"
         android:state_focused="false"
         android:state_selected="true"
         android:state_pressed="false"
-        android:drawable="@drawable/ic_friends" />
+        android:drawable="@mipmap/ic_friends" />
     <!-- Focused states -->
     <item
         android:left="2dp" android:right="4dp"
         android:state_focused="true"
         android:state_selected="false"
         android:state_pressed="false"
-        android:drawable="@drawable/ic_friends" />
+        android:drawable="@mipmap/ic_friends" />
     <item
         android:left="2dp" android:right="4dp"
         android:state_focused="true"
         android:state_selected="true"
         android:state_pressed="false"
-        android:drawable="@drawable/ic_friends" />
+        android:drawable="@mipmap/ic_friends" />
     <!-- Pressed -->
     <item
         android:left="2dp" android:right="4dp"
         android:state_pressed="true"
-        android:drawable="@drawable/ic_friends" />
+        android:drawable="@mipmap/ic_friends" />
 </selector>

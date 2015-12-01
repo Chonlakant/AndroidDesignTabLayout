@@ -39,7 +39,7 @@
                 android:layout_marginLeft="5dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Friends"
-                android:textColor="#000"
+                android:textColor="#bfbfbf"
                 android:id="@+id/textView20"
                 android:layout_gravity="center_vertical" />
 

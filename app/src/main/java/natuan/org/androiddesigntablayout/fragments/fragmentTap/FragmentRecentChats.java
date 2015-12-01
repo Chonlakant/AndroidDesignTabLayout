@@ -31,6 +31,7 @@ import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.BaseFragment;
@@ -38,9 +39,13 @@ import natuan.org.androiddesigntablayout.PrefManager;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 import natuan.org.androiddesigntablayout.adapter.AdapterRecentChats;
+import natuan.org.androiddesigntablayout.event.GetRecentChatEvent;
+import natuan.org.androiddesigntablayout.event.GetRecentChatSuccess;
 import natuan.org.androiddesigntablayout.event.SomeEvent;
 import natuan.org.androiddesigntablayout.event.SuccessEvent;
 import natuan.org.androiddesigntablayout.handler.ApiBus;
+import natuan.org.androiddesigntablayout.model.Conversation;
+import natuan.org.androiddesigntablayout.model.ListChatCoverstion;
 import natuan.org.androiddesigntablayout.model.Posts;
 import natuan.org.androiddesigntablayout.model.postss;
 import natuan.org.androiddesigntablayout.presenter.MainPresenter;
@@ -48,11 +53,11 @@ import natuan.org.androiddesigntablayout.presenter.MainPresenter;
 /**
  * Created by Tuan on 6/18/2015.
  */
-public class FragmentChats extends BaseFragment {
+public class FragmentRecentChats extends BaseFragment {
     Toolbar toolbar;
     ListView listView;
     AdapterRecentChats adapterRecentChats;
-    ArrayList<Posts> list = new ArrayList<>();
+    ArrayList<Conversation> list = new ArrayList<>();
     MainPresenter mMainPresenter;
     Boolean isCheck = false;
     private Bundle bundleState;
@@ -60,8 +65,8 @@ public class FragmentChats extends BaseFragment {
 
     EditText input_username;
 
-    public static FragmentChats getInstance(String message) {
-        FragmentChats mainFragment = new FragmentChats();
+    public static FragmentRecentChats getInstance(String message) {
+        FragmentRecentChats mainFragment = new FragmentRecentChats();
         Bundle bundle = new Bundle();
         bundle.putString("MSG", message);
         mainFragment.setArguments(bundle);
@@ -86,10 +91,12 @@ public class FragmentChats extends BaseFragment {
 
     boolean checkData = false;
 
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recent_chats, container, false);
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
-        ApiBus.getInstance().post(new SomeEvent());
+        ApiBus.getInstance().postQueue(new GetRecentChatEvent(6));
         input_username = (EditText) rootView.findViewById(R.id.input_username);
 
         input_username.setTypeface(type);
@@ -98,7 +105,6 @@ public class FragmentChats extends BaseFragment {
             list = Parcels.unwrap(bundleState.getParcelable("posts"));
         }
         if (checkData == false) {
-            prepareListData();
             checkData = true;
             Log.e("checkData", checkData + "");
         } else {
@@ -135,62 +141,81 @@ public class FragmentChats extends BaseFragment {
         return rootView;
     }
 
-    private void updateFriendList(ArrayList<postss> loadList) {
 
-//        ArrayList<postss> i = new ArrayList<>();
-//
+    @Subscribe
+    public void onGetRecentChatSuccess(GetRecentChatSuccess event) {
+        Log.e("fffff",event.response.getContent().size()+"");
+        List<ListChatCoverstion.ContentEntity> recentChatList = event.response.getContent();
+        for (int i = 0; i < recentChatList.size(); i++) {
+            ListChatCoverstion.ContentEntity recentChat = recentChatList.get(i);
 
+            List<ListChatCoverstion.ContentEntity.ConversationMembersEntity> conversationMembers = recentChat.getConversationMembers();
 
-    }
+            String friendName = "";
+            String friendAvatar = "";
+            int friendId = 0;
 
-
-    private void prepareListData() {
-        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-        asyncHttpClient.get("http://api.vdomax.com/user/3082/relations", new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-                try {
-
-                    if (response != null) {
-                        JSONArray ja = response.getJSONArray("friends");
-                        for (int i = 0; i < ja.length(); i++) {
-                            JSONObject obj = ja.getJSONObject(i);
-                            String name = obj.getString("name");
-                            String image = obj.getString("avatar");
-                            String urlImage = "https://www.vdomax.com/" + image;
-                            Log.e("aaaa", name + "");
-                            String imageUrl = "http://www.mx7.com/i/91b/9SNAed.png";
-
-                            Posts posts = new Posts();
-                            posts.setName(name);
-                            posts.setImage(urlImage);
-                            list.add(posts);
-
-                        }
-
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            for (int j = 0; j < conversationMembers.size(); j++) {
+                ListChatCoverstion.ContentEntity.ConversationMembersEntity member = conversationMembers.get(j);
+                int mUserId = Integer.parseInt("6");
+                if (member.getUserId() != mUserId) {
+                    friendId = member.getUserId();
+                    friendName = member.getName();
+                    friendAvatar = "https://www.vdomax.com/" + member.getAvatar() + "." + member.getExtension();
                 }
             }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
+            if (recentChat.getMemberType().equals("INDIVIDUAL")) {
+                Conversation item = new Conversation(recentChat.getConversationId(), friendId, recentChat.getLastMessage(), friendName, friendAvatar, recentChat.getLastHistoryDatetime());
+                list.add(item);
             }
-        });
 
+        }
 
+        adapterRecentChats.notifyDataSetChanged();
     }
 
-    @Subscribe
-    public void getMovie(SuccessEvent event) {
-        updateFriendList(event.getSomeResponse());
-
-    }
+//    private void prepareListData() {
+//        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
+//        asyncHttpClient.get("http://api.candychat.net:1314/api/chat/recent/user/1", new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                super.onSuccess(statusCode, headers, response);
+//                try {
+//
+//                    if (response != null) {
+//                        JSONArray ja = response.getJSONArray("friends");
+//                        for (int i = 0; i < ja.length(); i++) {
+//                            JSONObject obj = ja.getJSONObject(i);
+//                            String name = obj.getString("name");
+//                            String image = obj.getString("avatar");
+//                            String urlImage = "https://www.vdomax.com/" + image;
+//                            Log.e("aaaa", name + "");
+//                            String imageUrl = "http://www.mx7.com/i/91b/9SNAed.png";
+//
+//                            Posts posts = new Posts();
+//                            posts.setName(name);
+//                            posts.setImage(urlImage);
+//                            list.add(posts);
+//
+//                        }
+//
+//                    }
+//
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                super.onFailure(statusCode, headers, throwable, errorResponse);
+//            }
+//        });
+//
+//
+//    }
 
 
     @Override
@@ -205,6 +230,8 @@ public class FragmentChats extends BaseFragment {
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.menu_main_noti,menu);
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

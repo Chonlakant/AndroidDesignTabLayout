@@ -1,6 +1,7 @@
 package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -8,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -173,8 +176,12 @@ public class FragmentInvite extends Fragment {
 
         //toolbar.inflateMenu(R.menu.menu_create_group);
         toolbar.setTitle("Invite friends");
+        toolbar.setTitleTextColor(Color.WHITE);
         super.onCreateOptionsMenu(menu, inflater);
         menu.setGroupVisible(0, false);
+
+
+
         inflater.inflate(R.menu.menu_invite, menu);
     }
 

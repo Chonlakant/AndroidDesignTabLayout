@@ -13,6 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
+        android:textColorHint="#BFBFBF"
+        android:hint="Search"
+        android:drawableLeft="@drawable/ic_search_icon_grey"
         android:lines="1"
         android:singleLine="true"
         />

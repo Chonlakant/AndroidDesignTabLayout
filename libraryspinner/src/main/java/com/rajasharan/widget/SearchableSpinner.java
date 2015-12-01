@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -43,8 +44,9 @@ public class SearchableSpinner extends ViewGroup implements TextWatcher, View.On
 
     private void init(Context context, AttributeSet attrs) {
         mText = new TextView(context);
-        mText.setTextColor(Color.BLACK);
+//        mText.setTextColor(Color.BLACK);
         mText.setLayoutParams(generateDefaultLayoutParams());
+
 
         mDropdownArrow = new TextView(context);
         mDropdownArrow.setText("\u25BC");
@@ -105,11 +107,11 @@ public class SearchableSpinner extends ViewGroup implements TextWatcher, View.On
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.dialog_dropdown, null);
-
+        Typeface type = Typeface.createFromAsset(context.getAssets(), "fonts/SWZ721BR.ttf");
         EditText filter = (EditText) view.findViewById(R.id.filter);
-        filter.setHint("\uD83D\uDD0D search");
+        filter.setTypeface(type);
         filter.addTextChangedListener(this);
-
+        mText.setTypeface(type);
         mRecycler = (RecyclerDropdown) view.findViewById(R.id.list);
         mRecycler.setOnClickListener(this);
         mRecycler.setDropdownList(mList);

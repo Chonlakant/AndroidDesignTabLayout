@@ -106,7 +106,7 @@ public class FragmentSignByPhoneStep2 extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentRegister oneFragment = new FragmentRegister();
+                FragmentSignByEmail oneFragment = new FragmentSignByEmail();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.content, oneFragment);
                 transaction.addToBackStack(null);

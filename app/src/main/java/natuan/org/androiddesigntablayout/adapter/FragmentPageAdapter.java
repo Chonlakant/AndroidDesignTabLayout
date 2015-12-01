@@ -64,9 +64,10 @@ public class FragmentPageAdapter extends FragmentStatePagerAdapter  {
         text_count.setText(mFragmentCount.get(position));
         tabImage.setBackgroundResource(mFragmentIcons.get(position));
         if (position == 0) {
+            text_count.setVisibility(View.GONE);
             tab.setSelected(true);
         }if(position == 1){
-            text_count.setVisibility(View.GONE);
+            text_count.setVisibility(View.VISIBLE);
         }if(position == 2){
             text_count.setVisibility(View.GONE);
         }if(position == 3){

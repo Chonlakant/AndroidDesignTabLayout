@@ -36,7 +36,7 @@ public class FragmentSignByEmailStep1 extends Fragment {
     Button btnNext;
     //@InjectView(R.id.txt_skip)
 
-   // @InjectView(R.id.img_show_password)
+    // @InjectView(R.id.img_show_password)
     CheckBox imgShowPassword;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,14 +53,14 @@ public class FragmentSignByEmailStep1 extends Fragment {
         imgShowPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(!isChecked) {
+                if (!isChecked) {
 //                  password_login.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
                     // show password
                     dtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
                     Log.i("checker", "true");
 
-                }else{
+                } else {
                     Log.i("checker", "false");
 //                  password_login.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
@@ -78,7 +78,7 @@ public class FragmentSignByEmailStep1 extends Fragment {
         return rootView;
     }
 
-    public void Next(){
+    public void Next() {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

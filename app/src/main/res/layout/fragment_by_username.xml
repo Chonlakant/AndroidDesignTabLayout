@@ -20,7 +20,7 @@
                 android:background="@drawable/edit_text"
                 android:textSize="15dp"
                 android:hint="Enter your friend’s username"
-                android:inputType="textPassword" />
+                android:inputType="text" />
 
 
         <LinearLayout

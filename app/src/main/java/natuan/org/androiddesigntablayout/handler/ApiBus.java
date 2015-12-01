@@ -1,5 +1,8 @@
 package natuan.org.androiddesigntablayout.handler;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.squareup.otto.Bus;
 
 /**
@@ -15,4 +18,14 @@ public class ApiBus extends Bus {
         }
         return singleton;
     }
+    private Handler mHandler = new Handler(Looper.getMainLooper());
+    public void postQueue(final Object obj) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                ApiBus.getInstance().post(obj);
+            }
+        });
+    }
 }
+

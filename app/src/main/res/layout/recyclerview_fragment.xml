@@ -20,7 +20,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Search by name"
-            android:drawableLeft="@drawable/searchc"
+            android:padding="0dp"
+            android:background="@drawable/edit_text"
+            android:drawableLeft="@drawable/ic_search_icon_grey"
             android:id="@+id/editText"
             android:layout_gravity="center_horizontal" />
 

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/tabImage"
         android:layout_alignRight="@id/tabImage"
-        android:text="10"
+        android:text="5"
         android:textColor="#fff"
         android:textSize="10sp"
         android:textStyle="bold"
