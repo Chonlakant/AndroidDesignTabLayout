@@ -12,30 +12,75 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView22"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/profile" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp">
 
-        <natuan.org.androiddesigntablayout.MyCustomTextView
-            android:textColor="@color/font"
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="My profile"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="-30dp">
+
+
+                <ImageView
+                    android:id="@+id/imge_avatra"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="50dp"
+                            android:src="@drawable/ic_tabbar_photo" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<natuan.org.androiddesigntablayout.MyCustomTextView-->
+            <!--android:id="@+id/txt_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:text="My profile"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:textColor="@color/font" />-->
 
         <Button
-            android:id="@+id/button4"
-            android:textColor="@color/font"
+            android:id="@+id/btn_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn"
             android:drawableLeft="@drawable/home"
-            android:text="Home" />
+            android:drawablePadding="3dp"
+            android:text="Home"
+            android:textColor="@color/font" />
 
 
         <LinearLayout
@@ -45,33 +90,33 @@
 
             <EditText
                 android:id="@+id/input_name"
-                android:textColorHint="@color/font"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="EDisplay name"
+                android:hint="Display name"
                 android:inputType="text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColorHint="@color/font" />
 
             <EditText
                 android:id="@+id/input_status"
-                android:textColorHint="@color/font"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Status"
                 android:inputType="text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColorHint="@color/font" />
 
             <EditText
-                android:textColorHint="@color/font"
                 android:id="@+id/input_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Username"
                 android:inputType="text"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColorHint="@color/font" />
 
 
             <natuan.org.androiddesigntablayout.MyCustomTextView
@@ -86,10 +131,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColorHint="@color/font"
                 android:hint="Phone number"
                 android:inputType="number"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColorHint="@color/font" />
 
             <TextView
                 android:id="@+id/textView17"

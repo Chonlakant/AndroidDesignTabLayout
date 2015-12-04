@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-1dp"
+            android:background="#252525"
+            android:orientation="horizontal">
+
+            <bentaang.chonlakant.com.drawer.widgets.MyCustomTextView
+                android:id="@+id/txt_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:textColor="#fff"
+                android:contentDescription="silver"
+                android:drawableTop="@drawable/ic_en"
+                android:gravity="center"
+                android:text="ENG"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="65dp"
+                android:layout_below="@+id/b"
+                android:layout_marginLeft="20dp"
+                android:background="#B6B6B6" />
+
+            <bentaang.chonlakant.com.drawer.widgets.MyCustomTextView
+                android:id="@+id/txt_th"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="2dp"
+                android:contentDescription="silver"
+                android:textColor="#fff"
+                android:drawableTop="@drawable/ic_th"
+                android:gravity="center"
+                android:text="TH"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="65dp"
+                android:layout_below="@+id/b"
+                android:layout_marginLeft="20dp"
+                android:background="#B6B6B6" />
+
+            <bentaang.chonlakant.com.drawer.widgets.MyCustomTextView
+                android:id="@+id/txt_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="2dp"
+                android:contentDescription="silver"
+                android:textColor="#fff"
+                android:drawableTop="@drawable/ic_hito"
+                android:gravity="center"
+                android:text="History"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="65dp"
+                android:layout_below="@+id/b"
+                android:layout_marginLeft="20dp"
+                android:background="#B6B6B6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvContacts"
+                android:background="@null"
+                android:layout_marginBottom="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <ToggleButton
+                android:visibility="gone"
+                android:id="@+id/btn_italic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="@string/btn_italic"
+                android:textOn="@string/btn_italic"
+                android:textStyle="italic" />
+
+            <ToggleButton
+                android:id="@+id/btn_bold"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="@string/btn_bold"
+                android:textOn="@string/btn_bold"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <uz.shift.colorpicker.LineColorPicker
+                android:id="@+id/picker"
+                android:background="#fff"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                app:orientation="horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:baselineAligned="false"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#fff"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txt_preview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="WOUchat is fun !"
+                        android:textColor="#000"
+                        android:textSize="30dp" />
+
+
+                    <ImageView
+                        android:id="@+id/btn_reset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_reset" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

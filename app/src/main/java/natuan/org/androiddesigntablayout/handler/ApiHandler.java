@@ -15,13 +15,18 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.event.GetRecentChatEvent;
 import natuan.org.androiddesigntablayout.event.GetRecentChatSuccess;
+import natuan.org.androiddesigntablayout.event.LoginEvent;
+import natuan.org.androiddesigntablayout.event.LoginFailedAuthEvent;
+import natuan.org.androiddesigntablayout.event.LoginSuccessEvent;
 import natuan.org.androiddesigntablayout.event.SomeEvent;
 import natuan.org.androiddesigntablayout.event.SuccessEvent;
 import natuan.org.androiddesigntablayout.model.ListChatCoverstion;
+import natuan.org.androiddesigntablayout.model.LoginData;
 import natuan.org.androiddesigntablayout.model.Posts;
 import natuan.org.androiddesigntablayout.model.postss;
 import retrofit.Callback;
@@ -72,11 +77,11 @@ public class ApiHandler {
         });
 
     }
-    @Subscribe public  void onGetRecentChat(GetRecentChatEvent event){
-        api.getRecentChat(6, new Callback<ListChatCoverstion>() {
+    @Subscribe public  void onGetRecentChat(final GetRecentChatEvent event){
+        api.getRecentChat(2868, new Callback<ListChatCoverstion>() {
             @Override
             public void success(ListChatCoverstion listChatCoverstion, Response response) {
-            Log.e("65431",listChatCoverstion.getContent().get(0).getAvatar());
+            Log.e("65431",event.userId+"");
 
 
                 if (listChatCoverstion.getContent().size() != 0)
@@ -89,6 +94,8 @@ public class ApiHandler {
             }
         });
     }
+
+
 
 
 }

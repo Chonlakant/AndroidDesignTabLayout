@@ -35,6 +35,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.BaseFragment;
+import natuan.org.androiddesigntablayout.MainApplication;
 import natuan.org.androiddesigntablayout.PrefManager;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
@@ -80,6 +81,8 @@ public class FragmentRecentChats extends BaseFragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
+        ApiBus.getInstance().postQueue(new GetRecentChatEvent(2868));
+
     }
 
     @Override
@@ -91,25 +94,46 @@ public class FragmentRecentChats extends BaseFragment {
 
     boolean checkData = false;
 
+    @Subscribe
+    public void onGetRecentChatSuccess(GetRecentChatSuccess event) {
+        Log.e("fffff",event.response.getContent().size()+"");
+        List<ListChatCoverstion.ContentEntity> recentChatList = event.response.getContent();
+        for (int i = 0; i < recentChatList.size(); i++) {
+            ListChatCoverstion.ContentEntity recentChat = recentChatList.get(i);
 
+            List<ListChatCoverstion.ContentEntity.ConversationMembersEntity> conversationMembers = recentChat.getConversationMembers();
+
+            String friendName = "";
+            String friendAvatar = "";
+            int friendId = 0;
+
+            for (int j = 0; j < conversationMembers.size(); j++) {
+                ListChatCoverstion.ContentEntity.ConversationMembersEntity member = conversationMembers.get(j);
+                int mUserId = Integer.parseInt("6");
+                if (member.getUserId() != mUserId) {
+                    friendId = member.getUserId();
+                    friendName = member.getName();
+                    friendAvatar =  MainApplication.IMAGE_ENDPOINT + member.getAvatar() + "." + member.getExtension();
+                }
+            }
+
+            if (recentChat.getMemberType().equals("INDIVIDUAL")) {
+                Conversation item = new Conversation(recentChat.getConversationId(), friendId, recentChat.getLastMessage(), friendName, friendAvatar, recentChat.getLastHistoryDatetime());
+                list.add(item);
+            }
+
+        }
+
+        adapterRecentChats.notifyDataSetChanged();
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recent_chats, container, false);
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SWZ721BR.ttf");
-        ApiBus.getInstance().postQueue(new GetRecentChatEvent(6));
+        ApiBus.getInstance().postQueue(new GetRecentChatEvent(2868));
         input_username = (EditText) rootView.findViewById(R.id.input_username);
-
         input_username.setTypeface(type);
 
-        if (bundleState != null) {
-            list = Parcels.unwrap(bundleState.getParcelable("posts"));
-        }
-        if (checkData == false) {
-            checkData = true;
-            Log.e("checkData", checkData + "");
-        } else {
-            Toast.makeText(getContext(), "NO", Toast.LENGTH_SHORT).show();
-        }
         listView = (ListView) rootView.findViewById(R.id.listView);
         Log.e("SizeGetMoview", list.size() + "");
         adapterRecentChats = new AdapterRecentChats(getActivity(), list);
@@ -142,80 +166,6 @@ public class FragmentRecentChats extends BaseFragment {
     }
 
 
-    @Subscribe
-    public void onGetRecentChatSuccess(GetRecentChatSuccess event) {
-        Log.e("fffff",event.response.getContent().size()+"");
-        List<ListChatCoverstion.ContentEntity> recentChatList = event.response.getContent();
-        for (int i = 0; i < recentChatList.size(); i++) {
-            ListChatCoverstion.ContentEntity recentChat = recentChatList.get(i);
-
-            List<ListChatCoverstion.ContentEntity.ConversationMembersEntity> conversationMembers = recentChat.getConversationMembers();
-
-            String friendName = "";
-            String friendAvatar = "";
-            int friendId = 0;
-
-            for (int j = 0; j < conversationMembers.size(); j++) {
-                ListChatCoverstion.ContentEntity.ConversationMembersEntity member = conversationMembers.get(j);
-                int mUserId = Integer.parseInt("6");
-                if (member.getUserId() != mUserId) {
-                    friendId = member.getUserId();
-                    friendName = member.getName();
-                    friendAvatar = "https://www.vdomax.com/" + member.getAvatar() + "." + member.getExtension();
-                }
-            }
-
-            if (recentChat.getMemberType().equals("INDIVIDUAL")) {
-                Conversation item = new Conversation(recentChat.getConversationId(), friendId, recentChat.getLastMessage(), friendName, friendAvatar, recentChat.getLastHistoryDatetime());
-                list.add(item);
-            }
-
-        }
-
-        adapterRecentChats.notifyDataSetChanged();
-    }
-
-//    private void prepareListData() {
-//        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-//        asyncHttpClient.get("http://api.candychat.net:1314/api/chat/recent/user/1", new JsonHttpResponseHandler() {
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                super.onSuccess(statusCode, headers, response);
-//                try {
-//
-//                    if (response != null) {
-//                        JSONArray ja = response.getJSONArray("friends");
-//                        for (int i = 0; i < ja.length(); i++) {
-//                            JSONObject obj = ja.getJSONObject(i);
-//                            String name = obj.getString("name");
-//                            String image = obj.getString("avatar");
-//                            String urlImage = "https://www.vdomax.com/" + image;
-//                            Log.e("aaaa", name + "");
-//                            String imageUrl = "http://www.mx7.com/i/91b/9SNAed.png";
-//
-//                            Posts posts = new Posts();
-//                            posts.setName(name);
-//                            posts.setImage(urlImage);
-//                            list.add(posts);
-//
-//                        }
-//
-//                    }
-//
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-//                super.onFailure(statusCode, headers, throwable, errorResponse);
-//            }
-//        });
-//
-//
-//    }
 
 
     @Override
@@ -258,6 +208,6 @@ public class FragmentRecentChats extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        isCheck = false;
+        adapterRecentChats.notifyDataSetChanged();
     }
 }

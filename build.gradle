@@ -1,5 +1,31 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+
+ext {
+    appCompatVersion = "22.2.0"
+    buildToolsVersion = "21.1.2"
+    targetSdk = 22
+    compileSdk = 22
+    minSdk = 15
+    compileSdkVersion = 22
+
+    facebookSDK = 'com.facebook.android:facebook-android-sdk:4.0.1'
+    androidSupport = 'com.android.support:support-v4:22.0.0'
+    bolts = 'com.parse.bolts:bolts-android:1.2.0'
+    parsePath = "$rootProject.projectDir/ParseLoginUI/libs/Parse-1.9.1.jar"
+    parseFacebookUtilsPath = "$rootProject.projectDir/ParseLoginUI/libs/ParseFacebookUtilsV4-1.9.1.jar"
+    parseCrashReporting = "$rootProject.projectDir/ParseLoginUI/libs/ParseCrashReporting-1.9.4.jar"
+
+//    betaDistributionReleaseNotes="Add search functionality"
+//    betaDistributionEmails="tismgroups@gmail.com, heartmon12@gmail.com, vdomax@hotmail.com, koredevman@gmail.com, cloudtist@gmail.com, folkrice.th@gmail.com, anyarimpsnus@gmail.com"
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
 buildscript {
     repositories {
         jcenter()
@@ -21,6 +47,7 @@ allprojects {
             url  "http://dl.bintray.com/dasar/maven"
 
         }
+        maven { url "https://jitpack.io" }
     }
 }
 task wrapper(type: Wrapper) {

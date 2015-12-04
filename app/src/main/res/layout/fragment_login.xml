@@ -99,9 +99,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:textStyle="bold"
                 android:text="Sign up with Facebook"
                 android:textColor="#335c99"
-                android:textSize="15dp" />
+                android:textSize="17dp" />
         </LinearLayout>
 
         <LinearLayout

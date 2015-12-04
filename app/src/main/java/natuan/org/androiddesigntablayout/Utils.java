@@ -241,6 +241,10 @@ public class Utils {
         return true;
     }
 
+    public static void showToast(String iMessage) {
+        Toast.makeText(MainApplication.getAppContext(), iMessage, Toast.LENGTH_SHORT).show();
+    }
+
 //    public static void notify(Context context,String ticker, String title, String message,
 //                              Intent intent) {
 //

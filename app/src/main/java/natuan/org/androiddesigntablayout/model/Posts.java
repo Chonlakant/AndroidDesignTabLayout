@@ -11,15 +11,15 @@ import java.util.ArrayList;
 @Parcel
 public class Posts {
 
-    private String id;
+    public String id;
 
-    private String name;
+    public String name;
 
-    private String image;
+    public String image;
 
-    private String url;
+    public String url;
 
-    private String description;
+    public String description;
     ArrayList<String> title_candy;
     public Posts(){
 

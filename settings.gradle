@@ -1,1 +1,1 @@
-include ':app', ':labeiui', ':cvlibrary', ':librarygestureview', 'alex', ':lib', ':libraryspinner'
+include ':app', ':labeiui', ':cvlibrary', ':librarygestureview', 'alex', ':lib', ':libraryspinner', ':ParseLoginUI', ':Chat'

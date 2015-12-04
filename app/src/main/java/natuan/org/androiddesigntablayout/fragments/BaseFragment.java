@@ -1,83 +1,206 @@
 package natuan.org.androiddesigntablayout.fragments;
 
-import android.app.Activity;
+
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.text.Html;
+import android.view.MenuItem;
+import android.widget.Button;
 
-import butterknife.ButterKnife;
-import natuan.org.androiddesigntablayout.impls.OnFragmentInteractionListener;
+import com.squareup.otto.Subscribe;
 
-/**
- * Created by Tuan Nguyen on 6/1/2015.
- */
+import natuan.org.androiddesigntablayout.ActivityResultBus;
+import natuan.org.androiddesigntablayout.ActivityResultEvent;
+import natuan.org.androiddesigntablayout.MainApplication;
+import natuan.org.androiddesigntablayout.PrefManager;
+import natuan.org.androiddesigntablayout.R;
+import natuan.org.androiddesigntablayout.handler.ApiBus;
+
+
 public abstract class BaseFragment extends Fragment {
 
-    protected abstract int getLayoutResource();
-
-    protected abstract void initVariables(Bundle savedInstanceState);
-
-    protected abstract void initData(Bundle savedInstanceState);
-
-    protected OnFragmentInteractionListener mListener;
+    @Override
+    public void onStart() {
+        super.onStart();
+        ApiBus.getInstance().register(mActivityResultSubscriber);
+    }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+    public void onStop() {
+        super.onStop();
+        ApiBus.getInstance().unregister(mActivityResultSubscriber);
+    }
+
+    public PrefManager prefManager;
+    public boolean mSearchCheck = false;
+    private Object mActivityResultSubscriber = new Object() {
+        @Subscribe
+        public void onActivityResultReceived(ActivityResultEvent event) {
+            int requestCode = event.getRequestCode();
+            int resultCode = event.getResultCode();
+            Intent data = event.getData();
+            onActivityResult(requestCode, resultCode, data);
+        }
+    };
+    private Bundle savedState;
+
+
+    public BaseFragment() {
+        super();
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        prefManager = MainApplication.get(getActivity()).getPrefManager();
+    }
+
+    @Override
+    public void onResume() {
+        ApiBus.getInstance().register(this);
+        ActivityResultBus.getInstance().register(this);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        ApiBus.getInstance().unregister(this);
+        ActivityResultBus.getInstance().unregister(this);
+        super.onPause();
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        // Restore State Here
+        if (!restoreStateFromArguments()) {
+            // First Time, Initialize something here
+            onFirstTimeLaunched();
         }
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(getLayoutResource(), container, false);
-        ButterKnife.inject(this, rootView);
-        initVariables(savedInstanceState);
-        initData(savedInstanceState);
-        return rootView;
+    protected void onFirstTimeLaunched() {
+
     }
 
+    ////////////////////
+    // Don't Touch !!
+    ////////////////////
+
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save State Here
+        saveStateToArguments();
     }
+
+
+    ////////////////////
+    // Don't Touch !!
+    ////////////////////
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        // Save State Here
+        saveStateToArguments();
     }
 
-    /**
-     * Start Activity with Bundle
-     *
-     * @param clazz
-     * @param bundle
-     */
-    protected void startActivity(Class<?> clazz, Bundle bundle) {
-        Intent intent = new Intent(getActivity(), clazz);
-        if (bundle != null)
-            intent.putExtras(bundle);
-        startActivity(intent);
+    /////////////////////////////////
+    // Restore Instance State Here
+    /////////////////////////////////
+
+    private void saveStateToArguments() {
+        if (getView() != null)
+            savedState = saveState();
+        if (savedState != null) {
+            Bundle b = getArguments();
+            //b.putBundle("internalSavedViewState8954201239547", savedState);
+        }
     }
 
-    /**
-     * Start Activity without Bundle
-     *
-     * @param clazz
-     */
-    protected void startActivity(Class<?> clazz) {
-        startActivity(clazz, null);
+    private boolean restoreStateFromArguments() {
+        Bundle b = getArguments();
+        //savedState = b.getBundle("internalSavedViewState8954201239547");
+        if (savedState != null) {
+            restoreState();
+            return true;
+        }
+        return false;
     }
+
+    //////////////////////////////
+    // Save Instance State Here
+    //////////////////////////////
+
+    private void restoreState() {
+        if (savedState != null) {
+            // For Example
+            //tv1.setText(savedState.getString("text"));
+            onRestoreState(savedState);
+        }
+    }
+
+    protected void onRestoreState(Bundle savedInstanceState) {
+
+    }
+
+    private Bundle saveState() {
+        Bundle state = new Bundle();
+        // For Example
+        //state.putString("text", tv1.getText().toString());
+        onSaveState(state);
+        return state;
+    }
+
+    protected void onSaveState(Bundle outState) {
+
+    }
+
+    public void toggleFollowing(Button v) {
+        v.setTextColor(Color.parseColor("#ffffff"));
+        //v.setText(Html.fromHtml("&#x2713; FOLLOWING"));
+        v.setText(Html.fromHtml("FOLLOWING"));
+
+        // change state
+        v.setSelected(true);
+        v.setPressed(false);
+
+    }
+
+    public void toggleUnfollow(Button v) {
+        v.setTextColor(Color.parseColor("#2C6497"));
+        v.setText("+ FOLLOW");
+
+        // change state
+        v.setSelected(false);
+        v.setPressed(false);
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                mSearchCheck = true;
+                break;
+        }
+        return true;
+    }
+
+    public interface SearchListener {
+        void onSearchQuery(String query);
+    }
+
+
+
+
 
 }
+
+
+

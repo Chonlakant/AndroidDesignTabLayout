@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+
+    <item
+        android:id="@+id/action_attach"
+        android:title=""
+        android:icon="@drawable/attach_icon"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_color"
+        android:title=""
+        android:icon="@drawable/colorful_icon_chat"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/context_menu"
+        android:title=""
+        android:icon="@drawable/more_icon"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+
+</menu>

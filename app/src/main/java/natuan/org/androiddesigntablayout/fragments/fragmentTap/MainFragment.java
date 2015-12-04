@@ -38,9 +38,13 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.BaseFragment;
+import natuan.org.androiddesigntablayout.MainApplication;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.RoundedTransformation;
+import natuan.org.androiddesigntablayout.acivityLogin.LoginActivity;
+import natuan.org.androiddesigntablayout.acivityLogin.MainLogin;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
+import natuan.org.androiddesigntablayout.activity.MainActivityTap;
 import natuan.org.androiddesigntablayout.activity.MianHomGroup;
 import natuan.org.androiddesigntablayout.activity.MianHomMe;
 import natuan.org.androiddesigntablayout.adapter.CustomExpandableListView;
@@ -518,7 +522,10 @@ public class MainFragment extends BaseFragment {
                 return true;
             case R.id.action_log_out:
                 Toast.makeText(getActivity(), "Log out", Toast.LENGTH_SHORT).show();
-
+                MainApplication.logout(getActivity());
+                Intent login = new Intent(getActivity(), MainLogin.class);
+                startActivity(login);
+                getActivity().finish();
                 return true;
 
         }
