@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/ic_photo"
+                android:drawableTop="@drawable/ic_photo_w"
                 android:gravity="center"
                 android:text="Take photo"
                 android:textColor="#fff"

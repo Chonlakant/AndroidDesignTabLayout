@@ -21,17 +21,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rajasharan.widget.SearchableSpinner;
+
+import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 import butterknife.InjectView;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
 
-public class FragmentSignByPhoneStep1 extends Fragment implements SearchableSpinner.OnSelectionChangeListener{
+public class FragmentSignByPhoneStep1 extends Fragment {
 
     Toolbar toolbar;
     // @InjectView(R.id.input_email)
-
+    BetterSpinner spinner1;
     // @InjectView(R.id.input_number_phone)
     EditText dtInputPhone;
     // @InjectView(R.id.btn_next)
@@ -48,9 +49,27 @@ public class FragmentSignByPhoneStep1 extends Fragment implements SearchableSpin
         btnNext.setTypeface(type);
         dtInputPhone.setTypeface(type);
 
-        SearchableSpinner spinner2 = (SearchableSpinner) rootView.findViewById(R.id.search3);
-        spinner2.setOnSelectionChangeListener(this);
-        spinner2.setList(codeContry);
+        spinner1  = (BetterSpinner) rootView.findViewById(R.id.spinner1);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_dropdown_item_1line, codeContry);
+        spinner1.setAdapter(adapter);
+
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinner1.setTypeface(type);
+
+
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,11 +129,4 @@ public class FragmentSignByPhoneStep1 extends Fragment implements SearchableSpin
     }
 
 
-    @Override
-    public void onSelectionChanged(String selection) {
-        code = selection.substring(1, 4);
-        Log.e("code",code);
-        Toast.makeText(getContext(), selection + " selected", Toast.LENGTH_SHORT).show();
-
-    }
 }

@@ -25,18 +25,17 @@
 
             <ImageView
                 android:id="@+id/img_info"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:src="@drawable/ic_help_pop_contact"
                 android:layout_gravity="center_vertical" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Me"
                 android:textColor="#bfbfbf"
-                android:id="@+id/textView20"
+                android:id="@+id/txt_me"
                 android:layout_gravity="center_vertical" />
 
             <LinearLayout

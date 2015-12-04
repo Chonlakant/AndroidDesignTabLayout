@@ -81,7 +81,7 @@ public class FragmentRecentChats extends BaseFragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        ApiBus.getInstance().postQueue(new GetRecentChatEvent(2868));
+        ApiBus.getInstance().postQueue(new GetRecentChatEvent(2));
 
     }
 

@@ -78,11 +78,10 @@ public class ApiHandler {
 
     }
     @Subscribe public  void onGetRecentChat(final GetRecentChatEvent event){
-        api.getRecentChat(2868, new Callback<ListChatCoverstion>() {
+        api.getRecentChat(2, new Callback<ListChatCoverstion>() {
             @Override
             public void success(ListChatCoverstion listChatCoverstion, Response response) {
             Log.e("65431",event.userId+"");
-
 
                 if (listChatCoverstion.getContent().size() != 0)
                     ApiBus.getInstance().postQueue(new GetRecentChatSuccess(listChatCoverstion));

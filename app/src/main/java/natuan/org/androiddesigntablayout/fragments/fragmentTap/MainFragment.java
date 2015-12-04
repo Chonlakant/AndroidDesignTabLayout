@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import bentaang.chonlakant.com.drawer.MainActivity;
 import cz.msebera.android.httpclient.Header;
 import natuan.org.androiddesigntablayout.BaseFragment;
 import natuan.org.androiddesigntablayout.MainApplication;
@@ -161,29 +162,55 @@ public class MainFragment extends BaseFragment {
 //                        Toast.LENGTH_SHORT).show();
 
 
-                if (checkOnclick != true) {
-                    if (listDataHeader.get(groupPosition) == "Me") {
-                        dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
-                        dialog.setContentView(R.layout.dialog_me);
+                if (listDataHeader.get(groupPosition) == "Me") {
+                    dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
+                    dialog.setContentView(R.layout.dialog_me);
+                    TextView txt_me = (TextView) dialog.findViewById(R.id.txt_me);
+                    txt_me.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getActivity(), MianHomMe.class);
+                            startActivity(i);
+                        }
+                    });
+                    TextView txt_profile = (TextView) dialog.findViewById(R.id.txt_profile);
+                    txt_profile.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            FragmentEditName fragment = new FragmentEditName();
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            transaction.add(R.id.flContainer, fragment);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
+                            dialog.dismiss();
+                        }
+                    });
+                    ImageView img_info = (ImageView) dialog.findViewById(R.id.img_info);
+                    TextView txt_chat = (TextView) dialog.findViewById(R.id.txt_chat);
+                    txt_chat.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
 
-                        TextView txt_chat = (TextView) dialog.findViewById(R.id.txt_chat);
-                        txt_chat.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
+                        }
+                    });
 
-                                dialog.dismiss();
-                            }
-                        });
+                    img_info.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getActivity(), MianHomMe.class);
+                            startActivity(i);
+                        }
+                    });
 
-
-                    }
+                    dialog.show();
                 }
 
 
                 if (listDataHeader.get(groupPosition) == "Groups") {
                     final Dialog dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                     dialog.setContentView(R.layout.dialog_group);
-
 
                     TextView txt_chat = (TextView) dialog.findViewById(R.id.txt_chat);
                     txt_chat.setOnClickListener(new View.OnClickListener() {

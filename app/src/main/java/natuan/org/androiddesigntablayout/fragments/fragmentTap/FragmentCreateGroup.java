@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import me.isming.tools.cvfilter.library.ImageData;
+
 import natuan.org.androiddesigntablayout.PathManager;
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
@@ -200,7 +200,7 @@ public class FragmentCreateGroup extends Fragment {
     }
     private void showTakenPicture(Bitmap bitmap) throws IOException {
 
-            bitmap = ImageData.decodeSampledBitmapFromBitmap(photoPath.getPath(), 400, 600);
+
 
     }
     @Override

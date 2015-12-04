@@ -9,15 +9,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Chat" />
             <option value="$PROJECT_DIR$/ParseLoginUI" />
             <option value="$PROJECT_DIR$/alex" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/cvlibrary" />
+            <option value="$PROJECT_DIR$/chat" />
             <option value="$PROJECT_DIR$/labeiui" />
-            <option value="$PROJECT_DIR$/lib" />
             <option value="$PROJECT_DIR$/librarygestureview" />
-            <option value="$PROJECT_DIR$/libraryspinner" />
           </set>
         </option>
       </GradleProjectSettings>

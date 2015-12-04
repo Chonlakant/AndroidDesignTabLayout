@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+//import com.dpizarro.autolabel.library.AutoLabelUI;
+//import com.dpizarro.autolabel.library.Label;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +26,7 @@ import bentaang.chonlakant.com.drawer.adapter.MyRecyclerAdapter;
 import bentaang.chonlakant.com.drawer.model.Person;
 
 public class ContactActivity extends AppCompatActivity {
-   // private AutoLabelUI mAutoLabel;
+//    private AutoLabelUI mAutoLabel;
     private List<Person> mPersonList;
     private MyRecyclerAdapter adapter;
     private RecyclerView recyclerView;
@@ -34,7 +36,7 @@ public class ContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerview_fragment);
-       // mAutoLabel = (AutoLabelUI) findViewById(R.id.label_view);
+//        mAutoLabel = (AutoLabelUI) findViewById(R.id.label_view);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ok = (Button) findViewById(R.id.ok);
         recyclerView.setHasFixedSize(true);
@@ -83,23 +85,23 @@ public class ContactActivity extends AppCompatActivity {
         Person person = mPersonList.get(position);
         boolean isSelected = person.isSelected();
         boolean success;
-        if (isSelected) {
-          //  success = mAutoLabel.removeLabel(position);
-        } else {
-           // success = mAutoLabel.addLabel(person.getName(), position);
-        }
+//        if (isSelected) {
+//            success = mAutoLabel.removeLabel(position);
+//        } else {
+//            success = mAutoLabel.addLabel(person.getName(), position);
+//        }
 //        if (success) {
 //            adapter.setItemSelected(position, !isSelected);
 //        }
     }
 
 //    private void setListeners() {
-////        mAutoLabel.setOnLabelsCompletedListener(new AutoLabelUI.OnLabelsCompletedListener() {
-////            @Override
-////            public void onLabelsCompleted() {
-////                Toast.makeText(getApplication(), "Completed!", Toast.LENGTH_SHORT).show();
-////            }
-////        });
+//        mAutoLabel.setOnLabelsCompletedListener(new AutoLabelUI.OnLabelsCompletedListener() {
+//            @Override
+//            public void onLabelsCompleted() {
+//                Toast.makeText(getApplication(), "Completed!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 //
 //        mAutoLabel.setOnRemoveLabelListener(new AutoLabelUI.OnRemoveLabelListener() {
 //            @Override

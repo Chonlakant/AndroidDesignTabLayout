@@ -33,18 +33,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <natuan.org.androiddesigntablayout.MyCustomTextView
-                android:id="@+id/label"
-                android:layout_width="wrap_content"
+            <com.weiwangcn.betterspinner.library.BetterSpinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Select Language" />
-
-            <com.rajasharan.widget.SearchableSpinner
-                android:id="@+id/search3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp" />
+                android:textSize="15dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:hint="Thailand (+66)" />
         </LinearLayout>
 
 

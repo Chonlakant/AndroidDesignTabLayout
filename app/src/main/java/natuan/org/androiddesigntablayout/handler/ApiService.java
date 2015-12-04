@@ -21,7 +21,7 @@ public interface ApiService {
     @GET("/api_movie/get_movie2.php?uid=1&cat=1")
     public void getMovie(Callback<postss> responseJson);
 
-    @GET("/chat/recent/user/{id}/android")
+    @GET("/api/chat/recent/user/{id}")
     public void getRecentChat(@Path("id") int id, Callback<ListChatCoverstion> callback);
 
 

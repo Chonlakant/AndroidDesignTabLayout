@@ -1,10 +1,8 @@
 package natuan.org.androiddesigntablayout.fragments.fragmentTap;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -15,11 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import natuan.org.androiddesigntablayout.R;
 import natuan.org.androiddesigntablayout.activity.BaseActivity;
-import natuan.org.androiddesigntablayout.activity.TakePhotoActivity2;
 
 public class FragmentCamera extends Fragment {
     Toolbar toolbar;
@@ -42,10 +38,10 @@ public class FragmentCamera extends Fragment {
             public void onClick(View v) {
 //                Intent i = new Intent(getActivity(), TakePhotoActivity2.class);
 //                startActivity(i);
-                int[] startingLocation = new int[2];
-                v.getLocationOnScreen(startingLocation);
-                startingLocation[0] += v.getWidth() / 2;
-                TakePhotoActivity2.startCameraFromLocation(startingLocation, getActivity(), false);
+//                int[] startingLocation = new int[2];
+//                v.getLocationOnScreen(startingLocation);
+//                startingLocation[0] += v.getWidth() / 2;
+//                TakePhotoActivity2.startCameraFromLocation(startingLocation, getActivity(), false);
             }
         });
         return rootView;

@@ -32,11 +32,9 @@
         <activity android:name=".activity.MainActivityTap" />
         <!-- <activity android:name=".MainActivityChat" /> -->
         <activity android:name=".activity.PostPhotoActivity" />
-        <activity android:name=".activity.TakePhotoActivity2" />
-        <activity android:name=".activity.TakePhotoActivity" />
         <activity android:name=".acivityLogin.ActivityMainLogin" />
         <activity android:name=".activity.ActivityChatSetting" />
-        <activity android:name=".ActivityViewPhotoChat"/>
+        <activity android:name=".ActivityViewPhotoChat" />
         <activity
             android:name=".activity.MianHomMe"
             android:label="@string/title_activity_mian_hom_me"
@@ -60,27 +58,29 @@
             android:value="@string/parse_client_key" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ApplicationName"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationName"
             android:value="@string/app_name" />
+
         <activity
             android:name="com.parse.ui.ParseLoginActivity"
             android:launchMode="singleTop">
             <meta-data
                 android:name="com.parse.ui.ParseLoginActivity.PARSE_LOGIN_ENABLED"
-                android:value="true"/>
+                android:value="true" />
             <meta-data
                 android:name="com.parse.ui.ParseLoginActivity.PARSE_LOGIN_EMAIL_AS_USERNAME"
-                android:value="true"/>
+                android:value="true" />
             <meta-data
                 android:name="com.parse.ui.ParseLoginActivity.FACEBOOK_LOGIN_ENABLED"
-                android:value="true"/>
+                android:value="true" />
             <meta-data
                 android:name="com.parse.ui.ParseLoginActivity.TWITTER_LOGIN_ENABLED"
-                android:value="true"/>
+                android:value="true" />
         </activity>
 
-
+        <activity android:name="bentaang.chonlakant.com.drawer.MainActivity" />
 
 
         <!--<activity android:name=".acivityLogin.LoginActivity"/>-->

@@ -267,7 +267,7 @@ public class MainActivity extends FragmentActivity implements HistoryListView {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         mDrawer = MenuDrawer.attach(this, Position.RIGHT);
-        mDrawer.setContentView(R.layout.activity_main);
+        mDrawer.setContentView(R.layout.activity_main_chat);
         mDrawer.setMenuView(R.layout.layout_more_chat);
         mDrawer.setMenuSize(150);
         image_wallpaper = (ImageView) findViewById(R.id.image_wallpaper);
@@ -578,72 +578,72 @@ public class MainActivity extends FragmentActivity implements HistoryListView {
         hashMapTypeface = new HashMapTypeface();
         hashMapTypefaceTH = new HashMapTypefaceTh();
 
-        mTypefaceMapTh = hashMapTypefaceTH.getTypeFace(getApplicationContext());
-        mTypefaceMap = hashMapTypeface.getTypeFace(getApplicationContext());
+//        mTypefaceMapTh = hashMapTypefaceTH.getTypeFace(getApplicationContext());
+//        mTypefaceMap = hashMapTypeface.getTypeFace(getApplicationContext());
+//
+//        fontList = new ArrayList<String>(mTypefaceMap.size());
+//        fontListTh = new ArrayList<String>(mTypefaceMapTh.size());
+//
+//        fontList.addAll(mTypefaceMap.keySet());
+//        fontListTh.addAll(mTypefaceMapTh.keySet());
+//
+//
+//        mAdapter = new AdapterRecyclerviewFont(getApplicationContext(), fontList);
+//        rvContacts.setAdapter(mAdapter);
+//
+//        mAdapter.SetOnItemVideiosClickListener(new AdapterRecyclerviewFont.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
+//                applyDynamicTypeface(fontList.get(position), mBtnBold.isChecked(), mBtnItalic.isChecked());
+//                Log.e("font55", fontList.get(position) + "");
+//                nameFont = fontList.get(position);
+//                prefManager.font().put(fontList.get(position));
+//                prefManager.numTh().put(0);
+//                prefManager.commit();
+//
+//            }
+//        });
 
-        fontList = new ArrayList<String>(mTypefaceMap.size());
-        fontListTh = new ArrayList<String>(mTypefaceMapTh.size());
-
-        fontList.addAll(mTypefaceMap.keySet());
-        fontListTh.addAll(mTypefaceMapTh.keySet());
-
-
-        mAdapter = new AdapterRecyclerviewFont(getApplicationContext(), fontList);
-        rvContacts.setAdapter(mAdapter);
-
-        mAdapter.SetOnItemVideiosClickListener(new AdapterRecyclerviewFont.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
-                applyDynamicTypeface(fontList.get(position), mBtnBold.isChecked(), mBtnItalic.isChecked());
-                Log.e("font55", fontList.get(position) + "");
-                nameFont = fontList.get(position);
-                prefManager.font().put(fontList.get(position));
-                prefManager.numTh().put(0);
-                prefManager.commit();
-
-            }
-        });
-
-        txt_en.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAdapter = new AdapterRecyclerviewFont(getApplicationContext(), fontList);
-                rvContacts.setAdapter(mAdapter);
-                mAdapter.SetOnItemVideiosClickListener(new AdapterRecyclerviewFont.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
-                        applyDynamicTypeface(fontList.get(position), mBtnBold.isChecked(), mBtnItalic.isChecked());
-                        Log.e("font55", fontList.get(position) + "");
-                        nameFont = fontList.get(position);
-                        prefManager.font().put(fontList.get(position));
-                        prefManager.numTh().put(0);
-                        prefManager.commit();
-
-                    }
-                });
-            }
-        });
-        txt_th.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAdapterTH = new AdapterRecyclerviewFontTH(getApplicationContext(), fontListTh);
-                rvContacts.setAdapter(mAdapterTH);
-                mAdapterTH.SetOnItemVideiosClickListenerTh(new AdapterRecyclerviewFontTH.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
-                        applyDynamicTypefaceTh(fontListTh.get(position), mBtnBold.isChecked(), mBtnItalic.isChecked());
-                        Log.e("font55", fontListTh.get(position) + "");
-                        nameFont = fontListTh.get(position);
-                        prefManager.font().put(fontListTh.get(position));
-                        prefManager.numEn().put(1);
-                        prefManager.commit();
-                    }
-                });
-            }
-        });
+//        txt_en.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mAdapter = new AdapterRecyclerviewFont(getApplicationContext(), fontList);
+//                rvContacts.setAdapter(mAdapter);
+//                mAdapter.SetOnItemVideiosClickListener(new AdapterRecyclerviewFont.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                        Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
+//                        applyDynamicTypeface(fontList.get(position), mBtnBold.isChecked(), mBtnItalic.isChecked());
+//                        Log.e("font55", fontList.get(position) + "");
+//                        nameFont = fontList.get(position);
+//                        prefManager.font().put(fontList.get(position));
+//                        prefManager.numTh().put(0);
+//                        prefManager.commit();
+//
+//                    }
+//                });
+//            }
+//        });
+//        txt_th.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mAdapterTH = new AdapterRecyclerviewFontTH(getApplicationContext(), fontListTh);
+//                rvContacts.setAdapter(mAdapterTH);
+//                mAdapterTH.SetOnItemVideiosClickListenerTh(new AdapterRecyclerviewFontTH.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                        Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
+//                        applyDynamicTypefaceTh(fontListTh.get(position), mBtnBold.isChecked(), mBtnItalic.isChecked());
+//                        Log.e("font55", fontListTh.get(position) + "");
+//                        nameFont = fontListTh.get(position);
+//                        prefManager.font().put(fontListTh.get(position));
+//                        prefManager.numEn().put(1);
+//                        prefManager.commit();
+//                    }
+//                });
+//            }
+//        });
 
 
         btn_reset.setOnClickListener(new View.OnClickListener() {
@@ -806,17 +806,17 @@ public class MainActivity extends FragmentActivity implements HistoryListView {
         faceData.put(R.drawable.em_cate_candy_chat, faceNameList3);
         setFaceData(faceData);
 
-        namFontHistory = prefManager.font().getOr("no");
-        colorFontHistory = prefManager.intColor().getOr(000000);
+//        namFontHistory = prefManager.font().getOr("no");
+//        colorFontHistory = prefManager.intColor().getOr(000000);
 
-        Log.e("namFontHistory", namFontHistory);
-        Log.e("colorFontHistory", "" + colorFontHistory);
+//        Log.e("namFontHistory", namFontHistory);
+//        Log.e("colorFontHistory", "" + colorFontHistory);
 
-        HistoryFont itemFont = new HistoryFont();
-        itemFont.setColor(colorFontHistory);
-        itemFont.setNamFont(namFontHistory);
-        listFont.add(itemFont);
-        mAdapterFont = new HistoryFontAdapter(getApplicationContext(), listFont);
+//        HistoryFont itemFont = new HistoryFont();
+//        itemFont.setColor(colorFontHistory);
+//        itemFont.setNamFont(namFontHistory);
+//        listFont.add(itemFont);
+//        mAdapterFont = new HistoryFontAdapter(getApplicationContext(), listFont);
 
         txt_history.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -824,24 +824,24 @@ public class MainActivity extends FragmentActivity implements HistoryListView {
                 dialog = new Dialog(getActivity(), R.style.FullHeightDialog);
                 dialog.setContentView(R.layout.dialog_history);
 
-                ListView listviewFont = (ListView) dialog.findViewById(R.id.listView);
-                listviewFont.setAdapter(mAdapterFont);
+//                ListView listviewFont = (ListView) dialog.findViewById(R.id.listView);
+//                listviewFont.setAdapter(mAdapterFont);
 
-                listviewFont.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        int color = listFont.get(position).getColor();
-                        String namFontHistory = listFont.get(position).getNamFont();
-
-                        nameFont = namFontHistory;
-                        typeColor = Integer.toString(color);
-                        txt_preview.setTextColor(color);
-                        chatEditText1.setTextColor(color);
-                        // chatEditText1.setTypeface(mTypefaceMap.get(selectedFont));
-
-                        dialog.dismiss();
-                    }
-                });
+//                listviewFont.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                        int color = listFont.get(position).getColor();
+//                        String namFontHistory = listFont.get(position).getNamFont();
+//
+//                        nameFont = namFontHistory;
+//                        typeColor = Integer.toString(color);
+//                        txt_preview.setTextColor(color);
+//                        chatEditText1.setTextColor(color);
+//                        // chatEditText1.setTypeface(mTypefaceMap.get(selectedFont));
+//
+//                        dialog.dismiss();
+//                    }
+//                });
 
                 dialog.show();
             }

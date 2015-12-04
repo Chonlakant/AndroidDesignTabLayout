@@ -1,6 +1,5 @@
 package natuan.org.androiddesigntablayout.model;
 
-import com.norbsoft.typefacehelper.TypefaceCollection;
 
 /**
  * Created by root1 on 11/10/15.
