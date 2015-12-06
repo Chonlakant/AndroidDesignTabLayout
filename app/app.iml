@@ -87,9 +87,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="okhttp-ws-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="parceler-0.2.10" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="socket.io-client-0.5.1" level="project" />
     <orderEntry type="library" exported="" name="parceler-api-0.2.10" level="project" />
     <orderEntry type="library" exported="" name="android-query-full.0.26.7" level="project" />
@@ -112,18 +112,18 @@
     <orderEntry type="library" exported="" name="bolts-android-1.2.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.4.0" level="project" />
     <orderEntry type="library" exported="" name="codemodel-2.6" level="project" />
-    <orderEntry type="library" exported="" name="slf4j-api-1.7.7" level="project" />
-    <orderEntry type="library" exported="" name="transfuse-support-0.2.10" level="project" />
     <orderEntry type="library" exported="" name="jsr305-2.0.3" level="project" />
+    <orderEntry type="library" exported="" name="transfuse-support-0.2.10" level="project" />
+    <orderEntry type="library" exported="" name="slf4j-api-1.7.7" level="project" />
     <orderEntry type="library" exported="" name="ParseFacebookUtilsV4-1.9.1" level="project" />
     <orderEntry type="library" exported="" name="okhttp-urlconnection-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="ParseCrashReporting-1.9.4" level="project" />
     <orderEntry type="library" exported="" name="commons-lang-2.6" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-23.1.1" level="project" />
-    <orderEntry type="library" exported="" name="prettysharedpreferences-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="javax.inject-1" level="project" />
-    <orderEntry type="library" exported="" name="commons-collections-3.2.1" level="project" />
+    <orderEntry type="library" exported="" name="prettysharedpreferences-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="guava-15.0" level="project" />
+    <orderEntry type="library" exported="" name="commons-collections-3.2.1" level="project" />
     <orderEntry type="library" exported="" name="engine.io-client-0.5.1" level="project" />
     <orderEntry type="library" exported="" name="design-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="slf4j-android-1.7.7" level="project" />
