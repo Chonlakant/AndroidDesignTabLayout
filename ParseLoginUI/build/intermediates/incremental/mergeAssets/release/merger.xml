@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/root1/Documents/Android_Studio_src/AndroidDesignTabLayoutTest/ParseLoginUI/src/main/assets"/></dataSet><dataSet config="release"><source path="/Users/root1/Documents/Android_Studio_src/AndroidDesignTabLayoutTest/ParseLoginUI/src/release/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/korrio/AndroidStudioProjects/AndroidDesignTabLayout/ParseLoginUI/src/main/assets"/></dataSet><dataSet config="release"><source path="/Users/korrio/AndroidStudioProjects/AndroidDesignTabLayout/ParseLoginUI/src/release/assets"/></dataSet></merger>
